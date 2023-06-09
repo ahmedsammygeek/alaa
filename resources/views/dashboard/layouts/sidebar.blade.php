@@ -38,7 +38,7 @@
 			<ul class="nav nav-sidebar" data-nav-type="accordion">
 
 				@php
-				$home = $admins = $brands = $governorates = $cities = $coupons = $categories = $marketers  = $pages = $products = $withdrawals = $countries = $expenses  = $slides = $orders = $complains = $settings = $warehouses = $messages = '';
+				$home = $admins = $brands = $governorates = $cities = $coupons = $categories = $marketers  = $pages = $products = $withdrawals = $countries = $expenses = $challenges  = $slides = $orders = $complains = $settings = $warehouses = $messages = '';
 
 
 				switch (request()->segment(3)) {
@@ -65,6 +65,9 @@
 					break;
 					case 'brands':
 					$brands = 'active';
+					break;
+					case 'challenges':
+					$challenges = 'active';
 					break;
 					case 'settings':
 					$settings = 'active';
@@ -263,6 +266,13 @@
 					<a href="#" class="nav-link {{ $withdrawals }}"><i class="icon-images3"></i> <span> طلبات سحب الارباح </span></a>
 					<ul class="nav nav-group-sub" >
 						<li class="nav-item"><a href="{{ route('dashboard.withdrawals.index') }}" class="nav-link"> عرض كافه الطلبات</a></li>					
+					</ul>
+				</li>	
+				<li class="nav-item nav-item-submenu">
+					<a href="#" class="nav-link {{ $challenges }}"><i class="icon-images3"></i> <span> التحديات </span></a>
+					<ul class="nav nav-group-sub" >
+						<li class="nav-item"><a href="{{ route('dashboard.challenges.index') }}" class="nav-link"> عرض كافه التحديات</a></li>
+						<li class="nav-item"><a href="{{ route('dashboard.challenges.create') }}" class="nav-link"> إضافه تحدى جديد</a></li>					
 					</ul>
 				</li>					
 			</ul>

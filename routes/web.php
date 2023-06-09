@@ -33,13 +33,31 @@ use App\Http\Controllers\Dashboard\ProductVariationController;
 use App\Http\Controllers\Dashboard\CountryContoller;
 use App\Http\Controllers\Dashboard\AjaxController;
 use App\Http\Controllers\Dashboard\ExpensesController;
+use App\Http\Controllers\Dashboard\ChallengeController;
 // use AWS;
 use App\Notifications\TestSendSmsNotifcation;
 use App\Models\User;
+use App\Models\Order;
 use App\Jobs\TestJob;
+
 Route::get('/test' , function(){
+    
+
+    // $orders = Order::all();
 
 
+    // foreach($orders as $order) {
+    //     $order->number = date('M').time().rand(10 , 300);
+    //     $order->save();
+    // }
+
+    $response = Http::post('https://smsmisr.com/api/SMS/?environment=2&username=c70fc49d3c8f56a8f8508b8bf49701536af27ccf1b8e159bada790c05052861d&password=17ffcf8f69623b93b52c0d7db119e3291249cfd2e6a9a603e560a97731a88798&language=2&sender=SouqAltgaar&mobile=201014340346&message=كود التحقق هو ');
+
+    dd($response->body());
+
+
+    // Request Example : https://smsmisr.com/api/SMS/?
+// environment=2&username=X&password=X&language=X&sender=X&mobile=X&message=X&DelayUntil=X 
     
 });
 
@@ -77,6 +95,7 @@ Route::group(
             Route::resource('withdrawals', WithdrawalsController::class);
             Route::resource('countries', CountryContoller::class);
             Route::resource('expenses', ExpensesController::class);
+            Route::resource('challenges', ChallengeController::class);
             Route::get('settings' , [SettingsController::class , 'edit'])->name('settings.edit');
             Route::patch('settings' , [SettingsController::class , 'update'])->name('settings.update');
             Route::get('messages' , [MessageController::class , 'index'])->name('messages.index');
@@ -94,6 +113,12 @@ Route::group(
 
             Route::get('withdrawals/{withdrawal}/approve' , [WithdrawalsController::class , 'approve'] )->name('withdrawals.approve');
             Route::get('withdrawals/{withdrawal}/deny' , [WithdrawalsController::class , 'deny'] )->name('withdrawals.deny');
+
+
+            Route::get('marketers/{marketer}/orders' , [MarketerController::class , 'orders'] )->name('marketers.orders');
+            Route::get('marketers/{marketer}/returns' , [MarketerController::class , 'returns'] )->name('marketers.returns');
+            Route::get('marketers/{marketer}/statistics' , [MarketerController::class , 'statistics'] )->name('marketers.statistics');
+            Route::get('marketers/{marketer}/withdrawals' , [MarketerController::class , 'withdrawals'] )->name('marketers.withdrawals');
 
         });
         Route::get('/' , [SiteController::class , 'index'] )->name('site.index');

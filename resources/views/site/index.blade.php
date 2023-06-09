@@ -48,6 +48,72 @@
 </section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
+<section class="products">
+            <div class="container">
+                <div class="owl-carousel">
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p1.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p2.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p3.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p4.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p5.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p6.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p7.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p8.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p9.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p10.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p1.png" alt="p1">
+                        </a>
+                    </div>
+                    <div class="pro-box">
+                        <a href="#">
+                            <img src="images/products/p2.png" alt="p1">
+                        </a>
+                    </div>
+                </div>  
+            </div>
+        </section>
 
 <div class="container">
     <article class="my-4">
@@ -55,7 +121,7 @@
 </article>
 
 
-    <section class="padding-bottom">
+{{--     <section class="padding-bottom">
         <div class="card card-deal">
             <div class="row no-gutters items-wrap">
                 @foreach ($categories as $category)
@@ -73,7 +139,7 @@
             </div>
         </div>
     </section>
-
+ --}}
 
 
 
@@ -112,7 +178,10 @@
                                 <br>
                                 <span class="price text-primary">  ارباحك :  {{ $product->marketer_price }}  جنيه  </span>
                             </div> 
+                            <a href="#" class="btn btn-outline-primary mt-2"> <i class="fa fa-eye"></i> تفاصيل المنتج </a>
                         </figcaption>
+
+
                     </div>
                 </div> 
                 @endforeach

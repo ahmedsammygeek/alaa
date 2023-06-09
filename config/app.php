@@ -182,6 +182,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Aws\Laravel\AwsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class , 
+            Ghanem\LaravelSmsmisr\SmsmisrServiceProvider::class,
     ],
 
     /*
@@ -240,7 +241,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'AWS' => Aws\Laravel\AwsFacade::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class , 
+            'Smsmisr' => Ghanem\LaravelSmsmisr\Smsmisr::class,
 
     ],
 

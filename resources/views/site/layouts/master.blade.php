@@ -22,6 +22,13 @@ if ($lang == 'ar') {
 
     <!-- jQuery -->
     <script src="{{ Storage::url('site_assets/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ Storage::url('site_assets/css/main.css') }}">
+
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="{{ Storage::url('site_assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ Storage::url('site_assets/css/owl.theme.default.min.css') }}">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="{{ Storage::url('site_assets/css/all.min.css') }}">
 
     <!-- Bootstrap4 files-->
     <script src="{{ Storage::url('site_assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
@@ -66,40 +73,49 @@ if ($lang == 'ar') {
         }
         .nextArrow {
            top : 120px;
-            display:block;
-            z-index: 100;
-            position : absolute;
-            left : -8px;
-        }
+           display:block;
+           z-index: 100;
+           position : absolute;
+           left : -8px;
+       }
 
 
-    </style>
+   </style>
 
-    <!-- Font awesome 5 -->
-    <link href="{{ Storage::url('site_assets/fonts/fontawesome/css/all.min3661.css') }}" type="text/css" rel="stylesheet">
-    @yield('styles')
+   <!-- Font awesome 5 -->
+   <link href="{{ Storage::url('site_assets/fonts/fontawesome/css/all.min3661.css') }}" type="text/css" rel="stylesheet">
+   @yield('styles')
+   <link href="{{ Storage::url('site_assets/css/ui3661.css') }}" rel="stylesheet" type="text/css"/>
+   <link href="{{ Storage::url('site_assets/css/responsive3661.css') }}" rel="stylesheet" type="text/css" />
+   <script src="{{ Storage::url('site_assets/js/script3661.js') }}" type="text/javascript"></script>
+   <script src="{{ Storage::url('site_assets/js/owl.carousel.min.js') }}"></script>
+   <script src="{{ Storage::url('site_assets/js/main.js') }}"></script>
+   <script src="{{ Storage::url('site_assets/js/all.min.js') }}"></script>
 
-    <link href="{{ Storage::url('site_assets/css/ui3661.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ Storage::url('site_assets/css/responsive3661.css') }}" rel="stylesheet" type="text/css" />
-
-
-    <script src="{{ Storage::url('site_assets/js/script3661.js') }}" type="text/javascript"></script>
-
-    @yield('scripts')
-    <livewire:scripts />
+   @yield('scripts')
+   <livewire:scripts />
 
 </head>
 <body>
-
-    <!-- REMOVE FOLLOWING LINK -->
-    <a href="../../page-templates.html" class="btn btn-dark rounded-pill" style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">Download theme</a>
-    <!-- REMOVE  //END -->
 
     @include('site.layouts.header')
 
     @yield('page_content')
 
     @include('site.layouts.footer')
+
+
+            <script>
+            var openmenu = document.getElementById("openmenu");
+            var mobilenavbar = document.getElementById("mobile-navbar");
+            var closemobilenav = document.getElementById("closemobilenav");
+            openmenu.onclick = function(){
+                mobilenavbar.style.left = "0";
+            }
+            closemobilenav.onclick = function(){
+                mobilenavbar.style.left = "-100%"
+            }
+        </script>
 
 </body>
 

@@ -95,6 +95,20 @@ class User extends Authenticatable
     }
 
 
+    public function getImageAttribute($value)
+    {
+        if ($value) 
+            return $value;
+        
+        return 'user.jpeg';
+    }
+
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function admin()
     {
         return $this->belongsTo(User::class , 'user_id');

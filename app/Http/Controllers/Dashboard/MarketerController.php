@@ -85,7 +85,6 @@ class MarketerController extends Controller
      */
     public function update(UpdateMarketerRequest $request, User $marketer)
     {
-
         $marketer->email = $request->email;
         $marketer->name = $request->name;
         $marketer->phone = $request->phone;
@@ -95,5 +94,18 @@ class MarketerController extends Controller
         $marketer->save();
         flash()->addSuccess('تم تعديل بينات  المسوق بنجاح');
         return redirect(route('dashboard.marketers.index'));
+    }
+
+
+    public function statistics(User $marketer)
+    {
+        return view('dashboard.marketers.statistics' , compact('marketer'));
+    }
+
+
+
+    public function orders(User $marketer)
+    {
+        return view('dashboard.marketers.orders' , compact('marketer'));
     }
 }
