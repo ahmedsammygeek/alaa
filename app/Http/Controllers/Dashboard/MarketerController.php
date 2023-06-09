@@ -102,10 +102,15 @@ class MarketerController extends Controller
         return view('dashboard.marketers.statistics' , compact('marketer'));
     }
 
-
-
     public function orders(User $marketer)
     {
         return view('dashboard.marketers.orders' , compact('marketer'));
+    }
+
+
+
+    public function withdrawals(User $marketer)
+    {
+        return view('dashboard.marketers.withdrawals' , compact('marketer'));
     }
 }

@@ -36,7 +36,7 @@
 
 	<div class="tab-content flex-1">
 		<div class="tab-pane fade active show" id="profile">
-			@livewire('dashboard.users.list-all-user-orders' , ['user' => $marketer ] )
+			@livewire('dashboard.users.list-all-user-withdrawals' , ['user' => $marketer ] )
 		</div>
 	</div>
 
