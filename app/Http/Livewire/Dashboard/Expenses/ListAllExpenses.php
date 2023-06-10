@@ -17,7 +17,7 @@ class ListAllExpenses extends Component
     public $search = '';
     public $start_date;
     public $end_date;
-    public $category;
+    public $category = 'all' ;
     protected $listeners = ['deleteItem'];
 
 
@@ -56,43 +56,14 @@ class ListAllExpenses extends Component
 
         ->when($this->search , function($query){
             $query->where('name' , 'LIKE' , '%'.$this->search.'%' );
-        })->when($this->category , function($query){
+        })->when($this->category != 'all' , function($query){
             $query->where('expenses_category_id'  , $this->category );
+        })->when($this->start_date , function($query){
+            $query->whereDate('created_at' , '>=' , $this->start_date );
+        })
+        ->when($this->end_date , function($query){
+            $query->whereDate('created_at' , '<=' , $this->end_date );
         });
-
-
-        if ($this->start_date && ($this->end_date == null) ) {
-            $expenses = Expenses::query()->with(['user' , 'category'])
-
-            ->when($this->search , function($query){
-                $query->where('name' , 'LIKE' , '%'.$this->search.'%' );
-            })
-            ->when($this->category , function($query){
-                $query->where('expenses_category_id'  , $this->category );
-            })
-
-            ->when($this->start_date , function($query){
-                $query->whereDate('created_at', $this->start_date );
-            });
-        }
-
-        if ($this->start_date && $this->end_date ) {
-            $expenses = Expenses::query()->with(['user' , 'category'])
-
-            ->when($this->search , function($query){
-                $query->where('name' , 'LIKE' , '%'.$this->search.'%' );
-            })
-            ->when($this->category , function($query){
-                $query->where('expenses_category_id'  , $this->category );
-            })
-
-            ->when($this->end_date , function($query){
-                $query->whereDate('created_at', '>=', $this->start_date)
-                ->whereDate('created_at', '<=', $this->end_date);
-            });
-        }
-    
-
 
         $expenses = $expenses->latest()->get();
         return Excel::download(new ExpensesExport($expenses), 'expenses.xlsx');
@@ -105,43 +76,14 @@ class ListAllExpenses extends Component
 
         ->when($this->search , function($query){
             $query->where('name' , 'LIKE' , '%'.$this->search.'%' );
-        })->when($this->category , function($query){
+        })->when($this->category != 'all' , function($query){
             $query->where('expenses_category_id'  , $this->category );
+        })->when($this->start_date , function($query){
+            $query->whereDate('created_at' , '>=' , $this->start_date );
+        })
+        ->when($this->end_date , function($query){
+            $query->whereDate('created_at' , '<=' , $this->end_date );
         });
-
-
-        if ($this->start_date && ($this->end_date == null) ) {
-            $expenses = Expenses::query()->with(['user' , 'category'])
-
-            ->when($this->search , function($query){
-                $query->where('name' , 'LIKE' , '%'.$this->search.'%' );
-            })
-            ->when($this->category , function($query){
-                $query->where('expenses_category_id'  , $this->category );
-            })
-
-            ->when($this->start_date , function($query){
-                $query->whereDate('created_at', $this->start_date );
-            });
-        }
-
-        if ($this->start_date && $this->end_date ) {
-            $expenses = Expenses::query()->with(['user' , 'category'])
-
-            ->when($this->search , function($query){
-                $query->where('name' , 'LIKE' , '%'.$this->search.'%' );
-            })
-            ->when($this->category , function($query){
-                $query->where('expenses_category_id'  , $this->category );
-            })
-
-            ->when($this->end_date , function($query){
-                $query->whereDate('created_at', '>=', $this->start_date)
-                ->whereDate('created_at', '<=', $this->end_date);
-            });
-        }
-
-        
 
 
         $expenses = $expenses->latest()->paginate($this->rows);
