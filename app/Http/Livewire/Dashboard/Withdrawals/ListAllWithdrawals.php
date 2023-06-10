@@ -16,6 +16,7 @@ class ListAllWithdrawals extends Component
     public $rows = 10 ;
     public $search ;
     public $status = 'all' ;
+    public $payment_method = 'payment_method' ;
     public $start_date;
     public $end_date;
     public $file;
@@ -42,6 +43,9 @@ class ListAllWithdrawals extends Component
         })
         ->when($this->status != 'all' , function($query){
             $query->where('status' , $this->status );
+        })
+        ->when($this->payment_method != 'all' , function($query){
+            $query->where('payment_method' , $this->payment_method );
         })
         ->when($this->start_date , function($query){
             $query->whereDate('created_at' , '>=' , $this->start_date );

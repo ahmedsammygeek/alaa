@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 ml-3" >
+                <div class="col-md-2 " >
                     <select wire:model='status' class="form-control form-control-select2" >
                         <option value="all"> جميع الحالات </option>
                         <option value="1">قيد المراجعه </option>
@@ -47,6 +47,12 @@
                         <option value="3">  تم التحويل </option>
                         <option value="4">  تم الرفض </option>
 
+                    </select>
+                </div>
+                <div class="col-md-2 " >
+                    <select wire:model='payment_method' class="form-control form-control-select2" >
+                        <option value="all"> جميل طرق التحويل </option>
+                        <option value="1"> محفظه الكترونه </option>
                     </select>
                 </div>
                 <div class="col-md-2 " >
@@ -152,7 +158,7 @@
                                             <ul>
                                                 <li> الخانه الاولى هيا رقم الطلب </li>
                                                 <li> الخانه الثانيه هيا حاله الطب ....(1) فى حاله قيد المراجعه , (3) عند اتمام التحويل ... (2) عند جارى ارسال الارباح (4) عند اتمام الارسال بنجاح  </li>
-                                                <li> الخانه الثالثه هيا طريقه الدفع حاليا يتم وضع 1 لفودافون كاش  </li>
+                                                <li> الخانه الثالثه هيا طريقه الدفع حاليا يتم وضع 1 للمحفظه الاكتورنيه  </li>
                                                 <li> اى ملحوظات اضافيه مثل سبب الرفض او الكود المرجعى للتحويل </li>
                                             </ul> 
                                         </div>
@@ -221,9 +227,9 @@
                 cancelButtonText: '@lang('dashboard.cancel')'
             }).then((result) => {
                 if (result.isConfirmed) {
-                 Livewire.emit('deleteItem' , id )
-             }
-         })
+                   Livewire.emit('deleteItem' , id )
+               }
+           })
         });
         // $('.form-control-select2').select2();
         $('.form-control-select2').on('change', function (e) {
