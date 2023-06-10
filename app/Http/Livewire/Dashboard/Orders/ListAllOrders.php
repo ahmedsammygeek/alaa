@@ -7,15 +7,19 @@ use App\Models\Order;
 use Livewire\WithPagination;
 use App\Models\ShippingStatus;
 use App\Exports\Dashboard\Orders\OrdersExcelReportExport;
+use App\Imports\Dashboard\Orders\OrdersExcelReportImport;
 use Excel;
+use Livewire\WithFileUploads;
 class ListAllOrders extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     public $rows = 10;
     public $search ;
     public $shipping_status = 'all' ;
     public $start_date;
     public $end_date;
+    public $file;
 
     protected $listeners = ['deleteItem'];
 
@@ -39,7 +43,15 @@ class ListAllOrders extends Component
         $this->resetPage();
     }
 
+    public function UploadFile()
+    {
+        $this->validate([
+            'file' => 'required|mimes:xlx,xlsx',
+        ]);
+        Excel::import(new OrdersExcelReportImport, $this->file);
+        $this->emit('withdrawalsUpdated');
 
+    }
 
     public function ExcelReport() {
         $orders = Order::when($this->search , function($query){
