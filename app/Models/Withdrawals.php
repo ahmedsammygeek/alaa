@@ -18,10 +18,27 @@ class Withdrawals extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function stautsAsText()
+    {
+        switch ($this->status) {
+            case 1:
+            return 'قيد المراجعه';
+            break;
+            case 3:
+            return 'تم التحويل';
+            break;
+            case 2:
+            return 'جارى ارسال الارباح';
+            break;
+            case 4:
+            return 'تم الرفض';
+            break;
+        }
+    }
 
     public function payment_method()
     {
         return $this->belongsTo(PaymentMethod::class , 'payment_method_id');
     }
-   
+
 }

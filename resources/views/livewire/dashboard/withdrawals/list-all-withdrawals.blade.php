@@ -1,4 +1,10 @@
 <div>
+    <div class="row">
+        <div class="col-md-12">
+            <a data-toggle="modal" data-target="#modal_form_vertical" class="btn btn-primary float-right "><i class="icon-plus3 mr-2 "></i> ارفاق ملف مدفوعات </a>
+        </div>
+    </div>
+    <hr>
     <div class="card">
         <div class="card-header bg-primary text-white header-elements-sm-inline" >
             <h5 class="card-title"> عرض كافه طلبات سحب الارباح </h5>
@@ -25,13 +31,32 @@
                         <option value="100">100 </option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="form-group-feedback form-group-feedback-right">
                         <input type="search" wire:model='search' class="form-control wmin-sm-200" placeholder=" @lang('dashboard.search') ...">
                         <div class="form-control-feedback">
                             <i class="icon-search4 font-size-base text-muted"></i>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-2 ml-3" >
+                    <select wire:model='status' class="form-control form-control-select2" >
+                        <option value="all"> جميع الحالات </option>
+                        <option value="1">قيد المراجعه </option>
+                        <option value="2"> جارى ارسال الارباح </option>
+                        <option value="3">  تم التحويل </option>
+                        <option value="4">  تم الرفض </option>
+
+                    </select>
+                </div>
+                <div class="col-md-2 " >
+                    <input type="date" wire:model='start_date' class="form-control" >
+                </div>
+                <div class="col-md-2 " >
+                    <input type="date" wire:model='end_date' class="form-control">
+                </div>
+                <div class="col-md-1" >
+                    <button wire:click='excelReport()' class='btn btn-sm btn-primary'> <i class='icon-file-excel ' ></i> تقرير </button>
                 </div>
             </div>
 
@@ -65,21 +90,19 @@
                         <td> 
                             @switch($withdrawal->status)
                             @case(1)
-                            <span class='badge badge-success' > قيد المراجعه </span>
-                            @break
-                            @case(2)
-                            <span class='badge badge-success' > قيد التنفيذ </span>
+                            <span class='badge badge-secondary' > قيد المراجعه </span>
                             @break
                             @case(3)
-                            <span class='badge badge-success' > تم الموافقه </span>
+                            <span class='badge badge-success' > تم التحويل </span>
+                            @break
+                            @case(2)
+                            <span class='badge badge-warning' > جارى ارسال الارباح </span>
                             @break
                             @case(4)
-                            <span class='badge badge-success' > تم الرفض </span>
+                            <span class='badge badge-danger' > تم الرفض </span>
                             @break
                             @endswitch
-
                         </td>
-
                         <td> {{ $withdrawal->created_at->diffForHumans() }} </td>
                         <td>
                             <a href='{{ route('dashboard.withdrawals.show' , ['withdrawal' => $withdrawal->id ] ) }}' class="btn btn-primary btn-icon"><i class="icon-eye "></i></a>
@@ -101,6 +124,53 @@
         </div>
 
     </div>
+
+
+    <div id="modal_form_vertical" wire:ignore.self class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> تعديل حاله المدفوعات </h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form wire:submit.prevent='UploadFile()' >
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label> الملف </label>
+                                    <input type="file" wire:model='file' class="form-control">
+                                    @error('file')
+                                    <p class='text-danger' > {{ $message }} </p>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <div class="form-group">
+                                        <div class="alert alert-warning alert-styled-left alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                                            ملحوظه هامه يجب ان يتم ترتيب اعمده الملف كالاتى
+                                            <ul>
+                                                <li> الخانه الاولى هيا رقم الطلب </li>
+                                                <li> الخانه الثانيه هيا حاله الطب ....(1) فى حاله قيد المراجعه , (3) عند اتمام التحويل ... (2) عند جارى ارسال الارباح (4) عند اتمام الارسال بنجاح  </li>
+                                                <li> الخانه الثالثه هيا طريقه الدفع حاليا يتم وضع 1 لفودافون كاش  </li>
+                                                <li> اى ملحوظات اضافيه مثل سبب الرفض او الكود المرجعى للتحويل </li>
+                                            </ul> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal"> اغلاق </button>
+                        <button type="submit" class="btn btn-primary"> ارسال </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -110,21 +180,29 @@
     $(document).ready(function () {
 
         const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
         Livewire.on('itemDeleted', postId => {
             Toast.fire({
                 icon: 'success',
                 title: '@lang('branches.branch_deleted')'
+            })
+        })
+
+        Livewire.on('withdrawalsUpdated', postId => {
+            $('#modal_form_vertical').modal('hide');
+            Toast.fire({
+                icon: 'success',
+                title: 'تم تعديل حالات طلبات السحب بنجاح'
             })
         })
 

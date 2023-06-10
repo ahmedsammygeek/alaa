@@ -37,16 +37,12 @@
                             
                         </select>
                     </div>
-                   
                     <div class="col-md-2 " >
                         <input type="date" wire:model='start_date' class="form-control" >
                     </div>
                     <div class="col-md-2 " >
                         <input type="date" wire:model='end_date' class="form-control">
                     </div>
-
-
-
                 </div>
             </div>
         </div>

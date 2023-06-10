@@ -14,9 +14,11 @@
 @section('page_content')
 
 <div class="row">
-	<div class="col-md-12 float-left">
-		<a href="{{ route('dashboard.withdrawals.approve' , $withdrawal ) }}" class='btn btn-success' > الموافقه على الطلب </a>
+	<div class="col-md-12 float-left mb-2">
+		@if ($withdrawal->status != 4 && $withdrawal->status != 3 )
+			<a href="{{ route('dashboard.withdrawals.approve' , $withdrawal ) }}" class='btn btn-success' > الموافقه على الطلب </a>
 		<a href="{{ route('dashboard.withdrawals.deny' , $withdrawal ) }}" class='btn btn-danger' >  رفض الطلب </a>
+		@endif
 	</div>
 	
 </div>
@@ -47,60 +49,55 @@
 							<th> رقم الطلب </th>
 							<td> {{ $withdrawal->number }} </td>
 						</tr>
+
+						<tr>
+							<th> رقم الموبيل </th>
+							<td> {{ $withdrawal->phone }} </td>
+						</tr>
 						<tr>
 							<th> حاله الطلب   </th>
 							<td> 
 								@switch($withdrawal->status)
 								@case(1)
-								<span class='badge badge-success' > قيد المراجعه </span>
+								<span class='badge badge-secondary' > قيد المراجعه </span>
 								@break
 								@case(2)
-								<span class='badge badge-success' > قيد التنفيذ </span>
+								<span class='badge badge-warning' > قيد التنفيذ </span>
 								@break
 								@case(3)
 								<span class='badge badge-success' > تم الموافقه </span>
 								@break
 								@case(4)
-								<span class='badge badge-success' > تم الرفض </span>
+								<span class='badge badge-danger' > تم الرفض </span>
 								@break
 								@endswitch
 							</td>
 						</tr>
-							{{-- <tr>
-								<th> تعديل حاله الطلب   </th>
-								<td> 
-									<form  action="{{ route('dashboard.withdrawals.update' , $withdrawal ) }}" method='POST' >
-										@csrf
-										@method('PATCH')
-										<select onchange="this.form.submit()" class='form-control' name="status_id" id="">
-											<option value="1" {{ $withdrawal->status == 1 ? 'selected="selected"' : '' }} >قيد المراجعه  </option>
-											<option value="2" {{ $withdrawal->status == 2 ? 'selected="selected"' : '' }} >قيد التنفيذ  </option>
-											<option value="3" {{ $withdrawal->status == 3 ? 'selected="selected"' : '' }} >تم الموافقه  </option>
-											<option value="4" {{ $withdrawal->status == 4 ? 'selected="selected"' : '' }} > تم الرفض </option>
-										</select>
-									</form>
-								</td>
-							</tr> --}}
+						
+						<tr>
+							<th> المبلغ </th>
+							<td> {{ $withdrawal->amount }} <span class='text-muted' > جنيه </span> </td>
+						</tr>
+						<tr>
+							<th> المسوق  </th>
+							<td> <a target="_blank" href="{{ route('dashboard.marketers.show' , $withdrawal->user_id ) }}"> {{ $withdrawal->user?->name }} </a> </td>
+						</tr>
 
-							<tr>
-								<th> المبلغ </th>
-								<td> {{ $withdrawal->amount }} جنيه </td>
-							</tr>
-							<tr>
-								<th> المستخدم  </th>
-								<td> {{ $withdrawal->user?->name }} </td>
-							</tr>
+						<tr>
+							<th> ملحوظات  </th>
+							<td> {{ $withdrawal->system_notes }} </td>
+						</tr>
 
-						</tbody>
-					</table>
-				</div>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-	@endsection
+</div>
+@endsection
 
 
-	@section('scripts')
-	@endsection
+@section('scripts')
+@endsection
 
 
