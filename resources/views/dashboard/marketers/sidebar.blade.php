@@ -2,7 +2,7 @@
 
 
 
-$info = $orders = $returns = $statistics = $withdrawals = '';
+$info = $orders = $returns =  $statistics = $challenges = $withdrawals = '';
 
 
 switch (request()->segment(5)) {
@@ -20,6 +20,10 @@ switch (request()->segment(5)) {
 	break;
 	case 'withdrawals':
 		$withdrawals = 'active';		
+	break;
+	case 'challenges':
+	case 'user_challenges':
+		$challenges = 'active';		
 	break;
 
 	default:
@@ -70,25 +74,18 @@ switch (request()->segment(5)) {
 	</li>
 
 	<li class="nav-item">
-		<a href="#schedule" class="nav-link" data-toggle="tab">
-			<i class="icon-calendar3"></i>
-			Schedule
-			<span class="font-size-sm line-height-sm font-weight-normal opacity-75 ml-auto">02:56pm</span>
-		</a>
-	</li>
-	<li class="nav-item">
-		<a href="#inbox" class="nav-link" data-toggle="tab">
-			<i class="icon-envelop2"></i>
-			Inbox
-			<span class="badge badge-dark badge-pill ml-auto">29</span>
+		<a href="{{ route('dashboard.marketers.challenges' , $marketer ) }}" class="nav-link {{ $challenges }} " >
+			<i class="icon-cart2"></i>
+			التحديات			
 		</a>
 	</li>
 
+
 	<li class="nav-item-divider"></li>
 	<li class="nav-item">
-		<a href="login_advanced.html" class="nav-link" data-toggle="tab">
+		<a target="_blank" href="{{ route('dashboard.marketers.login' , $marketer ) }}" class="nav-link" >
 			<i class="icon-switch2"></i>
-			Logout
+			تسجيل الدخول باسم المسوق
 		</a>
 	</li>
 </ul>

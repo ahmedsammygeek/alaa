@@ -107,10 +107,18 @@ class MarketerController extends Controller
         return view('dashboard.marketers.orders' , compact('marketer'));
     }
 
-
-
     public function withdrawals(User $marketer)
     {
         return view('dashboard.marketers.withdrawals' , compact('marketer'));
     }
+
+
+    public function login(User $marketer) {
+
+        Auth::login($marketer);
+
+        return redirect(route('site.account'))->with('success' , 'تم تسجيل الدخول ببيانات المسوق بنجاح' );
+
+    }
+
 }

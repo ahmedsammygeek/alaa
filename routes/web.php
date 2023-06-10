@@ -34,6 +34,7 @@ use App\Http\Controllers\Dashboard\CountryContoller;
 use App\Http\Controllers\Dashboard\AjaxController;
 use App\Http\Controllers\Dashboard\ExpensesController;
 use App\Http\Controllers\Dashboard\ChallengeController;
+use App\Http\Controllers\Dashboard\UserChallengeController;
 // use AWS;
 use App\Notifications\TestSendSmsNotifcation;
 use App\Models\User;
@@ -119,6 +120,10 @@ Route::group(
             Route::get('marketers/{marketer}/returns' , [MarketerController::class , 'returns'] )->name('marketers.returns');
             Route::get('marketers/{marketer}/statistics' , [MarketerController::class , 'statistics'] )->name('marketers.statistics');
             Route::get('marketers/{marketer}/withdrawals' , [MarketerController::class , 'withdrawals'] )->name('marketers.withdrawals');
+            Route::get('marketers/{marketer}/challenges' , [UserChallengeController::class , 'index'] )->name('marketers.challenges');
+            Route::get('marketers/{marketer}/challenges/{user_challenge}' , [UserChallengeController::class , 'show'] )->name('marketers.challenges.show');
+
+            Route::get('/marketers/{marketer}/login' , [MarketerController::class , 'login'] )->name('marketers.login');
 
         });
         Route::get('/' , [SiteController::class , 'index'] )->name('site.index');

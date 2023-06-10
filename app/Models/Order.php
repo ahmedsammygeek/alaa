@@ -27,6 +27,11 @@ class Order extends Model
         return $this->belongsTo(Governorate::class);
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function marketer_price()
     {
         $price = 0;

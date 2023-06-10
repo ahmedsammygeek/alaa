@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class UserChallenge extends Model
 {
     use HasFactory;
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function challenge()
+    {
+        return $this->belongsTo(Challenge::class);
+    }
+
 }

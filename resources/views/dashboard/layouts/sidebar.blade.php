@@ -200,9 +200,9 @@
 				</li>	
 
 				<li class="nav-item nav-item-submenu">
-					<a href="#" class="nav-link {{ $slides }}"><i class="icon-images3"></i> <span> الطلبات </span></a>
+					<a href="{{ route('dashboard.orders.index') }}" class="nav-link {{ $orders }}"><i class="icon-images3"></i> <span> الطلبات </span></a>
 					<ul class="nav nav-group-sub" >
-						<li class="nav-item"><a href="#" class="nav-link">عرض كافه الطلبات</a></li>
+						<li class="nav-item"><a href="{{ route('dashboard.orders.index') }}" class="nav-link">عرض كافه الطلبات</a></li>
 						
 					</ul>
 				</li>	
@@ -247,13 +247,7 @@
 						<li class="nav-item"><a href="{{ route('dashboard.warehouses.create') }}" class="nav-link"> إنشاء المستودع جديده</a></li>
 					</ul>
 				</li>		
-				<li class="nav-item nav-item-submenu">
-					<a href="#" class="nav-link {{ $orders }}"><i class="icon-images3"></i> <span> الطلبات </span></a>
-					<ul class="nav nav-group-sub" >
-						<li class="nav-item"><a href="{{ route('dashboard.orders.index') }}" class="nav-link"> عرض كافه الطلبات</a></li>
-						
-					</ul>
-				</li>		
+	
 				<li class="nav-item nav-item-submenu">
 					<a href="#" class="nav-link {{ $expenses }}"><i class="icon-images3"></i> <span> المصروفات </span></a>
 					<ul class="nav nav-group-sub" >

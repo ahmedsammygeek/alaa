@@ -38,7 +38,7 @@ class ListAllWithdrawals extends Component
 
     public function excelReport()
     {
-        $withdrawals = Withdrawals::when($this->search , function($query){
+        $withdrawals = Withdrawals::with(['user' , 'city' , 'governorate' ])when($this->search , function($query){
             $query->where('number' , 'LIKE' , '%'.$this->search.'%' );
         })
         ->when($this->status != 'all' , function($query){

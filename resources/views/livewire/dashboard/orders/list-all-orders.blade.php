@@ -25,13 +25,32 @@
                         <option value="100">100 </option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="form-group-feedback form-group-feedback-right">
                         <input type="search" wire:model='search' class="form-control wmin-sm-200" placeholder=" @lang('dashboard.search') ...">
                         <div class="form-control-feedback">
                             <i class="icon-search4 font-size-base text-muted"></i>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-md-2 ml-3" >
+                    <select wire:model='shipping_status' class="form-control form-control-select2" >
+                        <option value="all"> جميع الحالات </option>
+                        @foreach ($shipping_statues as $shipping_status)
+                        <option value="{{ $shipping_status->id }}"> {{ $shipping_status->name }} </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-2 " >
+                    <input type="date" wire:model='start_date' class="form-control" >
+                </div>
+                <div class="col-md-2 " >
+                    <input type="date" wire:model='end_date' class="form-control">
+                </div>
+                <div class="col-md-1 " >
+                    <button wire:click='ExcelReport()' class='btn btn-primary' > <i class='icon-file-excel ' ></i> تقرير  </button>
                 </div>
             </div>
 
@@ -43,7 +62,7 @@
                     <tr>
                         <th> # </th>
                         <th> رقم الطلب </th>
-                        <th> المستخدم </th>
+                        <th> المسوق </th>
                         <th> قيمه الطلب </th>
                         <th> حاله الطلب </th>
                         <th> تاريخ الاستلام </th>
@@ -60,16 +79,16 @@
                     <tr>
                         <td> {{ $i++}} </td>
                         <td> {{ $order->number }} </td>
-                        <td> {{ $order->user?->name }} </td>
-                        <td> {{ $order->total }} جنيه </td>
+                        <td> <a target="_blank" href="{{ route('dashboard.marketers.show'  , $order->user_id ) }}"> {{ $order->user?->name }} </a> </td>
+                        <td> {{ $order->total }} <span class='text-muted' > جنيه </span> </td>
                         <td> 
                             {{ $order->status?->name }}                            
                         </td>
-                       
+
                         <td> {{ $order->created_at->diffForHumans() }} </td>
                         <td>
                             <a href='{{ route('dashboard.orders.show' , ['order' => $order->id ] ) }}' class="btn btn-primary btn-icon"><i class="icon-eye "></i></a>
-                            <a href='{{ route('dashboard.orders.edit' , ['order' => $order->id ] ) }}' class="btn btn-warning btn-icon"><i class="icon-database-edit2 "></i></a>
+
                             <a class="btn btn-danger btn-icon delete_item"  data-item_id='{{ $order->id }}' ><i class="icon-trash "></i></a>
                         </td>
                         
@@ -129,9 +148,9 @@
                 cancelButtonText: '@lang('dashboard.cancel')'
             }).then((result) => {
                 if (result.isConfirmed) {
-                   Livewire.emit('deleteItem' , id )
-               }
-           })
+                 Livewire.emit('deleteItem' , id )
+             }
+         })
         });
         // $('.form-control-select2').select2();
         $('.form-control-select2').on('change', function (e) {
