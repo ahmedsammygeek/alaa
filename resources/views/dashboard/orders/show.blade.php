@@ -130,7 +130,7 @@
 							@foreach ($order->items as $item)
 							<tr>
 								<td> {{ $i++ }} </td>
-								<td> <a href="{{ route('dashboard.products.show' , $order ) }}"> {{ $item->product?->name }} </a> </td>
+								<td> <a href="{{ route('dashboard.products.show' , $item->product_id ) }}"> {{ $item->product?->name }} </a> </td>
 								<td> {{ $item->quantity }} قطعه </td>
 							</tr>
 							@endforeach							
