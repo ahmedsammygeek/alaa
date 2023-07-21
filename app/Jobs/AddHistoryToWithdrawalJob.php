@@ -17,6 +17,7 @@ class AddHistoryToWithdrawalJob implements ShouldQueue
 
     public $withdrawals;
     public $newStatus;
+    public $user_id ;
 
     /**
      * Create a new job instance.
@@ -27,6 +28,7 @@ class AddHistoryToWithdrawalJob implements ShouldQueue
     {
         $this->withdrawals = $withdrawals;
         $this->newStatus = $newStatus;
+        $this->user_id = Auth::id();
     }
 
     /**
@@ -40,7 +42,7 @@ class AddHistoryToWithdrawalJob implements ShouldQueue
             WithdrawalStatusHistory::create([
                 'withdrawal_id' => $withdrawal , 
                 'status' => $this->newStatus , 
-                'user_id' => Auth::id() , 
+                'user_id' => $this->user_id , 
             ]);
         }
     }
