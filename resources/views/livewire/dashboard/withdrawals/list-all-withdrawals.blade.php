@@ -141,8 +141,8 @@
                         </td>
                         <td> {{ $withdrawal->created_at->diffForHumans() }} </td>
                         <td>
+                             <a class="btn btn-success btn-icon" wire:click="$emit('quick-view' , {{ $withdrawal->id }})" ><i class="icon-popout  "></i></a>
                             <a href='{{ route('dashboard.withdrawals.show' , ['withdrawal' => $withdrawal->id ] ) }}' class="btn btn-primary btn-icon"><i class="icon-eye "></i></a>
-
                             <a class="btn btn-danger btn-icon delete_item"  data-item_id='{{ $withdrawal->id }}' ><i class="icon-trash "></i></a>
                         </td>
                         
@@ -209,7 +209,7 @@
 
 </div>
 
-
+@livewire('dashboard.withdrawals.quick-view')
 @section('scripts')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -261,11 +261,6 @@
                }
            })
         });
-        // $('.form-control-select2').select2();
-        // $('.form-control-select2').on('change', function (e) {
-        //     var data = $('.form-control-select2').select2("val");
-        //     @this.set('form-control-select2', data);
-        // });
     });
 
 </script>
