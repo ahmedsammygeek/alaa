@@ -23,7 +23,8 @@ if ($lang == 'ar') {
     <!-- jQuery -->
     <script src="{{ Storage::url('site_assets/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ Storage::url('site_assets/css/main.css') }}">
-
+      <link href="{{ Storage::url('site_assets/css/ui.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ Storage::url('site_assets/css/responsive.css') }}" rel="stylesheet" type="text/css"/>
     <!-- owl carousel -->
     <link rel="stylesheet" href="{{ Storage::url('site_assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ Storage::url('site_assets/css/owl.theme.default.min.css') }}">
@@ -33,6 +34,7 @@ if ($lang == 'ar') {
     <!-- Bootstrap4 files-->
     <script src="{{ Storage::url('site_assets/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
     @if ($lang == 'ar')
+    <link rel="stylesheet" href="{{ Storage::url('site_assets/css/main-ar.css') }}">
     <link href="{{ Storage::url('site_assets/css/bootstrap-rtl.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +93,6 @@ if ($lang == 'ar') {
    <script src="{{ Storage::url('site_assets/js/owl.carousel.min.js') }}"></script>
    <script src="{{ Storage::url('site_assets/js/main.js') }}"></script>
    <script src="{{ Storage::url('site_assets/js/all.min.js') }}"></script>
-
    @yield('scripts')
    <livewire:scripts />
 

@@ -49,7 +49,7 @@ switch (request()->segment(5)) {
 	</li>
 
 	<li class="nav-item">
-		<a href="{{ route('dashboard.marketers.returns' , $marketer ) }}" class="nav-link {{ $returns }} " >
+		<a href="#" class="nav-link {{ $returns }} " >
 			<i class="icon-cart2"></i>
 			المرتجعات
 			<span class="badge badge-dark badge-pill ml-auto">16</span>

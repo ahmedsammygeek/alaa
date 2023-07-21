@@ -1,10 +1,22 @@
 <div>
-    <div class="row">
-        <div class="col-md-12">
-            <a data-toggle="modal" data-target="#modal_form_vertical" class="btn btn-primary float-right "><i class="icon-plus3 mr-2 "></i> ارفاق ملف مدفوعات </a>
+    <div class="row" dir='ltr' >
+        <div class="col-md-2">
+            <a data-toggle="modal" data-target="#modal_form_vertical" class="btn btn-primary "><i class="icon-plus3 mr-2 "></i> ارفاق ملف مدفوعات </a>
         </div>
+        @if (count($selected))
+        <div class="col-md-2">
+            <select wire:model='newStatus' class='form-control ' id="">
+                <option value='' > تعديل حاله الطلب </option>
+                <option value="1">قيد المراجعه</option>
+                <option value="2">قيد التحويل</option>
+                <option value="3">تم التحويل</option>
+                <option value="4">تم الرفض</option>
+            </select>
+        </div>
+        @endif
     </div>
     <hr>
+
     <div class="card">
         <div class="card-header bg-primary text-white header-elements-sm-inline" >
             <h5 class="card-title"> عرض كافه طلبات سحب الارباح </h5>
@@ -53,6 +65,7 @@
                     <select wire:model='payment_method' class="form-control form-control-select2" >
                         <option value="all"> جميل طرق التحويل </option>
                         <option value="1"> محفظه الكترونه </option>
+                        <option value="2"> حساب بنكى </option>
                     </select>
                 </div>
                 <div class="col-md-2 " >
@@ -75,6 +88,7 @@
                         <th> # </th>
                         <th> رقم الطلب </th>
                         <th> المسوق </th>
+                        <th> طريقه السحب </th>
                         <th> قيمه الطلب </th>
                         <th> حاله الطلب </th>
                         <th> تاريخ الاستلام </th>
@@ -89,9 +103,25 @@
 
                     @foreach ($withdrawals as $withdrawal)
                     <tr>
-                        <td> {{ $i++}} </td>
+                        <td> 
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input type="checkbox" value='{{ $withdrawal->id }}' class="custom-control-input" wire:model='selected' id="cc_ls_c{{ $withdrawal->id }}" >
+                                <label class="custom-control-label" for="cc_ls_c{{ $withdrawal->id }}"></label>
+                            </div>
+                        </td>
                         <td> {{ $withdrawal->number }} </td>
                         <td> {{ $withdrawal->user?->name }} </td>
+                        <td>    
+                            @switch($withdrawal->payment_method)
+                            @case(1)
+                            <span class='badge badge-primary' > محفظه الكترونيه </span>
+                            @break
+                            @case(2)
+                            <span class='badge badge-success' > حساب بنكى </span>
+                            @break
+                            @endswitch
+                            
+                        </td>
                         <td> {{ $withdrawal->amount }} جنيه </td>
                         <td> 
                             @switch($withdrawal->status)
@@ -232,10 +262,10 @@
            })
         });
         // $('.form-control-select2').select2();
-        $('.form-control-select2').on('change', function (e) {
-            var data = $('.form-control-select2').select2("val");
-            @this.set('form-control-select2', data);
-        });
+        // $('.form-control-select2').on('change', function (e) {
+        //     var data = $('.form-control-select2').select2("val");
+        //     @this.set('form-control-select2', data);
+        // });
     });
 
 </script>

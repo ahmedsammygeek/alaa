@@ -38,79 +38,72 @@
 									<button class='btn btn-success add_new_row '> إضافه جديد  </button>
 								</div>
 
-								<div class="row main_rows">
+								<div class="main_rows">
 
-									<div class="row main_row" >
-										<div class="col-md-2">
-											<div class='mb-2' >
-												<div class="form-group">
-													<label class="col-form-label"> اللون </label>
-													<input type="text" class="form-control @error('name.*') is-invalid @enderror" name="name[]" value="{{ old('name.*') }}" >
-													@error('name.*')
-													<p  class='text-danger' >  {{ $message }} </p>
-													@enderror
-												</div>
-											</div>
-										</div>
+									<div class="row main_row" data-row_number='0' >
 
 										<div class="col-md-2">
-											<div  class='mb-2' >
-												<div class="form-group">
-													<label class="col-form-label"> المقاس </label>
-													<select name="sizes[]" class="form-control" id="">
-														@foreach ($sizes as $size)
-														<option value="{{ $size->id }}"> {{ $size->name }} </option>
-														@endforeach
-													</select>
-												</div>
+											<div class="form-group">
+												<label class="col-form-label"> النوع </label>
+												<select name="types[]" class='select form-control' id="">
+													<option value=""></option>
+													<option value="size"> مقاس </option>
+													<option value="weight"> وزن </option>
+													<option value="volume"> حجم </option>
+												</select>
+												@error('types.*')
+												<p class='text-danger' >  {{ $message }} </p>
+												@enderror
 											</div>
 										</div>
 
 										<div class="col-md-2">
-											<div class='mb-2' >
-												<div class="form-group">
-													<label class="col-form-label"> السعر </label>
-													<input type="text" class="form-control @error('price.*') is-invalid @enderror" name="price[]" value="{{ old('price.*') }}" >
-													@error('price.*')
-													<p  class='text-danger' >  {{ $message }} </p>
-													@enderror
-												</div>
+											<div class="form-group">
+												<label class="col-form-label"> الاسم </label>
+												<input type="text" class="form-control @error('name.*') is-invalid @enderror" name="name[]" value="{{ old('name.*') }}" >
+												@error('name.*')
+												<p  class='text-danger' >  {{ $message }} </p>
+												@enderror
 											</div>
 										</div>
 
 										<div class="col-md-2">
-											<div class='mb-2' >
-												<div class="form-group">
-													<label class="col-form-label"> البار كود </label>
-													<input type="text" class="form-control @error('barcode.*') is-invalid @enderror" name="barcode[]" value="{{ old('barcode.*') }}" >
-													@error('barcode.*')
-													<p  class='text-danger' >  {{ $message }} </p>
-													@enderror
-												</div>
+											<div class="form-group">
+												<label class="col-form-label"> الباركود </label>
+												<input type="text" class="form-control @error('barcode.*') is-invalid @enderror" name="barcode[]" value="{{ old('barcode.*') }}" >
+												@error('barcode.*')
+												<p  class='text-danger' >  {{ $message }} </p>
+												@enderror
 											</div>
 										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label class="col-form-label"> السعر </label>
+												<input type="text" class="form-control @error('price.*') is-invalid @enderror" name="price[]" value="{{ old('price.*') }}" >
+												@error('price.*')
+												<p  class='text-danger' >  {{ $message }} </p>
+												@enderror
+											</div>
+										</div>
+
 
 										<div class="col-md-2">
-											<div class='mb-2' >
-												<div class="form-group">
-													<label class="col-form-label"> الصوره </label>
-													<input type="file" class="form-control @error('image.*') is-invalid @enderror" name="image[]" value="{{ old('image.*') }}" >
-													@error('image.*')
-													<p  class='text-danger' >  {{ $message }} </p>
-													@enderror
-												</div>
-											</div>
+											<div class="form-group">
+												<label class="col-form-label"> خصائص </label> <br>
+												<button title='الغاء' class="btn btn-outline-danger delete_main_row  border-2 ml-2"><i class="icon-trash"></i></button>
+												<button title='إضافه لون'  class="add_color	 btn btn-outline-success border-2 ml-2"><i class="icon-plus3"></i> اضف لون </button>
+											</div>										
 										</div>
 
-
-
-										<div class="col-md-2 mt-4">
-											<div class="form-group ">
-												<label  class="col-form-label">  </label>
-												<a class=' btn btn-danger btn-sm' wire:click.prevent='deleteRow(1)' > حذف </a>
-											</div>
+										<div class="child-row col-md-12"  >
+											<ul class='' >
+												
+											</ul>
 										</div>
+
 									</div>
+
+
 									
 								</div>
 								
@@ -135,26 +128,67 @@
 <script>
 	$(function() {
 
-		
+
+		$(document).on('click', 'button.delete_main_row', function(event) {
+			event.preventDefault();
+			var rows_count = $(document).find('div.main_row').length;
+			if (rows_count > 1 ) {
+				$(this).parent().parent().parent().remove();
+			} else {
+				alert('يجب اضافه متغير واحد على الاقل');
+			}
+		});
+
+		$(document).on('click', 'button.delete_color_row', function(event) {
+			event.preventDefault();
+			$(this).parent().parent().parent().remove();
+		});
+
+
+
 
 		$('button.add_new_row').on('click',  function(event) {
 			event.preventDefault();	
+			rows_count = $(document).find('div.main_row').length;
+			console.log(rows_count);
 			$.ajax({
 				url: '{{ route('dashboard.get_new_varition_main_row') }}',
 				type: 'POST',
 				dataType: 'html',
-				data: {_token: "{{ csrf_token() }}" ,  },
+				data: {_token: "{{ csrf_token() }}" , 'rows_count':rows_count  },
 			})
 			.done(function(data) {
 				$(document).find('div.main_rows').find('div.main_row').last().after(data);
 			})
-			.fail(function() {
-				console.log("error");
-			});
-
 		});
 
-		});
-	</script>
 
-	@endsection
+		$(document).on('click',  'button.add_color'  ,  function(event) {
+			event.preventDefault();	
+
+			main_row_number = $(this).parent().parent().parent().attr('data-row_number');
+			var the_main_row = $('div.main_row[data-row_number='+main_row_number+']');
+
+			var child_rows_count_of_the_main_row = $('div.main_row[data-row_number='+main_row_number+']').find('div.child-row ul li').length;
+
+			// console.log(child_rows_count_of_the_main_row);
+			$.ajax({
+				url: '{{ route('dashboard.get_new_varition_color_row') }}',
+				type: 'POST',
+				dataType: 'html',
+				data: {_token: "{{ csrf_token() }}"  , main_row_number : main_row_number },
+			})
+			.done(function(data) {
+				if (child_rows_count_of_the_main_row > 0 ) {
+					$(document).find('div.main_row[data-row_number='+main_row_number+']').find('div.child-row ul li').last().after(data);
+				} else {
+					$(document).find('div.main_row[data-row_number='+main_row_number+']').find('div.child-row ul').addClass('border-info list-group '); 
+					$(document).find('div.main_row[data-row_number='+main_row_number+']').find('div.child-row ul').append(data);
+				}
+			})
+		});
+
+	});
+</script>
+
+@endsection

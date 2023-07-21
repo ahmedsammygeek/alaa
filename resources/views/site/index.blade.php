@@ -49,76 +49,74 @@
 <!-- ========================= SECTION MAIN END// ========================= -->
 
 <section class="products">
-            <div class="container">
-                <div class="owl-carousel">
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p1.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p2.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p3.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p4.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p5.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p6.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p7.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p8.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p9.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p10.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p1.png" alt="p1">
-                        </a>
-                    </div>
-                    <div class="pro-box">
-                        <a href="#">
-                            <img src="images/products/p2.png" alt="p1">
-                        </a>
-                    </div>
-                </div>  
+    <div class="container">
+        <div class="owl-carousel">
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p1.png') }}" alt="p1">
+                </a>
             </div>
-        </section>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p2.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p3.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p4.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p5.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p6.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p7.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p8.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p9.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/i10.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p1.png') }}" alt="p1">
+                </a>
+            </div>
+            <div class="pro-box">
+                <a href="#">
+                    <img src="{{ Storage::url('categories/p2.png') }}" alt="p1">
+                </a>
+            </div>
+        </div>  
+    </div>
+</section>
+
 
 <div class="container">
-    <article class="my-4">
-    <img src="{{ Storage::url('site_assets/images/banners/ad-sm.png') }}" class="w-100">
-</article>
 
 
 {{--     <section class="padding-bottom">
@@ -139,7 +137,7 @@
             </div>
         </div>
     </section>
- --}}
+    --}}
 
 
 
@@ -156,32 +154,47 @@
         </header>
 
         <div class="">
-            <div class="multiple-items">
+            <div class="multiple-items row">
                 @foreach ($latest_products as $product)
-                <div class="col-lg-4">
-                    <div href="{{ $product->url() }}" class="card card-sm card-product-grid">
-                        <a href="{{ $product->url() }}" class="img-wrap"> 
-                            @if ($product->hasDiscount())
-                            <b class="badge badge-danger mr-1"> @lang('site.discount') {{ $product->discount_percentage }} % </b>
-                            @endif            
-                            <img src="{{ Storage::url('products/'.$product->image) }}"> 
-                        </a>
-                        <figcaption class="info-wrap">
-                            <a href="{{ $product->url() }}" class="title">{{ $product->name }}</a>
-                            <div class="price-wrap">
-                                @if ($product->hasDiscount())
-                                <span class="price"> {{ $product->price_after_discount }}  جنيه </span>
-                                <del class="price-old"> {{ $product->price }}  جنيه </del>
-                                @else
-                                <span class="price"> {{ $product->price }} جنيه </span>
-                                @endif
-                                <br>
-                                <span class="price text-primary">  ارباحك :  {{ $product->marketer_price }}  جنيه  </span>
-                            </div> 
-                            <a href="#" class="btn btn-outline-primary mt-2"> <i class="fa fa-eye"></i> تفاصيل المنتج </a>
-                        </figcaption>
-
-
+                <div class="col-lg-3">
+                    <div class="item-box">
+                        <div class="item-img">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="{{ Storage::url('products/'.$product->image) }}" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="{{ Storage::url('products/'.$product->image) }}" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="{{ Storage::url('products/'.$product->image) }}" alt="Third slide">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-text">
+                            <h4>the product title here</h4>
+                            <li>
+                                <div class="list-right">
+                                    <span>أقل سعر للبيع</span>
+                                    <h6>160 م.ج</h6>
+                                </div>
+                                <div class="list-left">
+                                    <span>أقل ربح لك</span>
+                                    <h6>3.4 ج.م</h6>
+                                </div>
+                            </li>
+                            <div class="item-footer">
+                                <button>أضف إلي العربة <i class="fa-solid fa-cart-shopping"></i></button>
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
                     </div>
                 </div> 
                 @endforeach

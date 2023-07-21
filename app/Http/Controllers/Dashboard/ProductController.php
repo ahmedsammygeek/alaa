@@ -36,9 +36,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        $warehouses = Warehouse::all();
         $countries = Country::all();
-        return view('dashboard.products.create' , compact('brands' , 'countries' ,'categories' , 'warehouses'));
+        return view('dashboard.products.create' , compact('brands' , 'countries' ,'categories'));
     }
 
     /**

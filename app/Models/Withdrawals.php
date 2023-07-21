@@ -13,6 +13,11 @@ class Withdrawals extends Model
     public const APPROVED = 3;
     public const REFUSED = 4;
 
+
+
+    public const WALLET = 1;
+    public const BANK_ACCOUNT = 2;
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -12,6 +12,8 @@ class WithdrawalsExcelReportImport implements ToCollection
     */
     public function collection(Collection $rows)
     {
+
+        // dd($rows);
         foreach ($rows as $row) 
         {   
             if ($row[0] == null ) {

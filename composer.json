@@ -14,6 +14,7 @@
         "ghanem/laravel-smsmisr": "^3.0",
         "guzzlehttp/guzzle": "^7.5",
         "intervention/image": "^2.7",
+        "jantinnerezo/livewire-alert": "^2.2",
         "laravel/breeze": "^1.4",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",

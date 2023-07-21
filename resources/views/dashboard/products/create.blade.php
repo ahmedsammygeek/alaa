@@ -42,7 +42,7 @@
 											<label class="col-form-label"> الدوله </label>
 											<select class='form-control' name="country_id" id="">
 												@foreach ($countries as $country)
-													<option value="{{ $country->id }}"> {{ $country->name }} </option>
+												<option value="{{ $country->id }}"> {{ $country->name }} </option>
 												@endforeach
 											</select>
 											@error('image')
@@ -243,28 +243,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-12">
-										@php
-										$i = 1;
-										@endphp
-										<table class='table table-bordered' >
-											<thead>
-												<tr>
-													<th> # </th>
-													<th> الكميه </th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach ($warehouses as $warehouse)
-												<tr>
-													<td> <input type="checkbox" name='warehouses[]' checked="checked" value='{{ $warehouse->id }}' > {{ $warehouse->name }} </td>
-													
-													<td> <input type="text" class="form-control" name='quantity[]' value="0" > </td>
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
+
 
 
 								</div>			
@@ -291,12 +270,12 @@
 <script>
 	$(function() {
 
-    tinymce.init({
-      selector: 'textarea.editor',
-      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-    });
- 
+		tinymce.init({
+			selector: 'textarea.editor',
+			plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+		});
+
 
 	});
 </script>

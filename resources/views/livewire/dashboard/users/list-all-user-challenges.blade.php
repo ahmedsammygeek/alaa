@@ -28,20 +28,15 @@
 
 
                     <div class="col-md-2 ml-3" >
-                        {{-- <select wire:model='shipping_status' class="form-control form-control-select2" >
+                        <select wire:model='status' class="form-control form-control-select2" >
                             <option value="all"> جميع الحالات </option>
-                            @foreach ($shipping_statues as $shipping_status)
-                            <option value="{{ $shipping_status->id }}"> {{ $shipping_status->name }} </option>
-                            @endforeach
-                        </select> --}}
+                            <option value="1"> تحدى جارى </option>
+                            <option value="2"> تحدى مكتمل </option>
+                            <option value="3"> لم يكتمل او مغلق </option>
+                           
+                        </select>
                     </div>
 
-                    <div class="col-md-2 " >
-                        <input type="date" wire:model='start_date' class="form-control" >
-                    </div>
-                    <div class="col-md-2 " >
-                        <input type="date" wire:model='end_date' class="form-control">
-                    </div>
 
 
 
@@ -86,7 +81,7 @@
                     <tr>
                         <td> {{ $i++}} </td>
                         <td> <a href="{{ route('dashboard.challenges.show' , $user_challenge->challenge_id ) }}"> {{ $user_challenge->challenge?->title }} </a> </td>
-                        <td> {{ $user_challenge->orders_numbers }} </td>
+                        <td> {{ $user_challenge->orders_numbers }}  <span class='text-muted'> طلب </span> </td>
                         <td> 
                             @switch($user_challenge->status)
                             @case(1)

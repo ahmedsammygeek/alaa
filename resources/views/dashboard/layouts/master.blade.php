@@ -111,6 +111,6 @@ $lang = LaravelLocalization::getCurrentLocale();
 
 	</div>
 	<!-- /page content -->
-
+	 <x-livewire-alert::scripts />
 </body>
 </html>

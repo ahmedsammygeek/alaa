@@ -44,22 +44,13 @@ use App\Jobs\TestJob;
 Route::get('/test' , function(){
     
 
-    // $orders = Order::all();
 
 
-    // foreach($orders as $order) {
-    //     $order->number = date('M').time().rand(10 , 300);
-    //     $order->save();
-    // }
-
-    $response = Http::post('https://smsmisr.com/api/SMS/?environment=2&username=c70fc49d3c8f56a8f8508b8bf49701536af27ccf1b8e159bada790c05052861d&password=17ffcf8f69623b93b52c0d7db119e3291249cfd2e6a9a603e560a97731a88798&language=2&sender=SouqAltgaar&mobile=201014340346&message=كود التحقق هو ');
+    $response = Http::post('https://smsmisr.com/api/SMS/?environment=1&username=c70fc49d3c8f56a8f8508b8bf49701536af27ccf1b8e159bada790c05052861d&password=6c80474c4d29b8eb68286940b4341daf56b4c8eeda40de36688fa01c1782c763&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=كود التفعل الخاص لسوق التجار هو 6666');
 
     dd($response->body());
 
-
-    // Request Example : https://smsmisr.com/api/SMS/?
-// environment=2&username=X&password=X&language=X&sender=X&mobile=X&message=X&DelayUntil=X 
-    
+    // https://smsmisr.com/api/SMS/?environment=1&username=c70fc49d3c8f56a8f8508b8bf49701536af27ccf1b8e159bada790c05052861d&password=6c80474c4d29b8eb68286940b4341daf56b4c8eeda40de36688fa01c1782c763&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=ازيك
 });
 
 
@@ -111,6 +102,8 @@ Route::group(
             Route::get('products/{product}/variations/create'  , [ProductVariationController::class , 'create'] )->name('products.variations.create');
             Route::post('products/{product}/variations'  , [ProductVariationController::class , 'store'] )->name('products.variations.store');
             Route::post('/get_new_varition_main_row' , [AjaxController::class , 'get_new_varition_main_row'] )->name('get_new_varition_main_row');
+
+            Route::post('/get_new_varition_color_row' , [AjaxController::class , 'get_new_varition_color_row'] )->name('get_new_varition_color_row');
 
             Route::get('withdrawals/{withdrawal}/approve' , [WithdrawalsController::class , 'approve'] )->name('withdrawals.approve');
             Route::get('withdrawals/{withdrawal}/deny' , [WithdrawalsController::class , 'deny'] )->name('withdrawals.deny');

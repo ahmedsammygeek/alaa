@@ -14,8 +14,8 @@ class AjaxController extends Controller
      */
     public function get_new_varition_main_row(Request $request)
     {
-        $sizes = Size::all();
-        return view('dashboard.ajax.new_varition_main_row' , compact('sizes'));
+        $rows_count = $request->rows_count;
+        return view('dashboard.ajax.new_varition_main_row' , compact('rows_count'));
     }
 
     /**
@@ -23,9 +23,10 @@ class AjaxController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function get_new_varition_color_row(Request $request)
     {
-        //
+        $main_row_number = $request->main_row_number;
+        return view('dashboard.ajax.new_varition_color_row' , compact('main_row_number') );
     }
 
     /**

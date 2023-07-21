@@ -40,6 +40,13 @@ class ProductVariationController extends Controller
     public function store(Request $request , Product $product)
     {
 
+
+        dd($request->all());
+
+
+
+        
+
         for ($i=0; $i <count($request->name) ; $i++) { 
             $prev_color = Variation::where('product_id', $product->id )->where('title' , $request->name[$i] )->first();
             if (!$prev_color) {
