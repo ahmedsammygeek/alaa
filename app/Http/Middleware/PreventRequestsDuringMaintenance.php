@@ -14,5 +14,8 @@ class PreventRequestsDuringMaintenance extends Middleware
      */
     protected $except = [
         'ar/Dashboard/*',
+        'ar/Dashboard/',
+        'telescope/*',
+        'telescope',
     ];
 }
