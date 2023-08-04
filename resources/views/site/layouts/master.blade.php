@@ -95,7 +95,6 @@ if ($lang == 'ar') {
    <script src="{{ Storage::url('site_assets/js/all.min.js') }}"></script>
    @yield('scripts')
    <livewire:scripts />
-
 </head>
 <body>
 

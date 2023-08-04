@@ -62,34 +62,7 @@ class ProductVariationController extends Controller
                 $product_sub_variat->save();
             }
         }
-
-
-        // for ($i=0; $i <count($request->name) ; $i++) { 
-        //     $prev_color = Variation::where('product_id', $product->id )->where('title' , $request->name[$i] )->first();
-        //     if (!$prev_color) {
-        //         $new_product_variat = new Variation;
-        //         $new_product_variat->product_id = $product->id;
-        //         $new_product_variat->title = $request->name[$i];
-        //         $new_product_variat->price = $request->price[$i];
-        //         $new_product_variat->type = 'color';
-        //         $new_product_variat->user_id = Auth::id();
-        //         $new_product_variat->save();
-        //     }
-        // }
-
-        // for ($i=0; $i <count($request->name) ; $i++) { 
-        //     $found_color = Variation::where('product_id', $product->id )->where('title' , $request->name[$i] )->first();
-        //      $new_product_variat = new Variation;
-        //         $new_product_variat->product_id = $product->id;
-        //         $new_product_variat->title = $request->sizes[$i];
-        //         $new_product_variat->price = $request->price[$i];
-        //         $new_product_variat->type = 'size';
-        //         $new_product_variat->user_id = Auth::id();
-        //         $new_product_variat->parent_id = $found_color->id;
-        //         $new_product_variat->save();
-        // }
-
-        // return redirect(route('dashboard.products.index'))->with('success' , 'تم الاضافه بنجاح' );
+        return redirect(route('dashboard.products.index'))->with('success' , 'تم الاضافه بنجاح' );
     }
 
     /**

@@ -33,29 +33,29 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $data['unrd_mssages_count'] = Message::where('seen' , 0)->count();
-        // $data['unrd_complains_count'] = Complain::where('seen' , 0)->count();
-        // $data['settings'] = Settings::first();
-        // $data['pages'] = Page::where('active' , 1)->get();
-        // $data['categories'] = Category::where('active' , 1)->where('show_in_header' , 1)->where('category_id' , null )->latest()->get();
-        // $data['countries'] = Country::where('active' , 1 )->latest()->get();
-        // view()->share('data' , $data);
+        $data['unrd_mssages_count'] = Message::where('seen' , 0)->count();
+        $data['unrd_complains_count'] = Complain::where('seen' , 0)->count();
+        $data['settings'] = Settings::first();
+        $data['pages'] = Page::where('active' , 1)->get();
+        $data['categories'] = Category::where('active' , 1)->where('show_in_header' , 1)->where('category_id' , null )->latest()->get();
+        $data['countries'] = Country::where('active' , 1 )->latest()->get();
+        view()->share('data' , $data);
 
 
-        // Notification::resolved(function (ChannelManager $service) {
-        //     $service->extend('sms', function ($app) {
-        //         return new SmsChannel(
-        //             new SnsClient([
-        //                 'version' => '2010-03-31',
-        //                 'credentials' => new Credentials(
-        //                     config('services.sns.key'),
-        //                     config('services.sns.secret')
-        //                 ),
-        //                 'region' => config('services.sns.region'),
-        //             ])
-        //         );
-        //     });
-        // });
+        Notification::resolved(function (ChannelManager $service) {
+            $service->extend('sms', function ($app) {
+                return new SmsChannel(
+                    new SnsClient([
+                        'version' => '2010-03-31',
+                        'credentials' => new Credentials(
+                            config('services.sns.key'),
+                            config('services.sns.secret')
+                        ),
+                        'region' => config('services.sns.region'),
+                    ])
+                );
+            });
+        });
 
     }
 }

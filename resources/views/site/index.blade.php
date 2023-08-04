@@ -3,7 +3,6 @@
 
 <section class="section-intro padding-y">
     <div class="container">
-
         @php
         $r = 0;
         @endphp
@@ -42,13 +41,9 @@
                 <span class="sr-only"> التاىل </span>
             </a>
         </div> 
-        <!-- ============ COMPONENT SLIDER BOOTSTRAP end.// ===========  .// -->    
-
-    </div> <!-- container end.// -->
+    </div> 
 </section>
-<!-- ========================= SECTION MAIN END// ========================= -->
-
-<section class="products">
+<section class="products" dir='ltr' >
     <div class="container">
         <div class="owl-carousel">
             <div class="pro-box">
@@ -149,8 +144,6 @@
                 @lang('site.latest_products') 
                 <a href="" class="btn btn-outline-primary float-right "> <i class="fa fa-back"></i> شاهد الكل </a>
             </h3>
-
-
         </header>
 
         <div class="">
@@ -159,21 +152,21 @@
                 <div class="col-lg-3">
                     <div class="item-box">
                         <div class="item-img">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    <li data-target="#carouselExampleIndicators{{ $product->id }}" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators{{ $product->id }}" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators{{ $product->id }}" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src="{{ Storage::url('products/'.$product->image) }}" alt="First slide">
+                                        <img class="d-block w-100 h-100 " src="{{ Storage::url('products/'.$product->image) }}" alt="First slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="{{ Storage::url('products/'.$product->image) }}" alt="Second slide">
+                                        <img class="d-block w-100 " src="{{ Storage::url('products/'.$product->image) }}" alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="{{ Storage::url('products/'.$product->image) }}" alt="Third slide">
+                                        <img class="d-block w-100 " src="{{ Storage::url('products/'.$product->image) }}" alt="Third slide">
                                     </div>
                                 </div>
                             </div>
@@ -191,8 +184,7 @@
                                 </div>
                             </li>
                             <div class="item-footer">
-                                <button>أضف إلي العربة <i class="fa-solid fa-cart-shopping"></i></button>
-                                <i class="fa-solid fa-heart"></i>
+                                <a href='' class='btn btn-primary d-block' > شاهد تفاصيل المنتج  </a>
                             </div>
                         </div>
                     </div>
@@ -298,12 +290,12 @@
 @endsection
 
 @section('styles')
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="{{ Storage::url('site_assets/css/slick.css') }}"/>
 @endsection
 
 
 @section('scripts')
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="{{ Storage::url('site_assets/js/slick.min.js') }}"></script>
 <script>
     $(function() {
         $('.multiple-items').slick({
@@ -318,8 +310,8 @@
            infinite: true,
            arrows : true , 
            speed: 300,
-           slidesToShow: 5,
-           slidesToScroll: 4,
+           slidesToShow: 6,
+           slidesToScroll: 2,
            responsive: [
            {
               breakpoint: 1024,

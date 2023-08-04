@@ -19,6 +19,7 @@ use Auth;
 use Str;
 use Storage;
 use Hash;
+use ZipStream;
 use App\Http\Requests\Site\RegisterRequest;
 use App\Http\Requests\Site\SoreOrderRequest;
 use App\Http\Requests\Site\LoginRequest;
@@ -29,7 +30,7 @@ class SiteController extends Controller
 
     public function index() {
         $slides = Slide::where('active' , 1)->latest()->get();
-        $latest_products = Product::with(['category'])->latest()->take(6)->get();
+        $latest_products = Product::with(['category'])->latest()->take(12)->get();
         $best_selling_products = Product::orderBy('sales_count' , 'DESC' )->take(6)->get();
         $categories = Category::where('show_after_slider' , 1 )->latest()->get();
         $home_categories = Category::where('show_in_home_page' , 1 )->latest()->get();
@@ -225,14 +226,19 @@ class SiteController extends Controller
     public function downloadProductImages(Product $product)
     {
 
-        $images = [];
-        $images = 'products/'.$product->image;
-        
-        foreach ($product->images as $product_image) {
-            $images[] = 'products/'.$product_image->image;
+        // dd($product->images);
+        $zip = new ZipStream\ZipStream(
+            outputName: 'product-images.zip',
+            sendHttpHeaders: true,
+            enableZip64: true,
+        );
+
+        foreach($product->images as $product_image){
+            $zip->addFile(
+                fileName: $product_image->image,
+                data: Storage::get('products/'.$product_image->image),
+            );
         }
-
-        return Storage::download($images);
-
+        $zip->finish();
     }
 }

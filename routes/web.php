@@ -46,7 +46,7 @@ Route::get('/test' , function(){
 
 
 
-    $response = Http::post('https://smsmisr.com/api/SMS/?environment=1&username=c70fc49d3c8f56a8f8508b8bf49701536af27ccf1b8e159bada790c05052861d&password=6c80474c4d29b8eb68286940b4341daf56b4c8eeda40de36688fa01c1782c763&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=كود التفعل الخاص لسوق التجار هو 6666');
+    $response = Http::post('https://smsmisr.com/api/SMS/?environment=2&username=c70fc49d3c8f56a8f8508b8bf49701536af27ccf1b8e159bada790c05052861d&password=6c80474c4d29b8eb68286940b4341daf56b4c8eeda40de36688fa01c1782c763&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=كود التفعل الخاص لسوق التجار هو 6666');
 
     dd($response->body());
 
