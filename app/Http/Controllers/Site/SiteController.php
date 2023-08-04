@@ -19,7 +19,7 @@ use Auth;
 use Str;
 use Storage;
 use Hash;
-use ZipStream;
+use Zip;
 use App\Http\Requests\Site\RegisterRequest;
 use App\Http\Requests\Site\SoreOrderRequest;
 use App\Http\Requests\Site\LoginRequest;
@@ -225,20 +225,13 @@ class SiteController extends Controller
 
     public function downloadProductImages(Product $product)
     {
+        $zip_file =  Zip::create( $product->name.'-images.zip');
+       
 
-        // dd($product->images);
-        $zip = new ZipStream\ZipStream(
-            outputName: 'product-images.zip',
-            sendHttpHeaders: true,
-            enableZip64: true,
-        );
-
-        foreach($product->images as $product_image){
-            $zip->addFile(
-                fileName: $product_image->image,
-                data: Storage::get('products/'.$product_image->image),
-            );
+        foreach ($product->images as $product_image) {
+           $zip_file->add("s3://alaa-eldeen-s3-bucket/products/".$product_image->image, $product_image->image );
         }
-        $zip->finish();
+
+        return $zip_file;
     }
 }
