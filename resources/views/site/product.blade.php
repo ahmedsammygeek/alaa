@@ -53,48 +53,9 @@
          <small class="label-rating text-muted">132 تقييم</small>
          <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 تم شرائه </small>
        </div> <!-- rating-wrap.// -->
-
-       <div class="mb-3"> 
-         @if ($product->hasDiscount())
-         <var class="price h4"> {{ $product->price_after_discount }} جنيه  </var> 
-         <span class="text-muted"> {{ $product->price }} جنيه</span> 
-         @else
-         <var class="price h4"> {{ $product->price }} جنيه  </var> 
-         @endif
-       </div> 
-
-       <dl class="row">
-        <dt class="col-sm-3"> الربح من اجمالي السعر : </dt>
-        <dd class="col-sm-9"> {{ $product->marketer_price }} جنيه </dd>   
-        <dt class="col-sm-3"> عدد نقاط الجائزه : </dt>
-        <dd class="col-sm-9"> {{ $product->points }} نقطه </dd>         
-      </dl>
-
-      <p>
-        {{ $product->mini_description }}
-      </p>
-
-
-      <div class="form-row  mt-4">
-        <div class="form-group col-md flex-grow-0">
-         <div class="input-group mb-3 input-spinner">
-           <div class="input-group-prepend">
-             <button class="btn btn-light" type="button" id="button-plus"> + </button>
-           </div>
-           <input type="text" class="form-control" value="1">
-           <div class="input-group-append">
-             <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-           </div>
-         </div>
-       </div> <!-- col.// -->
-       <div class="form-group col-md">
-        @livewire('site.add-to-cart' , ['product_id' => $product->id ] )
-        @livewire('site.add-to-wishlist' , ['product_id' => $product->id ] )
-      </div> <!-- col.// -->
-    </div> <!-- row.// -->
-
-  </article> <!-- product-info-aside .// -->
-</main> <!-- col.// -->
+      @livewire('site.product-selector' , ['product' => $product ] )
+    </article> <!-- product-info-aside .// -->
+  </main> <!-- col.// -->
 </div> <!-- row.// -->
 
 <!-- ================ ITEM DETAIL END .// ================= -->

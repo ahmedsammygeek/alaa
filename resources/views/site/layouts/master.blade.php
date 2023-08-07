@@ -93,8 +93,10 @@ if ($lang == 'ar') {
    <script src="{{ Storage::url('site_assets/js/owl.carousel.min.js') }}"></script>
    <script src="{{ Storage::url('site_assets/js/main.js') }}"></script>
    <script src="{{ Storage::url('site_assets/js/all.min.js') }}"></script>
+   <script src="{{ Storage::url('site_assets/js/sweetalert2.js') }}"></script>
    @yield('scripts')
    <livewire:scripts />
+    <x-livewire-alert::scripts />
 </head>
 <body>
 
@@ -105,19 +107,5 @@ if ($lang == 'ar') {
     @include('site.layouts.footer')
 
 
-            <script>
-            var openmenu = document.getElementById("openmenu");
-            var mobilenavbar = document.getElementById("mobile-navbar");
-            var closemobilenav = document.getElementById("closemobilenav");
-            openmenu.onclick = function(){
-                mobilenavbar.style.left = "0";
-            }
-            closemobilenav.onclick = function(){
-                mobilenavbar.style.left = "-100%"
-            }
-        </script>
-
 </body>
-
-<!-- Mirrored from bootstrap-ecommerce.com/templates/alistyle-html/page-index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 15 Sep 2022 13:01:37 GMT -->
 </html>

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Variation extends Model
 {
     use HasFactory;
+
+
+    public function children()
+    {
+        return $this->hasMany(Variation::class , 'parent_id');
+    }
 }
