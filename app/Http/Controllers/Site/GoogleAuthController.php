@@ -30,12 +30,7 @@ class GoogleAuthController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
-
         $user = Socialite::driver('google')->user();
-
         $finduser = User::where('google_id', $user->id)->first();
 
         if($finduser){

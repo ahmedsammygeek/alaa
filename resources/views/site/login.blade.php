@@ -16,7 +16,7 @@
       <form action="{{ route('login_system') }}" method="POST" >
         @csrf
           <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp حساب فيس بوك </a>
-          <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  حساب جوجل </a>
+          <a href="{{ route('google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  حساب جوجل </a>
           <div class="form-group">
              <input name="email" class="form-control" placeholder="البريد الاكتورنى" type="text">
              @error('email')
