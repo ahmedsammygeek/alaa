@@ -49,7 +49,7 @@ Route::get('/test' , function(){
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'web' ]
     ], function(){ 
 
 
@@ -113,7 +113,7 @@ Route::group(
 Route::get('verify/phone' , [PhoneVerificationController::class , 'index' ] )->name('site.verify_phone');
 Route::post('verify/phone' , [PhoneVerificationController::class , 'store' ] )->name('site.verify_phone.store');
 Route::post('/register' , [SiteController::class , 'store_register'])->name('site.register');
-Route::get('/google' , [GoogleAuthController::class , 'index'] );
+Route::get('/google' , [GoogleAuthController::class , 'index'] )->name('google');
 Route::get('/google/callable' , [GoogleAuthController::class , 'store'] );
 Route::get('logout' , [AccountController::class , 'logout'])->name('user.logout');
 Route::get('/login' , [SiteController::class , 'login'] )->name('login');

@@ -31,6 +31,7 @@ class GoogleAuthController extends Controller
     public function store(Request $request)
     {
 
+        dd('gfg');
 
 
         $user = Socialite::driver('google')->user();

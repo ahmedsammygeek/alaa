@@ -59,7 +59,7 @@
                 <label class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> اوافق على جميع <a href="#">الشروط و الاحكام</a>  </div> </label>
             </div> 
             <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp حساب فيس بوك </a>
-          <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  حساب جوجل </a>        
+          <a href="{{ route('google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  حساب جوجل </a>        
       </form>
     </article><!-- card-body.// -->
     </div> <!-- card .// -->

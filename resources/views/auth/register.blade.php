@@ -60,7 +60,7 @@
               <p> @lang('site.register_with') :</p>
               <ul class="ps-list--social">
                 <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a class="google" href="{{ route('google') }}"><i class="fa fa-google-plus"></i></a></li>
               </ul>
             </div>
           </div>

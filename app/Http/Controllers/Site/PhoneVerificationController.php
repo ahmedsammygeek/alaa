@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PhoneVerificationCode;
 use Auth;
+use Session;
+use Carbon\Carbon;
 class PhoneVerificationController extends Controller
 {
     /**
@@ -32,6 +34,7 @@ class PhoneVerificationController extends Controller
             ['phone' , '=' , Auth::user()->phone ]
         ])->first();
 
+
         if ($check) {
             $check->delete();
             $user = Auth::user();
@@ -39,7 +42,9 @@ class PhoneVerificationController extends Controller
             $user->save();
             return redirect(url('/'))->with('success' , 'تم تفعيل رقم الموبيل بنجاح' );
         }
-        return back()->with('error'  , 'كود التفعيل غير صحيح' );
+
+        Session::push('error' , 'كود التفعيل غير صحيح' );
+        return redirect(route('site.verify_phone'));
     }
 
 }
