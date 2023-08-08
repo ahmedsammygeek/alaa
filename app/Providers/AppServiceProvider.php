@@ -33,14 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $Settings = new Settings;
-        $Settings->setTranslation('address'  , 'ar' , 'العنوان' );
-        $Settings->setTranslation('address'  , 'en' , 'address' );
-        $Settings->setTranslation('address'  , 'ar' , 'اسم الموقع' );
-        $Settings->setTranslation('address'  , 'en' , 'site name' );
-        $Settings->email  = 'admin@souq-altgaar.com';
-        $Settings->phone  = '01014340346';
-        $Settings->save();
+
         $data['unrd_mssages_count'] = Message::where('seen' , 0)->count();
         $data['unrd_complains_count'] = Complain::where('seen' , 0)->count();
         $data['settings'] = Settings::first();
