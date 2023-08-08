@@ -46,8 +46,7 @@ Route::get('/test' , function(){
 });
 
 
-Route::group(
-    [
+Route::group([
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'web' ]
     ], function(){ 
@@ -115,6 +114,8 @@ Route::post('verify/phone' , [PhoneVerificationController::class , 'store' ] )->
 Route::post('/register' , [SiteController::class , 'store_register'])->name('site.register');
 Route::get('/google' , [GoogleAuthController::class , 'index'] )->name('google');
 Route::get('/google/callable' , [GoogleAuthController::class , 'store'] );
+Route::get('/facebook' , [FacebookAuthController::class , 'index'] )->name('google');
+Route::get('/facebook/callable' , [FacebookAuthController::class , 'store'] );
 Route::get('logout' , [AccountController::class , 'logout'])->name('user.logout');
 Route::get('/login' , [SiteController::class , 'login'] )->name('login');
 Route::post('login' , [SiteController::class , 'login_system'] )->name('login_system');
