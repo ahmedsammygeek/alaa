@@ -18,8 +18,8 @@
           <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp حساب فيس بوك </a>
           <a href="{{ route('google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  حساب جوجل </a>
           <div class="form-group">
-             <input name="email" class="form-control" placeholder="البريد الاكتورنى" type="text">
-             @error('email')
+             <input name="mobile" class="form-control" placeholder="رقم الموبيل" type="text">
+             @error('mobile')
              <p class='text-danger' > {{ $message }} </p>
              @enderror
           </div> <!-- form-group// -->

@@ -109,8 +109,8 @@ class SiteController extends Controller
 
     public function login_system(LoginRequest $request)
     {
-        $credentials = $request->only('password', 'email' );
-        if (Auth::attempt($credentials , true)) {
+
+        if (Auth::attempt(['password' => $request->password ,'phone' => $request->mobile], true)) {
             $request->session()->regenerate();
             return redirect('/');
         }
@@ -232,6 +232,20 @@ class SiteController extends Controller
            $zip_file->add("s3://alaa-eldeen-s3-bucket/products/".$product_image->image, $product_image->image );
         }
         return $zip_file;
+    }
+
+    public function phone()
+    {
+        return view('site.phone');
+    }
+
+    public function update_phone(Request $request)
+    {
+        $user = Auth::user();
+        $user->phone = $request->phone;
+        $user->save();
+
+        return redirect(route('verify_phone'));
     }
 
 }

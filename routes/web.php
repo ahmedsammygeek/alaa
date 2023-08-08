@@ -38,9 +38,9 @@ use App\Http\Controllers\Dashboard\ChallengeController;
 use App\Http\Controllers\Dashboard\UserChallengeController;
 Route::get('/test' , function(){
     die;
-    $response = Http::post('https://smsmisr.com/api/SMS/?environment=1&username=3bb9d3061266dcdeb0ed8528e14f5a4fcaa3f1794d945fe7ec0ff352d7e63b2f&password=6c0022cc7648138d110bf2f3b5d1d4ab3cb74849533f0478b467762b8867603f&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=كود التفعل الخاص لسوق التجار هو 6666');
+    // $response = Http::post('https://smsmisr.com/api/SMS/?environment=1&username=3bb9d3061266dcdeb0ed8528e14f5a4fcaa3f1794d945fe7ec0ff352d7e63b2f&password=6c0022cc7648138d110bf2f3b5d1d4ab3cb74849533f0478b467762b8867603f&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=كود التفعل الخاص لسوق التجار هو 6666');
 
-    dd($response->body());
+    // dd($response->body());
 
     // https://smsmisr.com/api/SMS/?environment=1&username=c70fc49d3c8f56a8f8508b8bf49701536af27ccf1b8e159bada790c05052861d&password=6c80474c4d29b8eb68286940b4341daf56b4c8eeda40de36688fa01c1782c763&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=ازيك
 });
@@ -119,6 +119,9 @@ Route::get('logout' , [AccountController::class , 'logout'])->name('user.logout'
 Route::get('/login' , [SiteController::class , 'login'] )->name('login');
 Route::post('login' , [SiteController::class , 'login_system'] )->name('login_system');
 Route::get('/register' , [SiteController::class , 'register'] )->name('register');
+Route::get('/phone' , [SiteController::class , 'phone'] )->name('site.phone');
+Route::patch('/phone' , [SiteController::class , 'phone'] )->name('site.phone.update');
+
 Route::group(['middleware' => 'verify_phone'], function() {
     Route::get('/' , [SiteController::class , 'index'] )->name('site.index');
     Route::get('/products/{product}' , [SiteController::class , 'product'] )->name('site.products.show');

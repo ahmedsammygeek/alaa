@@ -17,6 +17,9 @@ class RedirectIfPhoneNotVerifiedMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
+            if (!Auth::user()->phone) {
+                return redirect(route('site.phone'));
+            }
             if (!Auth::user()->phone_verified_at) {
                 return redirect(route('site.verify_phone'));
             }
