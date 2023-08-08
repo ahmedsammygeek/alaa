@@ -1,14 +1,38 @@
-@if (session('success'))
-<div class="alert bg-primary text-white alert-styled-left alert-dismissible">
-	<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-	<span class="font-weight-semibold">  {{ session('success') }} </span>
-</div>
+<script>
+	const Toast = Swal.mixin({
+		toast: true,
+		position: 'top-end',
+		showConfirmButton: false,
+		timer: 3000,
+		timerProgressBar: true,
+		didOpen: (toast) => {
+			toast.addEventListener('mouseenter', Swal.stopTimer)
+			toast.addEventListener('mouseleave', Swal.resumeTimer)
+		}
+	})
+</script>
+@if (Session::has('success'))
+<script>
+	$(function() {
+		Toast.fire({
+			icon: 'success',
+			title: '{{ Session::get('success') }}'
+		})
+
+	});
+</script>
+
 @endif
 
 
-@if (session('error'))
-<div class="alert bg-danger text-white alert-styled-left alert-dismissible">
-	<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-	<span class="font-weight-semibold">  {{ session('error') }} </span>
-</div>
+@if (Session::has('error'))
+<script>
+	$(function() {
+		alert('error');
+		Toast.fire({
+			icon: 'error',
+			title: '{{ Session::get('error') }}'
+		})
+	});
+</script>
 @endif

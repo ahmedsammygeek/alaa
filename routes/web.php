@@ -28,6 +28,7 @@ use App\Http\Controllers\Site\AccountController;
 use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\Site\GoogleAuthController;
 use App\Http\Controllers\Site\FacebookAuthController;
+use App\Http\Controllers\Site\PhoneVerificationController;
 use App\Http\Controllers\Dashboard\WithdrawalsController;
 use App\Http\Controllers\Dashboard\ProductVariationController;
 use App\Http\Controllers\Dashboard\CountryContoller;
@@ -35,17 +36,8 @@ use App\Http\Controllers\Dashboard\AjaxController;
 use App\Http\Controllers\Dashboard\ExpensesController;
 use App\Http\Controllers\Dashboard\ChallengeController;
 use App\Http\Controllers\Dashboard\UserChallengeController;
-// use AWS;
-use App\Notifications\TestSendSmsNotifcation;
-use App\Models\User;
-use App\Models\Order;
-use App\Jobs\TestJob;
-
 Route::get('/test' , function(){
-    
-
-
-
+    die;
     $response = Http::post('https://smsmisr.com/api/SMS/?environment=1&username=3bb9d3061266dcdeb0ed8528e14f5a4fcaa3f1794d945fe7ec0ff352d7e63b2f&password=6c0022cc7648138d110bf2f3b5d1d4ab3cb74849533f0478b467762b8867603f&sender=c695658a6d17da82f4dad0897a8980058483300f7fe6982f2d79aa2cbc7ef212&mobile=+201014340346&language=2&message=كود التفعل الخاص لسوق التجار هو 6666');
 
     dd($response->body());
@@ -115,52 +107,57 @@ Route::group(
             Route::get('marketers/{marketer}/withdrawals' , [MarketerController::class , 'withdrawals'] )->name('marketers.withdrawals');
             Route::get('marketers/{marketer}/challenges' , [UserChallengeController::class , 'index'] )->name('marketers.challenges');
             Route::get('marketers/{marketer}/challenges/{user_challenge}' , [UserChallengeController::class , 'show'] )->name('marketers.challenges.show');
-
             Route::get('/marketers/{marketer}/login' , [MarketerController::class , 'login'] )->name('marketers.login');
-
-        });
-        Route::get('/' , [SiteController::class , 'index'] )->name('site.index');
-        Route::get('/products/{product}' , [SiteController::class , 'product'] )->name('site.products.show');
-        Route::get('/products' , [SiteController::class , 'products'] )->name('site.products.index');
-        Route::get('/category' , [SiteController::class , 'category'] )->name('site.category');
-        Route::get('/login' , [SiteController::class , 'login'] )->name('login');
-        Route::post('login' , [SiteController::class , 'login_system'] )->name('login_system');
-        Route::get('/register' , [SiteController::class , 'register'] )->name('register');
-        // Route::get('/account' , [SiteController::class , 'account'])->name('site.account');
-        Route::get('/account/orders' , [SiteController::class , 'orders'])->name('account.orders.index');
-        Route::get('pages/{page}' , [SiteController::class , 'page'])->name('pages.show');
-        Route::get('/categories/{category}/products' , [SiteController::class , 'category_products'])->name('category.products');
-
-        Route::post('/register' , [SiteController::class , 'store_register'])->name('site.register');
-        Route::get('search' , [SiteController::class , 'search'])->name('search');
-        Route::get('/cart' , [SiteController::class , 'cart'])->name('cart');
-
-        Route::get('/google' , [GoogleAuthController::class , 'index'] );
-        Route::get('/google/callable' , [GoogleAuthController::class , 'store'] );
-        Route::get('products/{product}/images/download' , [SiteController::class , 'downloadProductImages'] )->name('product.images.download');
-
-        Route::get('/complains' , [SiteController::class , 'complains'])->name('complains');
-        Route::post('/complains' , [SiteController::class , 'store_complains'])->name('complains.store');
-        Route::group(['middleware' => 'auth'], function() {
-            Route::get('/profile' , [AccountController::class , 'profile'] )->name('site.account');
-            Route::patch('/profile' , [AccountController::class , 'update_profile'] )->name('site.account.update');
-            Route::get('/checkout' , [SiteController::class , 'checkout'] )->name('checkout.index');
-            Route::post('/checkout' , [SiteController::class , 'save_order'] )->name('checkout.save');
-            Route::get('logout' , [AccountController::class , 'logout'])->name('user.logout');
-            Route::get('orders' , [AccountController::class , 'orders'] )->name('site.orders.index');
-            Route::get('orders/{order:number}/returns/create' , [AccountController::class , 'create_return'] )->name('site.orders.returns.create');
-            Route::post('orders/{order:number}/returns' , [AccountController::class , 'store_return'] )->name('site.orders.returns.store');
-            Route::get('wishlist' , [AccountController::class , 'wishlist'] )->name('site.wishlist');
-            Route::get('incomes' , [AccountController::class , 'incomes'])->name('site.incomes');
-            Route::get('statistics' , [AccountController::class , 'statistics'])->name('site.statistics');
-            Route::get('withdrawals/create' , [AccountController::class , 'create_withdrawal'])->name('site.withdrawals.create');
-
-            Route::post('/withdrawals' , [AccountController::class , 'store_withdrawal'])->name('site.withdrawals.store');
-
-            Route::get('withdrawals' , [AccountController::class , 'withdrawals'])->name('site.withdrawals');
-            Route::get('withdrawals/{withdrawal}' , [AccountController::class , 'withdrawal'])->name('site.withdrawals.show');
-            Route::get('/wallet' , [AccountController::class , 'wallet'] )->name('site.wallet');
         });
 
+Route::get('verify/phone' , [PhoneVerificationController::class , 'index' ] )->name('site.verify_phone');
+Route::post('verify/phone' , [PhoneVerificationController::class , 'store' ] )->name('site.verify_phone.store');
+Route::post('/register' , [SiteController::class , 'store_register'])->name('site.register');
+Route::get('/google' , [GoogleAuthController::class , 'index'] );
+Route::get('/google/callable' , [GoogleAuthController::class , 'store'] );
+Route::get('logout' , [AccountController::class , 'logout'])->name('user.logout');
+Route::get('/login' , [SiteController::class , 'login'] )->name('login');
+Route::post('login' , [SiteController::class , 'login_system'] )->name('login_system');
+Route::get('/register' , [SiteController::class , 'register'] )->name('register');
+Route::group(['middleware' => 'verify_phone'], function() {
+    Route::get('/' , [SiteController::class , 'index'] )->name('site.index');
+    Route::get('/products/{product}' , [SiteController::class , 'product'] )->name('site.products.show');
+    Route::get('/products' , [SiteController::class , 'products'] )->name('site.products.index');
+    Route::get('/category' , [SiteController::class , 'category'] )->name('site.category');
+    // Route::get('/account' , [SiteController::class , 'account'])->name('site.account');
+    Route::get('/account/orders' , [SiteController::class , 'orders'])->name('account.orders.index');
+    Route::get('pages/{page}' , [SiteController::class , 'page'])->name('pages.show');
+    Route::get('/categories/{category}/products' , [SiteController::class , 'category_products'])->name('category.products');
 
+    Route::get('search' , [SiteController::class , 'search'])->name('search');
+    Route::get('/cart' , [SiteController::class , 'cart'])->name('cart');
+
+
+    Route::get('products/{product}/images/download' , [SiteController::class , 'downloadProductImages'] )->name('product.images.download');
+
+    Route::get('/complains' , [SiteController::class , 'complains'])->name('complains');
+    Route::post('/complains' , [SiteController::class , 'store_complains'])->name('complains.store');
+    Route::group(['middleware' => 'auth'], function() {
+        Route::get('/profile' , [AccountController::class , 'profile'] )->name('site.account');
+        Route::patch('/profile' , [AccountController::class , 'update_profile'] )->name('site.account.update');
+        Route::get('/checkout' , [SiteController::class , 'checkout'] )->name('checkout.index');
+        Route::post('/checkout' , [SiteController::class , 'save_order'] )->name('checkout.save');
+
+        Route::get('orders' , [AccountController::class , 'orders'] )->name('site.orders.index');
+        Route::get('orders/{order:number}/returns/create' , [AccountController::class , 'create_return'] )->name('site.orders.returns.create');
+        Route::post('orders/{order:number}/returns' , [AccountController::class , 'store_return'] )->name('site.orders.returns.store');
+        Route::get('wishlist' , [AccountController::class , 'wishlist'] )->name('site.wishlist');
+        Route::get('incomes' , [AccountController::class , 'incomes'])->name('site.incomes');
+        Route::get('statistics' , [AccountController::class , 'statistics'])->name('site.statistics');
+        Route::get('withdrawals/create' , [AccountController::class , 'create_withdrawal'])->name('site.withdrawals.create');
+
+        Route::post('/withdrawals' , [AccountController::class , 'store_withdrawal'])->name('site.withdrawals.store');
+
+        Route::get('withdrawals' , [AccountController::class , 'withdrawals'])->name('site.withdrawals');
+        Route::get('withdrawals/{withdrawal}' , [AccountController::class , 'withdrawal'])->name('site.withdrawals.show');
+        Route::get('/wallet' , [AccountController::class , 'wallet'] )->name('site.wallet');
     });
+
+});
+
+});

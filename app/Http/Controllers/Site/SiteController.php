@@ -24,6 +24,7 @@ use App\Http\Requests\Site\RegisterRequest;
 use App\Http\Requests\Site\SoreOrderRequest;
 use App\Http\Requests\Site\LoginRequest;
 use App\Http\Requests\Site\StoreComplainRequest;
+use App\Jobs\SendVerificationCodeToViaPhoneNumberJob;
 class SiteController extends Controller
 {
 
@@ -151,7 +152,8 @@ class SiteController extends Controller
         $user->type = 1;
         $user->save();
         Auth::login($user);
-        return redirect(url('/'));
+        dispatch(new SendVerificationCodeToViaPhoneNumberJob($request->phone));
+        return redirect(route('site.verify_phone'));
     }
 
     public function cart()
@@ -226,12 +228,10 @@ class SiteController extends Controller
     public function downloadProductImages(Product $product)
     {
         $zip_file =  Zip::create( $product->name.'-images.zip');
-       
-
         foreach ($product->images as $product_image) {
            $zip_file->add("s3://alaa-eldeen-s3-bucket/products/".$product_image->image, $product_image->image );
         }
-
         return $zip_file;
     }
+
 }

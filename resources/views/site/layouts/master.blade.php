@@ -105,6 +105,7 @@ if ($lang == 'ar') {
     @yield('page_content')
 
     @include('site.layouts.footer')
+    @include('dashboard.layouts.messages')
 
 
 </body>

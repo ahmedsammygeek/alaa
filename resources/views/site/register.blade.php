@@ -1,12 +1,5 @@
 @extends('site.layouts.master')
-
-
 @section('page_content')
-
-
-
-
-
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
 
