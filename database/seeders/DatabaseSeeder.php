@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             // CountrySeeder::class ,
             // ShippingStatuesSeeder::class , 
             // PaymentMethodsSeeder::class
-            ExpensesCategorySeeder::class , 
+            // ExpensesCategorySeeder::class , 
+            SettingsSeeder::class , 
         ]);
     }
 }
