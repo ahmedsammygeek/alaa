@@ -34,7 +34,7 @@
             <div class="row align-items-center">
                 <div class="col-xl-2 col-lg-3 col-md-12">
                     <a href="{{ url('/') }}" class="brand-wrap">
-                        <img style='max-height: 57px; !important' class="logo" src="{{ Storage::url('site_assets/images/souq-01.png') }}">
+                        <img style='max-height: 57px; !important' class="logo" src="{{ Storage::url('site_assets/images/souq-01-final.svg') }}">
                     </a> 
                 </div>
                 <div class="col-xl-6 col-lg-5 col-md-6">
