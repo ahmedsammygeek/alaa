@@ -24,10 +24,14 @@ class ProductSelector extends Component
 
     public function mount()
     {
-        $this->initialVariation = $this->product->variations->sortBy('order')->groupBy('type')->first();
+        $this->initialVariation = $this->product->variations->where('type' , '!=' , 'one_size' )->sortBy('order')->groupBy('type')->first();
         $this->productPrice = $this->product->price;
         if ($this->initialVariation) {
             $this->hasVariant = true;
+        } else {
+            $this->hasVariant = false;
+            $one_size_variation = $this->product->variations->first();
+            $this->finalVariantChoosed($one_size_variation->id);
         }
 
         if (Auth::check()) {

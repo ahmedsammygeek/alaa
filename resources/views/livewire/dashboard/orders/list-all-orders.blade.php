@@ -1,7 +1,7 @@
 <div>
  <div class="row">
     <div class="col-md-12">
-        <a data-toggle="modal" data-target="#modal_form_vertical" class="btn btn-primary float-right "><i class="icon-plus3 mr-2 "></i> ارفاق ملف مدفوعات </a>
+        <a data-toggle="modal" data-target="#modal_form_vertical" class="btn btn-primary float-right "><i class="icon-plus3 mr-2 "></i> ارفاق ملف حاله الطلب </a>
     </div>
 </div>
 <hr>
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2 ml-3" >
+            <div class="col-md-2 ml-1" >
                 <select wire:model='shipping_status' class="form-control form-control-select2" >
                     <option value="all"> جميع الحالات </option>
                     @foreach ($shipping_statues as $shipping_status)
@@ -49,14 +49,30 @@
                     @endforeach
                 </select>
             </div>
+            <div class="col-md-2 ml-1" >
+                <select wire:model='governorate_id' class="form-control form-control-select2" >
+                    <option value=""> جميع المحافظات </option>
+                    @foreach ($this->governorates as $governorate)
+                    <option value="{{ $governorate->id }}"> {{ $governorate->name }} </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-2 ml-1" >
+                <select wire:model='city_id' class="form-control form-control-select2" >
+                    <option value=""> جميع المدن </option>
+                    @foreach ($this->cities as $city)
+                    <option value="{{ $city->id }}"> {{ $city->name }} </option>
+                    @endforeach
+                </select>
+            </div>
 
             <div class="col-md-2 " >
                 <input type="date" wire:model='start_date' class="form-control" >
             </div>
-            <div class="col-md-2 " >
+            <div class="col-md-2 mt-2 " >
                 <input type="date" wire:model='end_date' class="form-control">
             </div>
-            <div class="col-md-1 " >
+            <div class="col-md-1 mt-2" >
                 <button wire:click='ExcelReport()' class='btn btn-primary' > <i class='icon-file-excel ' ></i> تقرير  </button>
             </div>
         </div>

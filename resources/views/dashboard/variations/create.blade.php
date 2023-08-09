@@ -46,10 +46,11 @@
 											<div class="form-group">
 												<label class="col-form-label"> النوع </label>
 												<select name="types[]" class='select form-control' id="">
-													<option value=""></option>
+													<option value="one_size"> بدون </option>
 													<option value="size"> مقاس </option>
 													<option value="weight"> وزن </option>
 													<option value="volume"> حجم </option>
+													<option value="one_size"> بدون </option>
 												</select>
 												@error('types.*')
 												<p class='text-danger' >  {{ $message }} </p>

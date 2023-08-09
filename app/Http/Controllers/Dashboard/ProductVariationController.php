@@ -49,17 +49,19 @@ class ProductVariationController extends Controller
             $new_product_variat->barcode = $request->barcode[$i] ;
             $new_product_variat->user_id = Auth::id();
             $new_product_variat->save();
-            for ($r=0; $r <count($request->color_barcode[$i]) ; $r++) { 
-                $product_sub_variat = new Variation;
-                $product_sub_variat->product_id = $product->id;
-                $product_sub_variat->parent_id = $new_product_variat->id;
-                $product_sub_variat->title = $request->color_names[$i][$r];
-                $product_sub_variat->color = $request->colors[$i][$r];
-                $product_sub_variat->price = $request->color_prices[$i][$r];
-                $product_sub_variat->barcode = $request->color_barcode[$i][$r] ;
-                $product_sub_variat->type = 'color';
-                $product_sub_variat->user_id = Auth::id();
-                $product_sub_variat->save();
+            if ($request->color_barcode) {
+                for ($r=0; $r <count($request->color_barcode[$i]) ; $r++) { 
+                    $product_sub_variat = new Variation;
+                    $product_sub_variat->product_id = $product->id;
+                    $product_sub_variat->parent_id = $new_product_variat->id;
+                    $product_sub_variat->title = $request->color_names[$i][$r];
+                    $product_sub_variat->color = $request->colors[$i][$r];
+                    $product_sub_variat->price = $request->color_prices[$i][$r];
+                    $product_sub_variat->barcode = $request->color_barcode[$i][$r] ;
+                    $product_sub_variat->type = 'color';
+                    $product_sub_variat->user_id = Auth::id();
+                    $product_sub_variat->save();
+                }
             }
         }
         return redirect(route('dashboard.products.index'))->with('success' , 'تم الاضافه بنجاح' );

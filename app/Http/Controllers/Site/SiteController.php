@@ -185,7 +185,7 @@ class SiteController extends Controller
         $shipping_cost = $city->shipping_cost ? $city->shipping_cost : $governorate->shipping_cost;
 
         $order = new Order;
-        $order->number = Str::uuid()->toString();
+        $order->number = time().mt_rand(1 , 1000).Auth::id();
         $order->total = $total;
         $order->user_id = Auth::id();
         $order->subtotal = $sub_total;
@@ -235,6 +235,7 @@ class SiteController extends Controller
     public function downloadProductImages(Product $product)
     {
         $zip_file =  Zip::create( $product->name.'-images.zip');
+        $zip_file->add("s3://alaa-eldeen-s3-bucket/products/".$product->image, $product->image );
         foreach ($product->images as $product_image) {
            $zip_file->add("s3://alaa-eldeen-s3-bucket/products/".$product_image->image, $product_image->image );
         }
