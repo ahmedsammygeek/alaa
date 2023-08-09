@@ -18,10 +18,7 @@ class ProductSelector extends Component
     public $hasVariant = false;
     public $isInMyWishList = false;
     public $quantity = 1;
-
     protected $listeners = ['finalVariantChoosed'];
-
-
     public function mount()
     {
         $this->initialVariation = $this->product->variations->where('type' , '!=' , 'one_size' )->sortBy('order')->groupBy('type')->first();

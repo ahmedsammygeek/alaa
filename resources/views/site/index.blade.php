@@ -132,29 +132,46 @@
 
         <div class="">
 
-            <div class="multiple-items">
-                @foreach ($best_selling_products as $best_selling_product)
-                <div class="col-lg-4">
-                    <div href="{{ $best_selling_product->url() }}" class="card card-sm card-product-grid">
-                        <a href="{{ $best_selling_product->url() }}" class="img-wrap"> 
-                            @if ($best_selling_product->hasDiscount())
-                            <b class="badge badge-danger mr-1"> @lang('site.discount') {{ $best_selling_product->discount_percentage }} % </b>
-                            @endif            
-                            <img src="{{ Storage::url('products/'.$best_selling_product->image) }}"> 
-                        </a>
-                        <figcaption class="info-wrap">
-                            <a href="{{ $product->url() }}" class="title">{{ $best_selling_product->name }}</a>
-                            <div class="price-wrap">
-                                @if ($best_selling_product->hasDiscount())
-                                <span class="price"> {{ $best_selling_product->price_after_discount }}  جنيه </span>
-                                <del class="price-old"> {{ $best_selling_product->price }}  جنيه </del>
-                                @else
-                                <span class="price"> {{ $best_selling_product->price }} جنيه </span>
-                                @endif
-                                <br>
-                                <span class="price text-primary">  ارباحك :  {{ $best_selling_product->marketer_price }}  جنيه  </span>
-                            </div> 
-                        </figcaption>
+            <div class="multiple-items row">
+                @foreach ($best_selling_products as $product)
+                 <div class="col-lg-3">
+                    <div class="item-box">
+                        <div class="item-img">
+                            <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @foreach ($product->images as $product_image)
+                                       <li data-target="#carouselExampleIndicators{{ $product->id }}" data-slide-to="{{ $loop->index }}" class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
+                                    @endforeach
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100 h-100 " src="{{ Storage::url('products/'.$product->image) }}" alt="First slide">
+                                    </div>
+                                    @foreach ($product->images as $product_image)
+                                        <div class="carousel-item">
+                                        <img class="d-block w-100 " src="{{ Storage::url('products/'.$product_image->image) }}" alt="Second slide">
+                                    </div>
+
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-text">
+                            <h4> {{ $product->name }} </h4>
+                            <li>
+                                <div class="list-right">
+                                    <span>أقل سعر للبيع</span>
+                                    <h6>{{ $product->price }} م.ج</h6>
+                                </div>
+                                <div class="list-left">
+                                    <span>أقل ربح لك</span>
+                                    <h6> {{ $product->marketer_price }} ج.م</h6>
+                                </div>
+                            </li>
+                            <div class="item-footer">
+                                <a href='{{ route('site.products.show' , $product ) }}' class='btn btn-primary d-block' > شاهد تفاصيل المنتج  </a>
+                            </div>
+                        </div>
                     </div>
                 </div> 
                 @endforeach
@@ -180,27 +197,44 @@
 
             <div class="multiple-items">
                 @foreach ($home_category->products()->latest()->limit(10)->get() as $category_product)
-                <div class="col-lg-4">
-                    <div href="{{ $category_product->url() }}" class="card card-sm card-product-grid">
-                        <a href="{{ $category_product->url() }}" class="img-wrap"> 
-                            @if ($category_product->hasDiscount())
-                            <b class="badge badge-danger mr-1"> @lang('site.discount') {{ $category_product->discount_percentage }} % </b>
-                            @endif            
-                            <img src="{{ Storage::url('products/'.$category_product->image) }}"> 
-                        </a>
-                        <figcaption class="info-wrap">
-                            <a href="{{ $product->url() }}" class="title">{{ $category_product->name }}</a>
-                            <div class="price-wrap">
-                                @if ($category_product->hasDiscount())
-                                <span class="price"> {{ $category_product->price_after_discount }}  جنيه </span>
-                                <del class="price-old"> {{ $category_product->price }}  جنيه </del>
-                                @else
-                                <span class="price"> {{ $category_product->price }} جنيه </span>
-                                @endif
-                                <br>
-                                <span class="price text-primary">  ارباحك :  {{ $category_product->marketer_price }}  جنيه  </span>
-                            </div> 
-                        </figcaption>
+                 <div class="col-lg-3">
+                    <div class="item-box">
+                        <div class="item-img">
+                            <div id="carouselExampleIndicators{{ $category_product->id }}" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @foreach ($category_product->images as $product_image)
+                                       <li data-target="#carouselExampleIndicators{{ $category_product->id }}" data-slide-to="{{ $loop->index }}" class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
+                                    @endforeach
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100 h-100 " src="{{ Storage::url('products/'.$category_product->image) }}" alt="First slide">
+                                    </div>
+                                    @foreach ($category_product->images as $product_image)
+                                        <div class="carousel-item">
+                                        <img class="d-block w-100 " src="{{ Storage::url('products/'.$product_image->image) }}" alt="Second slide">
+                                    </div>
+
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-text">
+                            <h4> {{ $category_product->name }} </h4>
+                            <li>
+                                <div class="list-right">
+                                    <span>أقل سعر للبيع</span>
+                                    <h6>{{ $category_product->price }} م.ج</h6>
+                                </div>
+                                <div class="list-left">
+                                    <span>أقل ربح لك</span>
+                                    <h6> {{ $category_product->marketer_price }} ج.م</h6>
+                                </div>
+                            </li>
+                            <div class="item-footer">
+                                <a href='{{ route('site.products.show' , $category_product ) }}' class='btn btn-primary d-block' > شاهد تفاصيل المنتج  </a>
+                            </div>
+                        </div>
                     </div>
                 </div> 
                 @endforeach
