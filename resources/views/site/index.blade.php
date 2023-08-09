@@ -73,7 +73,7 @@
         <div class="">
             <div class="multiple-items row">
                 @foreach ($latest_products as $product)
-                <div class="col-lg-3">
+                <div class="col-lg-12">
                     <div class="item-box">
                         <div class="item-img">
                             <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide" data-ride="carousel">
