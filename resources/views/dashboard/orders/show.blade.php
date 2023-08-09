@@ -65,7 +65,7 @@
 								<td> {{ $order->user?->name }} </td>
 							</tr>
 							<tr>
-								<th> المبلغ الكلى قبل الخصم  </th>
+								<th> المبلغ hالفرعى   </th>
 								<td> {{ $order->subtotal }}  جنيه </td>
 							</tr>
 							<tr>
@@ -84,7 +84,7 @@
 							
 							<tr>
 								<th> المدنيه  </th>
-								<td> {{ $order->city }} </td>
+								<td> {{ $order->city?->name }} </td>
 							</tr>
 							<tr>
 								<th> العنوان  </th>
@@ -93,7 +93,15 @@
 							<tr>
 								<th> رقم الجوال   </th>
 								<td> {{ $order->order_phone }} </td>
-							</tr>											
+							</tr>	
+							<tr>
+								<th>  اسم العميل   </th>
+								<td> {{ $order->order_phone }} </td>
+							</tr>		
+							<tr>
+								<th>  قيمه ربح المسوق   </th>
+								<td> {{ $order->marketer_price() }} </td>
+							</tr>										
 						</tbody>
 					</table>
 				</div>
@@ -120,6 +128,8 @@
 							<tr>
 								<th> # </th>
 								<th> اسم المنتج </th>
+								<th> تفاصيل </th>
+								<th> سعر البيع </th>
 								<th> الكميه </th>
 							</tr>
 						</thead>
@@ -130,8 +140,15 @@
 							@foreach ($order->items as $item)
 							<tr>
 								<td> {{ $i++ }} </td>
-								<td> <a href="{{ route('dashboard.products.show' , $item->product_id ) }}"> {{ $item->product?->name }} </a> </td>
-								<td> {{ $item->quantity }} قطعه </td>
+								<td> <a href="{{ route('dashboard.products.show' , $item->variation->product ) }}"> {{ $item->variation->product?->name }} </a> </td>
+								<td>
+									{{ $item->variation?->title }}
+									@if ($item->variation->parent_id)
+								 --	{{ $item->variation?->parent?->title }}
+									@endif
+								</td>
+								<td> {{ $item->price }} <span class='text-muted' >جنيه </span> </td>
+								<td> {{ $item->quantity }}   <span class='text-muted' >قطعه </span>  </td>
 							</tr>
 							@endforeach							
 						</tbody>

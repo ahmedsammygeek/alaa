@@ -105,7 +105,7 @@
             <div class="form-row">
               <div class=" form-group col-md-12">
                 <label> العنوان بالتفصيل </label>
-                <input type="text" class="form-control" name="address" value="Vosidiy">
+                <input type="text" class="form-control" name="address" value=" ">
                  @error('address')
                 <p class="text-danger" > {{ $message }} </p>
                 @enderror
@@ -114,16 +114,26 @@
             </div> <!-- form-row.// -->
 
 
-
             <div class="form-row">
               <div class="form-group col-md-12">
-                <label>Phone</label>
-                <input type="text" class="form-control" name='phone' value="{{ Auth::user()->phone }}">
-                 @error('phone')
+                <label>اسم العميل </label>
+                <input type="text" class="form-control" name='client_name' value="">
+                 @error('client_name')
                 <p class="text-danger" > {{ $message }} </p>
                 @enderror
               </div> <!-- form-group end.// -->
             </div> <!-- form-row.// -->
+
+
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label> رقم الموبيل </label>
+                <input type="text" class="form-control" name='phone' value="">
+                 @error('phone')
+                <p class="text-danger" > {{ $message }} </p>
+                @enderror
+              </div> 
+            </div> 
 
             <button class="btn btn-primary btn-block">اتمام الطلب</button> 
             <br>

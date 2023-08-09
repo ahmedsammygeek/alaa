@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\UserPoint;
 use App\Models\Variation;
-
+use Carbon\Carbon;
 class AddPointsToUserJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -42,7 +42,8 @@ class AddPointsToUserJob implements ShouldQueue
                 $user_points->order_id = $this->order_id;
                 $user_points->product_id = $variation->product->id;
                 $user_points->status = 1;
-                // $user_points->
+                $user_points->can_withdrawal_when =Carbon::today()->subDays($data['settings']->days_to_valid_marketer_money);
+                $user_points->save();
             }
         }
     }

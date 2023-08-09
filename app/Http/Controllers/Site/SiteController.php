@@ -197,6 +197,7 @@ class SiteController extends Controller
         $order->address = $request->address;
         $order->shipping_statues_id = 1;
         $order->order_phone = $request->phone;
+        $order->client_name = $request->client_name;
         $order->save();
 
         foreach ($items as $item) {
@@ -208,8 +209,6 @@ class SiteController extends Controller
             $order_item->save();
             dispatch(new IncreasProductSalesCountJob($item->variation_id));
         }
-
-        dd('done');
         Cart::where('user_id' , Auth::id() )->delete();
         return view('site.success')->with('success' , 'تم انشاء الطلب بنجاح' );
     }

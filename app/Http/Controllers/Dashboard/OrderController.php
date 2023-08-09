@@ -29,7 +29,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $statues = ShippingStatus::all();
-        $order->load(['governorate' , 'user' , 'items' , 'items.product'  , 'status' ]);
+        $order->load(['governorate' , 'user' , 'items' , 'items.variation'  , 'status' ]);
         return view('dashboard.orders.show' , compact('order' , 'statues') );
     }
 
