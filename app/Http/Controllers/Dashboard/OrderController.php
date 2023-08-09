@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\ShippingStatus;
+use App\Jobs\AddPointsToUserJob;
+use App\Jobs\AddMoneyToUserIncomeJob;
 class OrderController extends Controller
 {
     /**
@@ -44,6 +46,13 @@ class OrderController extends Controller
     {
         $order->shipping_statues_id = $request->status_id;
         $order->save();
+
+        if ($request->status_id == 5) {
+            foreach ($order->items as $order_item) {
+                dispatch(new AddPointsToUserJob($order_item->variation_id , $order ));
+                dispatch(new AddMoneyToUserIncomeJob($order_item->variation_id , $order ));
+            }    
+        }
         return redirect()->back()->with('success'  , 'تم التعديل بنجاح' );
     }
 

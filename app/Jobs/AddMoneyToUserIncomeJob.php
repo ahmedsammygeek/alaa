@@ -8,16 +8,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\UserPoint;
+use App\Models\Income;
 use App\Models\Variation;
 use App\Models\Settings;
 use Carbon\Carbon;
-class AddPointsToUserJob implements ShouldQueue
+class AddMoneyToUserIncomeJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     public $variation_id;
     public $order;
+
     /**
      * Create a new job instance.
      *
@@ -39,16 +39,14 @@ class AddPointsToUserJob implements ShouldQueue
         $settings = Settings::first();
         $variation = Variation::find($this->variation_id);
         if ($variation) {
-            if ($variation?->product->points) {
-                $user_points = new UserPoint;
-                $user_points->points = $variation?->product->points;
-                $user_points->user_id = $this->order->user_id;
-                $user_points->order_id = $this->order->id;
-                $user_points->product_id = $variation->product->id;
-                $user_points->status = 1;
-                $user_points->can_withdrawal_when = Carbon::today()->subDays($settings->days_to_valid_marketer_money);
-                $user_points->save();
-            }
+            $user_income = new Income;
+            $user_income->amount = $variation?->product->marketer_price;
+            $user_income->user_id = $this->order->user_id;
+            $user_income->order_id = $this->order->id;
+            $user_income->product_id = $variation->product->id;
+            $user_income->withdrawn = 0;
+            $user_income->can_withdrawal_when = Carbon::today()->subDays($settings->days_to_valid_marketer_money);
+            $user_income->save();
         }
     }
 }
