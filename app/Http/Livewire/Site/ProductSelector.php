@@ -89,7 +89,8 @@ class ProductSelector extends Component
     }
     public function add_to_wishlist() {
         if (!Auth::check()) {
-            toastr()->error('يجب ان تكون عضوا لكى تضيف منتج الى السله');
+            $this->alert('error', 'يجب ان تكون عضوا لكى تضيف منتج الى السله');
+
         } else {
             $Wishlist = Wishlist::where([
                 ['product_id' , '=' , $this->product->id ] , 
