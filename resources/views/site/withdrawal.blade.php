@@ -87,7 +87,14 @@
                      @if ($withdrawal->status == 3 )
                     <tr>
                       <th> طريقه الدفع </th>
-                      <td> {{ $withdrawal->payment_method?->name }} </td>
+                      <td> 
+                        @if ($withdrawal->payment_method ==1 )
+                          محفظه الكتورنيه
+                        @else
+                        حساب بنكنى
+                        
+                        @endif
+                      </td>
                     </tr>
                     @endif
                   </tbody>
