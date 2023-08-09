@@ -39,8 +39,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 						<legend class="text-uppercase font-size-sm font-weight-bold">@lang('settings.settings_details')</legend>
 						<div class="form-group row">
 							
-							
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.address_ar') </label>
 									<input type="text" class="form-control @error('address.ar') is-invalid @enderror" name="address[ar]" value="{{ $info->getTranslation('address' , 'ar') }}" >
@@ -48,12 +47,8 @@ $lang = LaravelLocalization::getCurrentLocale();
 									<p  class='text-danger' >  {{ $message }} </p>
 									@enderror
 								</div>
-							</div>
-
-						
-
-
-							<div class="col-md-12">
+							</div>			
+							<div class="col-md-6">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.address_en') </label>
 									<input type="text" class="form-control @error('address.en') is-invalid @enderror" name="address[en]" value="{{ $info->getTranslation('address' , 'en') }}" >
@@ -62,7 +57,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 									@enderror
 								</div>
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.email') </label>
 									<input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $info->email }}" >
@@ -72,7 +67,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 								</div>
 							</div>
 
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.phone') </label>
 									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $info->phone }}" >
@@ -81,7 +76,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 									@enderror
 								</div>
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-4">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.facebook') </label>
 									<input type="text" class="form-control @error('facebook') is-invalid @enderror" name="facebook" value="{{ $info->facebook }}" >
@@ -90,7 +85,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 									@enderror
 								</div>
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-4">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.instgrame') </label>
 									<input type="text" class="form-control @error('instgrame') is-invalid @enderror" name="instgrame" value="{{ $info->instgrame }}" >
@@ -99,11 +94,49 @@ $lang = LaravelLocalization::getCurrentLocale();
 									@enderror
 								</div>
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-4">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.twitter') </label>
 									<input type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ $info->twitter }}" >
 									@error('twitter')
+									<p  class='text-danger' >  {{ $message }} </p>
+									@enderror
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div  class='mb-2' >
+									<label class="col-form-label"> قيمه النقاط بالقروش </label>
+									<input type="text" class="form-control @error('points_money') is-invalid @enderror" name="points_money" value="{{ $info->points_money }}" >
+									@error('points_money')
+									<p  class='text-danger' >  {{ $message }} </p>
+									@enderror
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div  class='mb-2' >
+									<label class="col-form-label"> الحد الادنى للنقاط للسحب </label>
+									<input type="text" class="form-control @error('minimam_points_can_be_withdrawald') is-invalid @enderror" name="minimam_points_can_be_withdrawald" value="{{ $info->minimam_points_can_be_withdrawald }}" >
+									@error('minimam_points_can_be_withdrawald')
+									<p  class='text-danger' >  {{ $message }} </p>
+									@enderror
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div  class='mb-2' >
+									<label class="col-form-label"> عدد الايام قبل نزول ارباح المسوق </label>
+									<input type="text" class="form-control @error('days_to_valid_marketer_money') is-invalid @enderror" name="days_to_valid_marketer_money" value="{{ $info->days_to_valid_marketer_money }}" >
+									@error('days_to_valid_marketer_money')
+									<p  class='text-danger' >  {{ $message }} </p>
+									@enderror
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div  class='mb-2' >
+									<label class="col-form-label"> الحد الادنى لطلب سحب الارباح</label>
+									<input type="text" class="form-control @error('minimam_money_can_be_withdrawald') is-invalid @enderror" name="minimam_money_can_be_withdrawald" value="{{ $info->minimam_money_can_be_withdrawald }}" >
+									@error('minimam_money_can_be_withdrawald')
 									<p  class='text-danger' >  {{ $message }} </p>
 									@enderror
 								</div>

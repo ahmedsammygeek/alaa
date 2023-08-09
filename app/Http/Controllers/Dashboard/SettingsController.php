@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Settings;
 class SettingsController extends Controller
 {
-   
+ 
 
     /**
      * Show the form for editing the specified resource.
@@ -40,9 +40,13 @@ class SettingsController extends Controller
         $info->instgrame = $request->instgrame;
         $info->lat = $request->latitude;
         $info->long = $request->longitude;
+        $info->points_money = $request->points_money;
+        $info->days_to_valid_marketer_money = $request->days_to_valid_marketer_money;
+        $info->minimam_points_can_be_withdrawald = $request->minimam_points_can_be_withdrawald;
+        $info->minimam_money_can_be_withdrawald = $request->minimam_money_can_be_withdrawald;
         $info->save();
         return redirect()->back()->with('success' , trans('settings.editing_success'));
     }
 
-   
+    
 }

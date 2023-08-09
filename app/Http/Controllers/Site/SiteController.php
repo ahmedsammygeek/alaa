@@ -25,6 +25,8 @@ use App\Http\Requests\Site\SoreOrderRequest;
 use App\Http\Requests\Site\LoginRequest;
 use App\Http\Requests\Site\StoreComplainRequest;
 use App\Jobs\SendVerificationCodeToViaPhoneNumberJob;
+use App\Jobs\IncreasProductSalesCountJob;
+use App\Jobs\IncreasProductViewsCountJob;
 class SiteController extends Controller
 {
 
@@ -57,6 +59,7 @@ class SiteController extends Controller
      */
     public function product(Product $product)
     {
+        dispatch(new IncreasProductViewsCountJob($product));
         $similar_products = Product::where('category_id' , $product->category_id )->inRandomOrder()->take(3)->get();
         $best_selling_products = Product::orderBy('sales_count' , 'DESC' )->take(6)->get();
         return view('site.product' , compact('product' , 'similar_products' , 'best_selling_products'));
@@ -192,6 +195,7 @@ class SiteController extends Controller
         $order->governorate_id = $request->governorate_id;
         $order->city_id = $request->city;
         $order->address = $request->address;
+        $order->shipping_statues_id = 1;
         $order->order_phone = $request->phone;
         $order->save();
 
@@ -202,8 +206,10 @@ class SiteController extends Controller
             $order_item->price = $item->variation?->getPrice();
             $order_item->quantity = $item->quantity;
             $order_item->save();
+            dispatch(new IncreasProductSalesCountJob($item->variation_id));
         }
 
+        dd('done');
         Cart::where('user_id' , Auth::id() )->delete();
         return view('site.success')->with('success' , 'تم انشاء الطلب بنجاح' );
     }

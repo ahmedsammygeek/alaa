@@ -8,11 +8,9 @@
 <section class="section-pagetop bg-gray">
   <div class="container">
     <h2 class="title-page"> طلباتى </h2>
-  </div> <!-- container //  -->
+  </div> 
 </section>
-<!-- ========================= SECTION PAGETOP END// ========================= -->
 
-<!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
   <div class="container">
 
@@ -21,19 +19,14 @@
         <nav class="list-group">
          @include('site.user_side_bar')
        </nav>
-     </aside> <!-- col.// -->
+     </aside> 
      <main class="col-md-9">
 
       @livewire('site.orders')
 
-    </main> <!-- col.// -->
+    </main> 
   </div>
 
-</div> <!-- container .//  -->
+</div> 
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-
-
-
-
 @endsection

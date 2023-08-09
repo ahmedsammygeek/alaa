@@ -10,8 +10,8 @@ class OrderItem extends Model
     use HasFactory;
 
 
-    public function product()
+    public function variation()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Variation::class);
     }
 }

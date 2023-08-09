@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-
-
-
     use HasFactory;
 
     public function items()
@@ -36,7 +33,7 @@ class Order extends Model
     {
         $price = 0;
         foreach ($this->items as $item) {
-            $price += $item->product?->marketer_price ;
+            $price += $item->variation?->product?->marketer_price * $item->quantity ;
         }
         return $price;
     }

@@ -33,14 +33,11 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-content flex-1">
 		<div class="tab-pane fade active show" id="profile">
 			@livewire('dashboard.users.list-all-user-orders' , ['user' => $marketer ] )
 		</div>
 	</div>
-
-
 </div>
 @endsection
 
