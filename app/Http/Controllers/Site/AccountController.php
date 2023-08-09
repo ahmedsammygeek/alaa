@@ -37,8 +37,7 @@ class AccountController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        toastr()->success('تم تعديل المف الشخصى بنجاح');
-        return back();
+        return back()->with('success' , 'تم تعديل المف الشخصى بنجاح' );;
     }
 
     public function profile()
@@ -55,8 +54,7 @@ class AccountController extends Controller
     public function logout()
     {
         Auth::logout();
-        toastr()->success('تم تسجيل الخروج بنجاح');
-        return redirect('/');
+        return redirect('/')->with('success' , 'تم تسجيل الخروج بنجاح' );
     }
 
 

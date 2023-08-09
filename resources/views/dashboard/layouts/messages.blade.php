@@ -28,7 +28,6 @@
 @if (Session::has('error'))
 <script>
 	$(function() {
-		alert('error');
 		Toast.fire({
 			icon: 'error',
 			title: '{{ Session::get('error') }}'

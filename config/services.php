@@ -40,7 +40,6 @@ return [
         'redirect' => env('FACEBOOK_REDIRECT_URI') 
     ],
 
-
     'sns' => [
         'key' => env('AWS_SNS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SNS_SECRET_ACCESS_KEY'),

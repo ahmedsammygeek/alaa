@@ -27,18 +27,18 @@
     <div class="form-group col-md flex-grow-0">
         <div class="input-group mb-3 input-spinner">
             <div class="input-group-prepend">
-                <button class="btn btn-light" type="button" id="button-plus"> + </button>
+                <button class="btn btn-light" wire:click='increasQuantity()' type="button" id="button-plus"> + </button>
             </div>
-            <input type="text" class="form-control" value="1">
+            <input type="text" class="form-control" value="{{ $quantity }}">
             <div class="input-group-append">
-                <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
+                <button class="btn btn-light" wire:click='dcreasQuantity()' type="button" id="button-minus"> &minus; </button>
             </div>
         </div>
     </div> 
     <div class="form-group col-md">
 
         @if ($finalVariant || !$hasVariant )
-        <a wire:click='add_to_cart()' href='#' class="btn  btn-primary"> 
+        <a wire:click='add_to_cart()' href='#' class="btn btn-primary"> 
             <i class="fas fa-shopping-cart"></i> <span class="text"> اضف الى السله </span> 
         </a>
         @endif

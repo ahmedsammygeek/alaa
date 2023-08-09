@@ -1,16 +1,7 @@
 @extends('site.layouts.master')
-
-
 @section('page_content')
 
-
-
-
-<!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y" style="min-height:84vh">
-
-
-  <!-- ============================ COMPONENT LOGIN   ================================= -->
   <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
     <div class="card-body">
       @if (Session::has('error'))
@@ -23,6 +14,7 @@
      <h4 class="card-title mb-4"> إضافه رقم الموبيل </h4>
      <form action="{{ route('site.phone.update') }}" method="POST" >
       @csrf
+      @method("PATCH")
       
       <div class="form-group">
        <input name="phone" class="form-control" placeholder="رقم المولبيل" type="text" required>

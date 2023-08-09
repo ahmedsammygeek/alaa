@@ -38,6 +38,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 	<script src="{{ Storage::url('dashboard_assets/assets/js/app.js') }}"></script>
 	<script src="{{ Storage::url('dashboard_assets/global_assets/js/demo_pages/dashboard.js') }}"></script>
 	<script src="{{ Storage::url('dashboard_assets/global_assets/js/demo_pages/content_cards_header.js') }}"></script>
+	   <script src="{{ Storage::url('site_assets/js/sweetalert2.js') }}"></script>
 	@livewireScripts
 	@yield('scripts')
 	<!-- /theme JS files -->
@@ -112,5 +113,6 @@ $lang = LaravelLocalization::getCurrentLocale();
 	</div>
 	<!-- /page content -->
 	 <x-livewire-alert::scripts />
+	     @include('dashboard.layouts.messages')
 </body>
 </html>

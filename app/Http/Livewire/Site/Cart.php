@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Site;
 use Livewire\Component;
 use Auth;
 use App\Models\Cart as CartModel;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 class Cart extends Component
 {
-
+    use LivewireAlert;
     protected $listeners = ['cartChanged' => '$refresh' ];
 
     public $subtotal;
@@ -19,36 +21,40 @@ class Cart extends Component
         
     }
 
-    public function removeItem($product_id) {
+    public function removeItem($item_id) {
 
-        $item = CartModel::where([
-            ['product_id' , '=' , $product_id ] , 
-            ['user_id' , '=' , Auth::id() ] , 
-        ])->first();
+        $item = CartModel::find($item_id);
         if ($item) {
             $item->delete();
-            toastr()->success('تم حذف المنتج من السله بنجاح');
+            $this->alert( 'success' ,  'تم حذف المنتج من السله بنجاح');
         }
         $this->emitSelf('cartChanged');
 
     }
 
 
-    public function editQuantity($product_id , $quantity)
+    public function editQuantity($item_id , $quantity)
     {
-        $item = CartModel::where([
-            ['product_id' , '=' , $product_id ] , 
-            ['user_id' , '=' , Auth::id() ] , 
-        ])->first();
+        $item = CartModel::find($item_id);
         if ($item) {
             $item->quantity = $quantity;
             $item->save();
-            toastr()->success('تم تعديل المنتج من السله بنجاح');
+            $this->alert( 'success' ,  'تم تعديل المنتج من السله بنجاح');
         }
         $this->emitSelf('cartChanged');
     }
 
 
+    public function getTotalProperty() {
+        $total = 0;
+        $items = CartModel::where('user_id' , Auth::id() )->get();
+
+        foreach ($items as $item) {
+            
+            $total += $item->quantity * $item->variation?->getPrice();
+        }
+        return $total;
+    }
 
 
     public function render()

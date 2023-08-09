@@ -241,7 +241,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'AWS' => Aws\Laravel\AwsFacade::class,
         'Image' => Intervention\Image\Facades\Image::class , 
-            'Smsmisr' => Ghanem\LaravelSmsmisr\Smsmisr::class,
+        'Smsmisr' => Ghanem\LaravelSmsmisr\Smsmisr::class,
 
     ],
 

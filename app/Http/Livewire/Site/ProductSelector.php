@@ -6,16 +6,18 @@ use Livewire\Component;
 use App\Models\Variation;
 use App\Models\Wishlist;
 use Auth;
+use App\Models\Cart;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 class ProductSelector extends Component
 {
-     use LivewireAlert;
+    use LivewireAlert;
     public $product;
     public $initialVariation;
     public $finalVariant;
     public $productPrice;
     public $hasVariant = false;
     public $isInMyWishList = false;
+    public $quantity = 1;
 
     protected $listeners = ['finalVariantChoosed'];
 
@@ -34,6 +36,43 @@ class ProductSelector extends Component
                 ['product_id' , '=' , $this->product->id  ]
             ])->first() ? true : false;
         }
+    }
+
+
+    public function increasQuantity()
+    {
+        $this->quantity++;
+    }
+
+    public function dcreasQuantity()
+    {
+        if ($this->quantity == 1 ) {
+            return;
+        }
+        $this->quantity--;
+    }
+
+
+    public function add_to_cart()
+    {
+        // we need to check first if this item in cart or not
+        $cart_item = Cart::where([
+            ['variation_id' , '=' , $this->finalVariant->id ] , 
+            ['user_id' , '=' , Auth::id() ] , 
+        ])->first();
+
+        if ($cart_item) {
+            $cart_item->quantity = $cart_item->quantity + $this->quantity;
+            $cart_item->save();
+        } else {
+            $cart = new Cart;
+            $cart->variation_id = $this->finalVariant->id;
+            $cart->quantity = $this->quantity;
+            $cart->user_id = Auth::id();
+            $cart->save();
+        }
+        $this->alert( 'success' ,  'تم إضافه المنتج '.$this->finalVariant?->product->name.' الى السله بنجاح' );
+
     }
 
     public function finalVariantChoosed($variateId)
@@ -65,7 +104,6 @@ class ProductSelector extends Component
                 $Wishlist->user_id = Auth::id();
                 $Wishlist->save();
                 $this->isInMyWishList = true;
-
                 $this->alert( 'success' ,  'تم إضافه المنتج الى قائمه الامنيات');
             }
         }

@@ -31,11 +31,12 @@ class SiteController extends Controller
 
     public function index() {
         $slides = Slide::where('active' , 1)->latest()->get();
-        $latest_products = Product::with(['category'])->latest()->take(12)->get();
+        $latest_products = Product::with(['category' , 'images'])->latest()->take(12)->get();
         $best_selling_products = Product::orderBy('sales_count' , 'DESC' )->take(6)->get();
         $categories = Category::where('show_after_slider' , 1 )->latest()->get();
         $home_categories = Category::where('show_in_home_page' , 1 )->latest()->get();
-        return view('site.index' , compact('slides' , 'home_categories' , 'categories' , 'latest_products' , 'best_selling_products'));
+        $slider_categories = Category::where('show_after_slider' , 1 )->latest()->get();
+        return view('site.index' , compact('slides' , 'slider_categories' , 'home_categories' , 'categories' , 'latest_products' , 'best_selling_products'));
     }
 
 
@@ -115,7 +116,7 @@ class SiteController extends Controller
             return redirect('/');
         }
 
-        return redirect()->back()->with('error' ,  'بيانات الدخول غير صحيحه' );
+        return back()->with('error' ,  'بيانات الدخول غير صحيحه' );
     }
 
     /**
@@ -163,33 +164,33 @@ class SiteController extends Controller
 
     public function checkout()
     {
-        $governorates = Governorate::all();
-        $cities = City::all();
-        $items = Cart::where('user_id' , Auth::id() )->get();
-        $total = 0;
-        foreach ($items as $item) {
-            $total += ($item->quantity * $item->product?->price );
-        }
-        return view('site.checkout' , compact('items' , 'cities' , 'governorates' , 'total'));
+        return view('site.checkout');
     }
 
 
     public function save_order(SoreOrderRequest $request)
     {
+        $sub_total = 0;
         $total = 0;
         $items = Cart::where('user_id' , Auth::id() )->get();
         foreach ($items as $item) {
-            $total += ($item->quantity * $item->product?->price );
+            $sub_total += ($item->quantity * $item->variation?->getPrice() );
         }
+        // calculate the shipping cost
+        $city = City::find($request->city);
+        $governorate = Governorate::find($request->governorate_id);
+        $shipping_cost = $city->shipping_cost ? $city->shipping_cost : $governorate->shipping_cost;
+
         $order = new Order;
         $order->number = Str::uuid()->toString();
         $order->total = $total;
         $order->user_id = Auth::id();
-        $order->subtotal = $total;
-        $order->shipping_cost = 10;
+        $order->subtotal = $sub_total;
+        $order->shipping_cost = $shipping_cost;
+        $order->total = $shipping_cost + $sub_total ;
         $order->discount = 0;
         $order->governorate_id = $request->governorate_id;
-        $order->city = $request->city;
+        $order->city_id = $request->city;
         $order->address = $request->address;
         $order->order_phone = $request->phone;
         $order->save();
@@ -197,13 +198,14 @@ class SiteController extends Controller
         foreach ($items as $item) {
             $order_item = new OrderItem;
             $order_item->order_id = $order->id;
-            $order_item->product_id = $item->product_id;
-            $order_item->price = $item->product?->price;
+            $order_item->variation_id = $item->variation_id;
+            $order_item->price = $item->variation?->getPrice();
             $order_item->quantity = $item->quantity;
             $order_item->save();
         }
-        toastr()->success('تم الطلب بنجاح');
-        return view('site.success');
+
+        Cart::where('user_id' , Auth::id() )->delete();
+        return view('site.success')->with('success' , 'تم انشاء الطلب بنجاح' );
     }
 
     public function complains()
@@ -241,11 +243,12 @@ class SiteController extends Controller
 
     public function update_phone(Request $request)
     {
+
         $user = Auth::user();
         $user->phone = $request->phone;
         $user->save();
-
-        return redirect(route('verify_phone'));
+        dispatch(new SendVerificationCodeToViaPhoneNumberJob($request->phone));
+        return redirect(route('site.verify_phone'));
     }
 
 }
