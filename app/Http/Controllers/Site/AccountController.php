@@ -9,7 +9,10 @@ use App\Models\OrderReturn;
 use App\Models\Income;
 use App\Models\Withdrawals;
 use App\Models\UserPoint;
+use App\Models\BankAccount;
 use App\Http\Requests\Site\UpdateUserRequest;
+use Carbon\Carbon;
+use App\Http\Requests\Site\StoreWithdrawalRequest;
 class AccountController extends Controller
 {
     /**
@@ -92,8 +95,11 @@ class AccountController extends Controller
 
     public function withdrawals()
     {
+        $can_withdrawald =  Income::where('user_id' , Auth::id())->where('withdrawn'  ,  0 )->whereDate('can_withdrawal_when'  , '<='  , Carbon::today())->sum('amount');
+
+        $can_not_withdrawald =  Income::where('user_id' , Auth::id())->where('withdrawn'  ,  0 )->whereDate('can_withdrawal_when'  , '>'  , Carbon::today())->sum('amount');
         $withdrawals = Withdrawals::where('user_id' , Auth::id())->latest()->get();
-        return view('site.withdrawals' , compact('withdrawals'));
+        return view('site.withdrawals' , compact('withdrawals' , 'can_withdrawald' , 'can_not_withdrawald' ));
     }
 
     public function statistics()
@@ -109,22 +115,46 @@ class AccountController extends Controller
 
     public function create_withdrawal()
     {
-        $total_incomes_not_withdrawald =  Income::where('user_id' , Auth::id() )->where('withdrawn' , 0 )->sum('amount');
+
+        $withdrawals = Withdrawals::where('user_id' , Auth::id() )->where('status' , 2 )->count();
+
+
+        if ($withdrawals) {
+           return redirect()->back()->with('error' ,'لا يمكن عمل طلب سحب اخر ى الوقت الحالى' );
+        }
+
+        $total_incomes_not_withdrawald =  Income::where('user_id' , Auth::id() )->where('withdrawn' , 0 )->whereDate('can_withdrawal_when'  , '<='  , Carbon::today())->sum('amount');
         return view('site.create_withdrawal' , compact('total_incomes_not_withdrawald'));
 
         
     }
 
 
-    public function store_withdrawal(Request $request)
+    public function store_withdrawal(StoreWithdrawalRequest $request)
     {
-        $total_incomes_not_withdrawald =  Income::where('user_id' , Auth::id() )->where('withdrawn' , 0 )->sum('amount');
+
+        $total_incomes_not_withdrawald =  Income::where('user_id' , Auth::id() )->where('withdrawn' , 0 )->whereDate('can_withdrawal_when'  , '<='  , Carbon::today())->sum('amount');
+
+        if ($request->payment_method == 2 ) {
+            $bank_account = new BankAccount;
+            $bank_account->bank_name = $request->bank_name;
+            $bank_account->name = $request->name;
+            $bank_account->account_number = $request->account_number;
+            $bank_account->user_id = Auth::id();
+            $bank_account->iban = $request->iban;
+            $bank_account->save();
+        }
+
         $withdrawal = new Withdrawals;
         $withdrawal->user_id = Auth::id();
         $withdrawal->amount = $total_incomes_not_withdrawald;
         $withdrawal->number = time();
         $withdrawal->phone = $request->phone;
-        $withdrawal->status = 1;
+        $withdrawal->status = 2;
+        $withdrawal->payment_method = $request->payment_method;
+        if ($request->payment_method ==2 ) {
+            $withdrawal->bank_account_id = $bank_account->id;
+        }
         $withdrawal->save();
         return redirect(route('site.withdrawals'))->with('success' , 'تم انشاء الطلب بنجاح' );
     }

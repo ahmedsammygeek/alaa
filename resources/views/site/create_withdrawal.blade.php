@@ -25,30 +25,15 @@
      <main class="col-md-9">
 
       <div class="card">
-       <form action="{{ route('site.withdrawals.store') }}" method='POST' >
-        @csrf
-
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for=""> المبلغ </label>
-            <input type="number" class='form-control' name="amount" value="{{ $total_incomes_not_withdrawald }}" >
+        <div class="card-body">
+          <div class="alert alert-success mt-3">
+            <p class="icontext"><i class="icon text-success fa fa-truck"></i> المبلغ المطلوب سحبه : {{ $total_incomes_not_withdrawald }} </p>
           </div>
+          @livewire('site.withdrawals.create')
         </div>
-
-        <div class="col-md-12">
-          <div class="form-group">
-            <label for=""> رقم الموبيل </label>
-            <input type="text" class='form-control' name="phone" value="{{ Auth::user()->phone }}" >
-          </div>
-        </div>
-
-        <div class="card-footer">
-          <button class="btn btn-primary"> تقديم الطلب </button> 
-        </div>
-      </form>
-    </div>
-  </main> <!-- col.// -->
-</div>
+      </div>
+    </main> <!-- col.// -->
+  </div>
 
 </div> <!-- container .//  -->
 </section>

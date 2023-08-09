@@ -1,4 +1,4 @@
-<footer class="section-footer bg-secondary text-white">
+<footer class="section-footer bg-secondary text-white" style='background-color:#6B14BE !important'  >
     <div class="container">
         <section class="footer-top  padding-y-lg">
             <div class="row">

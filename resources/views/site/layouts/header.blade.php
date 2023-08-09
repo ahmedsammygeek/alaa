@@ -34,8 +34,8 @@
             <div class="row align-items-center">
                 <div class="col-xl-2 col-lg-3 col-md-12">
                     <a href="{{ url('/') }}" class="brand-wrap">
-                        <img class="logo" src="{{ Storage::url('site_assets/images/logo3661.png') }}">
-                    </a> <!-- brand-wrap.// -->
+                        <img class="logo" src="{{ Storage::url('site_assets/images/3-01.png') }}">
+                    </a> 
                 </div>
                 <div class="col-xl-6 col-lg-5 col-md-6">
                     <form action="{{ route('search') }}" class="search-header">
@@ -152,7 +152,7 @@
                     <a class="nav-link" href="{{ route('complains') }}"> الشكاوى  و الاقتراحات </a>
                 </li>
                 @if ($lang == 'ar' )
-                <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('en') }}"> English </a>
+                {{-- <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('en') }}"> English </a> --}}
                 @else
                 <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('ar') }}"> اللغه العربيه </a>
                 @endif
