@@ -35,7 +35,7 @@
       <main class="col-md-6">
         <article class="product-info-aside">
 
-          <h2 class="title mt-3"> {{ $product->name }} </h2>
+          <h2 class="title mt-3" style='color: #6B14BE' > {{ $product->name }} </h2>
 
           <div class="rating-wrap my-3">
            <ul class="rating-stars">
