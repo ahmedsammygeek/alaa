@@ -6,7 +6,7 @@
 
     <header class="mb-3">
       <div class="form-inline">
-        <strong class="mr-md-auto"> تم العثور على 900 منتج  </strong>
+        <strong class="mr-md-auto"> {{ $category->name }}  </strong>
         <select class="mr-2 form-control">
           <option> الترتيب حسب </option>
           <option>الاكثير مبيعا</option>
