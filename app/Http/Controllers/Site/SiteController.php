@@ -153,7 +153,7 @@ class SiteController extends Controller
         $user->name = $request->name;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
-        $user->type = 1;
+        $user->type = 3;
         $user->save();
         Auth::login($user);
         dispatch(new SendVerificationCodeToViaPhoneNumberJob($request->phone));

@@ -100,11 +100,11 @@
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
-                                    <h6>{{ $product->price }} م.ج</h6>
+                                    <h4 >{{ $product->price }} م.ج</h4>
                                 </div>
                                 <div class="list-left">
                                     <span>أقل ربح لك</span>
-                                    <h6> {{ $product->marketer_price }} ج.م</h6>
+                                    <h4 style='font-size: 23px !important'> {{ $product->marketer_price }} ج.م</h4>
                                 </div>
                             </li>
                             <div class="item-footer">

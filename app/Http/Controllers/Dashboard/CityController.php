@@ -49,9 +49,7 @@ class CityController extends Controller
         $city->user_id = Auth::id();
         $city->active = $request->filled('active') ? 1 : 0;
         $city->save();
-
-        toastr()->success('تم الاضافه بنجاح' , 'تم بنجاح');
-        return redirect(route('dashboard.cities.index'));
+        return redirect(route('dashboard.cities.index'))->with('success' , 'تم الاضافه بنجاح' , 'تم بنجاح' );
     }
 
     /**
