@@ -15,7 +15,7 @@ class MakeColNullbale extends Migration
     {
         Schema::table('variations', function (Blueprint $table) {
             $table->string('title')->change()->nullable();
-            $table->double('price' , 8 , 2)->change()->nullable();
+            // $table->double('price' , 8 , 2)->change()->nullable();
         });
     }
 
