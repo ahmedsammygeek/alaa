@@ -134,7 +134,7 @@
 
             <div class="multiple-items row">
                 @foreach ($best_selling_products as $product)
-                 <div class="col-lg-3">
+                 <div class="col-lg-12">
                     <div class="item-box">
                         <div class="item-img">
                             <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide" data-ride="carousel">
@@ -197,7 +197,7 @@
 
             <div class="multiple-items">
                 @foreach ($home_category->products()->latest()->limit(10)->get() as $category_product)
-                 <div class="col-lg-3">
+                 <div class="col-lg-12">
                     <div class="item-box">
                         <div class="item-img">
                             <div id="carouselExampleIndicators{{ $category_product->id }}" class="carousel slide" data-ride="carousel">
