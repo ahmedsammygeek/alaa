@@ -84,18 +84,9 @@
                             <a href="{{ route('site.account') }}" class="widget-view">
                                 <div class="icon-area">
                                     <i class="fa fa-user"></i>
-                                    <span class="notify">3</span>
+                                   
                                 </div>
                                 <small class="text"> @lang('site.account') </small>
-                            </a>
-                        </div>
-                        <div class="widget-header mr-3">
-                            <a href="#" class="widget-view">
-                                <div class="icon-area">
-                                    <i class="fa fa-comment-dots"></i>
-                                    <span class="notify">1</span>
-                                </div>
-                                <small class="text"> الرسائل </small>
                             </a>
                         </div>
                         @endif
