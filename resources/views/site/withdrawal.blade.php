@@ -58,7 +58,7 @@
                         <span class='badge badge-success' > جارى تحويل المبلغ </span>
                         @break
                         @case(3)
-                        <span class='badge badge-primary' > تم الموافقه </span>
+                        <span class='badge badge-primary' >  تمت بنجاح </span>
                         @break
                         @case(4)
                         <span class='badge badge-danger' > تم الرفض </span>
@@ -92,7 +92,7 @@
                           محفظه الكتورنيه
                         @else
                         حساب بنكنى
-                        
+
                         @endif
                       </td>
                     </tr>
