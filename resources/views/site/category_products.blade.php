@@ -23,42 +23,46 @@
     <div class="row">
 
       @foreach ($products as $product)
-      <div class="col-md-3">
-        <figure class="card card-product-grid">
-          <div class="img-wrap"> 
-            <span class="badge badge-danger"> جديد </span>
-            <a href="{{ $product->url() }}">
-              <img src="{{ Storage::url('products/'.$product->image) }}">
-            </a>
-          </div> <!-- img-wrap.// -->
-          <figcaption class="info-wrap">
-            <a href="{{ $product->url() }}" class="title mb-2"> {{ $product->name }}</a>
-            <div class="rating-wrap mb-2">
-              <ul class="rating-stars">
-                <li style="width:100%" class="stars-active"> 
-                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                  <i class="fa fa-star"></i> 
-                </li>
-                <li>
-                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                  <i class="fa fa-star"></i> 
-                </li>
-              </ul>
-              <div class="label-rating">4.5</div>
-            </div>
-            <div class="price-wrap">
-              <span class="price">{{ $product->price }} جنيه</span> 
-            </div>        
-            <p class="text-muted "> {{ $product->mini_description }} </p>
-            <hr>
+     <div class="col-lg-2">
+                    <div class="item-box">
+                        <div class="item-img">
+                            <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @foreach ($product->images as $product_image)
+                                       <li data-target="#carouselExampleIndicators{{ $product->id }}" data-slide-to="{{ $loop->index }}" class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
+                                    @endforeach
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100 h-100 " src="{{ Storage::url('products/'.$product->image) }}" alt="First slide">
+                                    </div>
+                                    @foreach ($product->images as $product_image)
+                                        <div class="carousel-item">
+                                        <img class="d-block w-100 " src="{{ Storage::url('products/'.$product_image->image) }}" alt="Second slide">
+                                    </div>
 
-           
-
-          </figcaption>
-        </figure>
-      </div> <!-- col.// -->
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-text">
+                            <h4> {{ $product->name }} </h4>
+                            <li>
+                                <div class="list-right">
+                                    <span>أقل سعر للبيع</span>
+                                    <h6>{{ $product->price }} م.ج</h6>
+                                </div>
+                                <div class="list-left">
+                                    <span>أقل ربح لك</span>
+                                    <h6> {{ $product->marketer_price }} ج.م</h6>
+                                </div>
+                            </li>
+                            <div class="item-footer">
+                                <a href='{{ route('site.products.show' , $product ) }}' class='btn btn-primary d-block' > شاهد تفاصيل المنتج  </a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
       @endforeach
 
     </div>
