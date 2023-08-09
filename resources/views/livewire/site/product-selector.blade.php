@@ -10,7 +10,7 @@
 
    <dl class="row">
     <dt class="col-sm-3 "> الربح من اجمالي السعر : </dt>
-    <dd class="col-sm-9 h5" style='color:#53cc05' > {{ $product->marketer_price }} جنيه </dd>   
+    <dd class="col-sm-9 h4" style='color:#53cc05' > {{ $product->marketer_price }} جنيه </dd>   
     <dt class="col-sm-3 "> عدد نقاط الجائزه : </dt>
     <dd class="col-sm-9 h5"> {{ $product->points }} نقطه </dd>         
 </dl>
