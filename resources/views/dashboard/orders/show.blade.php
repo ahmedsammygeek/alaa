@@ -100,7 +100,7 @@
 							</tr>		
 							<tr>
 								<th>  قيمه ربح المسوق   </th>
-								<td> {{ $order->marketer_price() }} </td>
+								<td> {{ $order->marketer_price() }} <span class="text-muted"> جنيه </span> </td>
 							</tr>										
 						</tbody>
 					</table>

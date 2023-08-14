@@ -125,7 +125,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 							</div>
 							<div class="col-md-3">
 								<div  class='mb-2' >
-									<label class="col-form-label"> عدد الايام قبل نزول ارباح المسوق </label>
+									<label class="col-form-label"> عدد الساعات قبل نزول ارباح المسوق </label>
 									<input type="text" class="form-control @error('days_to_valid_marketer_money') is-invalid @enderror" name="days_to_valid_marketer_money" value="{{ $info->days_to_valid_marketer_money }}" >
 									@error('days_to_valid_marketer_money')
 									<p  class='text-danger' >  {{ $message }} </p>

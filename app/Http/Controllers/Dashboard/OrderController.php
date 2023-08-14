@@ -50,7 +50,7 @@ class OrderController extends Controller
         if ($request->status_id == 5) {
             foreach ($order->items as $order_item) {
                 dispatch(new AddPointsToUserJob($order_item->variation_id , $order ));
-                dispatch(new AddMoneyToUserIncomeJob($order_item->variation_id , $order ));
+                dispatch(new AddMoneyToUserIncomeJob($order_item));
             }    
         }
         return redirect()->back()->with('success'  , 'تم التعديل بنجاح' );

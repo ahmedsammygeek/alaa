@@ -177,7 +177,7 @@ class SiteController extends Controller
         $total = 0;
         $items = Cart::where('user_id' , Auth::id() )->get();
         foreach ($items as $item) {
-            $sub_total += ($item->quantity * $item->variation?->getPrice() );
+            $sub_total += ($item->quantity * $item->price );
         }
         // calculate the shipping cost
         $city = City::find($request->city);
@@ -204,7 +204,7 @@ class SiteController extends Controller
             $order_item = new OrderItem;
             $order_item->order_id = $order->id;
             $order_item->variation_id = $item->variation_id;
-            $order_item->price = $item->variation?->getPrice();
+            $order_item->price = $item->price;
             $order_item->quantity = $item->quantity;
             $order_item->save();
             dispatch(new IncreasProductSalesCountJob($item->variation_id));

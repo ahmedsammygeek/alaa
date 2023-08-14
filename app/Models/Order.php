@@ -33,7 +33,7 @@ class Order extends Model
     {
         $price = 0;
         foreach ($this->items as $item) {
-            $price += $item->variation?->product?->marketer_price * $item->quantity ;
+            $price += $item->calculateMarketerMoney() ;
         }
         return $price;
     }

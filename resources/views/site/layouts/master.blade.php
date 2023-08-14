@@ -15,20 +15,14 @@ if ($lang == 'ar') {
     <meta http-equiv="pragma" content="no-cache" />
     <meta http-equiv="cache-control" content="max-age=604800" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title> موقع سوق التجار </title>
-
     <link href="{{ Storage::url('site_assets/images/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
-
-    <!-- jQuery -->
     <script src="{{ Storage::url('site_assets/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ Storage::url('site_assets/css/main.css') }}">
-      <link href="{{ Storage::url('site_assets/css/ui.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ Storage::url('site_assets/css/ui.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ Storage::url('site_assets/css/responsive.css') }}" rel="stylesheet" type="text/css"/>
-    <!-- owl carousel -->
     <link rel="stylesheet" href="{{ Storage::url('site_assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ Storage::url('site_assets/css/owl.theme.default.min.css') }}">
-    <!-- font-awesome -->
     <link rel="stylesheet" href="{{ Storage::url('site_assets/css/all.min.css') }}">
 
     <!-- Bootstrap4 files-->
