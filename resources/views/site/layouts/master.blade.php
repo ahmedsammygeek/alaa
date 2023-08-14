@@ -96,6 +96,7 @@ if ($lang == 'ar') {
    <script src="{{ Storage::url('site_assets/js/main.js') }}"></script>
    <script src="{{ Storage::url('site_assets/js/all.min.js') }}"></script>
    <script src="{{ Storage::url('site_assets/js/sweetalert2.js') }}"></script>
+   <script src="{{ Storage::url('site_assets/js/slick.min.js') }}"></script>
    @yield('scripts')
    <livewire:scripts />
     <x-livewire-alert::scripts />

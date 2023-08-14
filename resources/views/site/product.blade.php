@@ -19,17 +19,8 @@
     <div class="row">
       <aside class="col-md-6">
         <div class="card">
-          <article class="gallery-wrap"> 
-            <div class="img-big-wrap">
-              <div> <a href="#"><img src="{{ Storage::url('products/'.$product->image) }}"></a></div>
-            </div> <!-- slider-product.// -->
-            <div class="thumbs-wrap">
-              @foreach ($product->images as $product_image)
-              <a href="#" class="item-thumb"> <img src="{{ Storage::url('products/'.$product_image->image) }}"></a>
-              @endforeach
-            </div> <!-- slider-nav.// -->
-          </article> <!-- gallery-wrap .end// -->
-          <a href='{{ route('product.images.download' , $product ) }}' class='btn btn-primary' > <i class="fa fa-download"></i> تحميل جميع صور المنتج على جهازك </a>
+          @livewire('site.product-gallery' , ['product' => $product ] )
+          {{-- <a href='{{ route('product.images.download' , $product ) }}' class='btn btn-primary' > <i class="fa fa-download"></i> تحميل جميع صور المنتج على جهازك </a> --}}
         </div> <!-- card.// -->
       </aside>
       <main class="col-md-6">
@@ -53,12 +44,12 @@
          <small class="label-rating text-muted">132 تقييم</small>
          <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 تم شرائه </small>
        </div> <!-- rating-wrap.// -->
-      @livewire('site.product-selector' , ['product' => $product ] )
-    </article> <!-- product-info-aside .// -->
-  </main> <!-- col.// -->
-</div> <!-- row.// -->
+       @livewire('site.product-selector' , ['product' => $product ] )
+     </article> <!-- product-info-aside .// -->
+   </main> <!-- col.// -->
+ </div> <!-- row.// -->
 
-<!-- ================ ITEM DETAIL END .// ================= -->
+ <!-- ================ ITEM DETAIL END .// ================= -->
 
 
 </div> <!-- container .//  -->
@@ -151,4 +142,21 @@
   </section>
 </div>
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+  $(function() {
+          $(".center").slick({
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 5,
+        slidesToScroll: 3
+      });
+  });
+</script>
+@endsection
+@section('styles')
+<link rel="stylesheet" href="{{ Storage::url('site_assets/css/slick-theme.css') }}">
 @endsection
