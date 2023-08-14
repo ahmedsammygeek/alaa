@@ -5,52 +5,16 @@
         <thead class="text-muted">
           <tr class="small text-uppercase">
             <th scope="col">المنتج</th>
+            <th scope="col" width="150">السعر المنتج الاصلى </th>
+            <th scope="col" width="150">سعر البيع للعميل</th>
             <th scope="col" width="120">الكميه</th>
-            <th scope="col" width="120">السعر</th>
+            <th scope="col" width="120">ربحك</th>
             <th scope="col" class="text-right" width="200"> </th>
           </tr>
         </thead>
         <tbody>
           @foreach ($items as $item)
-          <tr>
-            <td>
-              <figure class="itemside">
-                <div class="aside">
-                  <img src="{{ Storage::url('products/'.$item->variation?->product?->image) }}" class="img-sm">
-                </div>
-                <figcaption class="info">
-                  <a href="#" class="title text-dark">{{ $item->variation?->product?->name }}</a>
-                  @if ($item->variation->type != 'default' )
-                  <p class="text-muted small"> @lang('site.'.$item->variation->type): {{ $item->variation->title }} , 
-                    @if ($item->variation?->parent_id)
-                    @lang('site.'.$item->variation?->parent?->type) : {{ $item->variation?->parent?->title }}
-                    @endif
-                   <br>
-                 </p>
-                  @endif
-                </figcaption>
-              </figure>
-            </td>
-            <td> 
-              <select class="form-control">
-                 @for ($i = 1; $i < 10 ; $i++)
-                    <option wire:click='editQuantity({{ $item->id }} , {{ $i }} )' value='{{ $i }}' {{ $item->quantity == $i ? 'selected="selected"' : '' }} >{{ $i }}</option>
-                @endfor
-              </select> 
-            </td>
-            <td> 
-              <div class="price-wrap"> 
-                <var class="price"> {{ $item->variation?->getPrice() * $item->quantity }} جنيه </var> 
-                <small class="text-warning"> {{ $item->variation?->getPrice() }}  جنيه للقطعه </small> 
-              </div> <!-- price-wrap .// -->
-            </td>
-            <td class="text-right"> 
-              <a data-original-title="Save to Wishlist" title="" href="#" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-              {{-- <a href="#" class="btn btn-light"> Remove</a> --}}
-
-              <a href="#" wire:click='removeItem({{ $item->id }})' class="btn btn-light"> <i class="fa fa-trash"></i> الغاء </a>
-            </td>
-          </tr>
+          @livewire('site.cart-item' , ['item' => $item ] ,  $item->id )
           @endforeach
         </tbody>
       </table>
@@ -85,16 +49,27 @@
     <div class="card">
       <div class="card-body">
         <dl class="dlist-align">
-          <dt> السعر الكلى </dt>
-          <dd class="text-right">{{ $this->total }} جنيه </dd>
+          <dt style="width:143px !important;" > السعر الكلى للمنتجات </dt>
+          <dd class="text-right">{{ $this->total }} <span class='text-muted'> جنيه</span> </dd>
+        </dl>
+
+        <dl class="dlist-align">
+          <dt style="width:143px !important;" >صافى الربح </dt>
+          <dd class="text-right">{{ $this->marketer_bounse }} <span class='text-muted'> جنيه</span> </dd>
+        </dl>
+
+        <dl class="dlist-align">
+          <dt style="width:143px !important;" >الشحن:</dt>
+          <dd class="text-right text-muted"> لم يتم حسابه بعد </dd>
         </dl>
         <dl class="dlist-align">
-          <dt>الخصم:</dt>
-          <dd class="text-right">0 جنيه </dd>
+          <dt style="width:143px !important;" >الخصم:</dt>
+          <dd class="text-right text-muted"> 0  </dd>
         </dl>
+
         <dl class="dlist-align">
-          <dt>المبلغ الكلى :</dt>
-          <dd class="text-right  h5"><strong>{{ $this->total }} جنيه</strong></dd>
+          <dt style="width:143px !important;" > المستحق للدفع :</dt>
+          <dd class="text-right h5"><strong>{{ $this->total }} </strong> <span class='text-muted'> جنيه </span> </dd>
         </dl>
         <hr>
 

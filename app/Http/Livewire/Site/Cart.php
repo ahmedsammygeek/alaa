@@ -11,39 +11,19 @@ class Cart extends Component
 {
     use LivewireAlert;
     protected $listeners = ['cartChanged' => '$refresh' ];
+    // protected $listeners = ['cartChanged' => '$refresh' ];
 
     public $subtotal;
     public $coupon;
-
-
 
     public function chackCoupon() {
         
     }
 
-    public function removeItem($item_id) {
+    public function cartChanged() {
 
-        $item = CartModel::find($item_id);
-        if ($item) {
-            $item->delete();
-            $this->alert( 'success' ,  'تم حذف المنتج من السله بنجاح');
-        }
-        $this->emitSelf('cartChanged');
-
+        dd('dd');
     }
-
-
-    public function editQuantity($item_id , $quantity)
-    {
-        $item = CartModel::find($item_id);
-        if ($item) {
-            $item->quantity = $quantity;
-            $item->save();
-            $this->alert( 'success' ,  'تم تعديل المنتج من السله بنجاح');
-        }
-        $this->emitSelf('cartChanged');
-    }
-
 
     public function getTotalProperty() {
         $total = 0;
@@ -51,9 +31,21 @@ class Cart extends Component
 
         foreach ($items as $item) {
             
-            $total += $item->quantity * $item->variation?->getPrice();
+            $total += $item->quantity * $item->price;
         }
         return $total;
+    }
+
+
+    public function getMarketerBounseProperty()
+    {
+        $marketer_bounse = 0;
+        $items = CartModel::where('user_id' , Auth::id() )->get();
+        foreach ($items as $item) {
+           $marketer_bounse += $item->variation?->product->marketer_price + (($item->price - $item->variation?->product->price) * $item->quantity);
+        }
+
+        return  $marketer_bounse;
     }
 
 
@@ -62,7 +54,7 @@ class Cart extends Component
         $items = CartModel::where('user_id' , Auth::id() )->get();
         $total = 0;
         foreach ($items as $item) {
-            $total += ($item->quantity * $item->product?->price );
+            $total += ($item->quantity * $item->price );
         }
 
         return view('livewire.site.cart' , compact('items' , 'total'));
