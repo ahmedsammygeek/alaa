@@ -124,7 +124,7 @@ Route::group(['middleware' => 'verify_phone'], function() {
     Route::get('/products' , [SiteController::class , 'products'] )->name('site.products.index');
     Route::get('/category' , [SiteController::class , 'category'] )->name('site.category');
     // Route::get('/account' , [SiteController::class , 'account'])->name('site.account');
-    Route::get('/account/orders' , [SiteController::class , 'orders'])->name('account.orders.index');
+    // Route::get('/account/orders' , [SiteController::class , 'orders'])->name('account.orders.index');
     Route::get('pages/{page}' , [SiteController::class , 'page'])->name('pages.show');
     Route::get('/categories/{category}/products' , [SiteController::class , 'category_products'])->name('category.products');
 

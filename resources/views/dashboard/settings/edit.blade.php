@@ -57,7 +57,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 									@enderror
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.email') </label>
 									<input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $info->email }}" >
@@ -67,7 +67,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 								</div>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.phone') </label>
 									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $info->phone }}" >
@@ -87,6 +87,15 @@ $lang = LaravelLocalization::getCurrentLocale();
 							</div>
 							<div class="col-md-4">
 								<div  class='mb-2' >
+									<label class="col-form-label"> حساب يوتيوب </label>
+									<input type="text" class="form-control @error('youtube') is-invalid @enderror" name="youtube" value="{{ $info->youtube }}" >
+									@error('youtube')
+									<p  class='text-danger' >  {{ $message }} </p>
+									@enderror
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('settings.instgrame') </label>
 									<input type="text" class="form-control @error('instgrame') is-invalid @enderror" name="instgrame" value="{{ $info->instgrame }}" >
 									@error('instgrame')
@@ -96,7 +105,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 							</div>
 							<div class="col-md-4">
 								<div  class='mb-2' >
-									<label class="col-form-label"> @lang('settings.twitter') </label>
+									<label class="col-form-label"> حساب تويتر </label>
 									<input type="text" class="form-control @error('twitter') is-invalid @enderror" name="twitter" value="{{ $info->twitter }}" >
 									@error('twitter')
 									<p  class='text-danger' >  {{ $message }} </p>

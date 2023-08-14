@@ -38,6 +38,7 @@ class SettingsController extends Controller
         $info->facebook = $request->facebook;
         $info->twitter = $request->twitter;
         $info->instgrame = $request->instgrame;
+        $info->youtube = $request->youtube;
         $info->lat = $request->latitude;
         $info->long = $request->longitude;
         $info->points_money = $request->points_money;

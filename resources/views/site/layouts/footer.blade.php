@@ -44,10 +44,10 @@
 
                     <p class="text-white-50 mb-2"> تابعنا على مواقع التواصل </p>
                     <div>
-                        <a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="btn btn-icon btn-outline-light"><i class="fab fa-youtube"></i></a>
+                        <a href="{{ $data['settings']->facebook }}" class="btn btn-icon btn-outline-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="{{ $data['settings']->twitter }}" class="btn btn-icon btn-outline-light"><i class="fab fa-twitter"></i></a>
+                        <a href="{{ $data['settings']->instgrame }}" class="btn btn-icon btn-outline-light"><i class="fab fa-instagram"></i></a>
+                        <a href="{{ $data['settings']->youtube }}" class="btn btn-icon btn-outline-light"><i class="fab fa-youtube"></i></a>
                     </div>
 
                 </aside>
@@ -55,7 +55,7 @@
         </section>  <!-- footer-top.// -->
 
         <section class="footer-bottom text-center">
-            <p class="text-white"> جميع الحقوق محفوظه لموقع علاء الدين </p>
+            <p class="text-white"> جميع الحقوق محفوظه موقع سوق التجار @ {{ Carbon\Carbon::today()->year }} </p>
             
             <br>
         </section>

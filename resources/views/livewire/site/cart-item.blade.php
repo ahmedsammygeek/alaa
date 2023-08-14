@@ -37,7 +37,7 @@
 
   <td> 
     <div class="price-wrap"> 
-     {{ $item->variation?->product->marketer_price + (($item->price - $item->variation?->product->getPrice())) * $item->quantity }}
+     {{ ($item->variation?->product->marketer_price * $item->quantity ) + (($item->price - $item->variation?->product->getPrice()) * $item->quantity )  }}
    </div> 
  </td>
  <td class="text-right"> 

@@ -46,7 +46,7 @@
 
               <td> 
                 <div class="price-wrap"> 
-                 {{  $item->variation?->product->marketer_price + ( ($item->price - $item->variation?->product->getPrice())) * $item->quantity }} <span class="text-muted"> جنيه </span>
+                 {{ ( $item->variation?->product->marketer_price * $item->quantity ) + ( ($item->price - $item->variation?->product->getPrice())) * $item->quantity }} <span class="text-muted"> جنيه </span>
                </div> 
              </td>
 
