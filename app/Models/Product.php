@@ -106,6 +106,15 @@ class Product extends Model
     }
 
 
+    public function getPrice()
+    {
+        if ($this->price_after_discount) {
+            return $this->price_after_discount;
+        }
+
+        return $this->price;
+    }
+
     public function hasDiscount() {
 
         if($this->price_after_discount)

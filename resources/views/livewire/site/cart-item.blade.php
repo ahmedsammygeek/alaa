@@ -2,10 +2,12 @@
   <td>
     <figure class="itemside">
       <div class="aside">
-        <img src="{{ Storage::url('products/'.$item->variation?->product?->image) }}" class="img-sm">
+        <a href="{{ $item->variation?->product?->url() }}">
+          <img src="{{ Storage::url('products/'.$item->variation?->product?->image) }}" class="img-sm">
+        </a>
       </div>
       <figcaption class="info">
-        <a href="#" class="title text-dark">{{ $item->variation?->product?->name }}</a>
+        <a href="{{ $item->variation?->product?->url() }}" class="title text-dark">{{ $item->variation?->product?->name }}</a>
         @if ($item->variation->type != 'default' )
         <p class="text-muted small"> @lang('site.'.$item->variation->type): {{ $item->variation->title }} , 
           @if ($item->variation?->parent_id)
@@ -18,7 +20,7 @@
     </figure>
   </td>
   <td>
-    {{ $item->variation?->product?->price }} <span class="text-muted"> جنيه </span>
+    {{ $item->variation?->product?->getPrice() }} <span class="text-muted"> جنيه </span>
   </td>
   <td> 
     <div class="price-wrap"> 
@@ -35,11 +37,11 @@
 
   <td> 
     <div class="price-wrap"> 
-     {{ ($item->variation?->product->marketer_price + ($item->price - $item->variation?->product->price)) * $item->quantity }}
-    </div> 
-  </td>
-  <td class="text-right"> 
-    <a data-original-title="Save to Wishlist" title="" href="#" class="btn btn-primary" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-    <a href="#" wire:click='removeItem({{ $item->id }})' class="btn btn-danger"> <i class="fa fa-trash"></i> حذف </a>
-  </td>
+     {{ $item->variation?->product->marketer_price + (($item->price - $item->variation?->product->getPrice())) * $item->quantity }}
+   </div> 
+ </td>
+ <td class="text-right"> 
+  <a data-original-title="Save to Wishlist" title="" href="#" class="btn btn-primary" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
+  <a href="#" wire:click='removeItem({{ $item->id }})' class="btn btn-danger"> <i class="fa fa-trash"></i> حذف </a>
+</td>
 </tr>

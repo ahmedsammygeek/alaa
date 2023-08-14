@@ -33,19 +33,27 @@ class Checkout extends Component
         if ($this->governorate_id) {
             return Governorate::find($this->governorate_id)?->shipping_cost;
         }
-
         return 0;
-        
     }
+
+    public function getMarketerBounseProperty()
+    {
+        $marketer_bounse = 0;
+        $items = Cart::where('user_id' , Auth::id() )->get();
+        foreach ($items as $item) {
+           $marketer_bounse += $item->variation?->product->marketer_price + (($item->price - $item->variation?->product->getPrice()) * $item->quantity);
+        }
+        return  $marketer_bounse;
+    }
+
 
     public function getSubTotalProperty()
     {
         $total = 0;
         $items = Cart::where('user_id' , Auth::id() )->get();
-
         foreach ($items as $item) {
             
-            $total += $item->quantity * $item->variation?->getPrice();
+            $total += $item->quantity * $item->price;
         }
         return $total;
     }

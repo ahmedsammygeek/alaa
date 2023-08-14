@@ -80,6 +80,7 @@ class ProductSelector extends Component
             $cart->variation_id = $this->finalVariant->id;
             $cart->quantity = $this->quantity;
             $cart->user_id = Auth::id();
+            $cart->price = $this->finalVariant->product?->getPrice();
             $cart->save();
         }
         $this->alert( 'success' ,  'تم إضافه المنتج '.$this->finalVariant?->product->name.' الى السله بنجاح' );

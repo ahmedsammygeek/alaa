@@ -38,7 +38,7 @@ class CartItem extends Component
     public function removeItem() {
         $this->item->delete();
         $this->alert( 'success' ,  'تم حذف المنتج من السله بنجاح');
-        $this->emitSelf('cartChanged');
+        $this->emitTo( 'site.cart' ,  'cartChanged');
     }
 
 

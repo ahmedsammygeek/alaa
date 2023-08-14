@@ -20,14 +20,11 @@
       </table>
 
       <div class="card-body border-top">
-        <a href="{{ route('checkout.index') }}" class="btn btn-primary float-md-right"> اتمام الطلب <i class="fa fa-chevron-right"></i> </a>
-        <a href="{{ url('/') }}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> اكمل التسوق </a>
+        <a href="{{ route('checkout.index') }}" class="btn btn-primary float-md-right"> اتمام الطلب <i class="fa fa-chevron-left"></i> </a>
+        <a href="{{ url('/') }}" class="btn btn-light"> <i class="fa fa-chevron-right"></i> اكمل التسوق </a>
       </div>  
     </div> <!-- card.// -->
 
-    <div class="alert alert-success mt-3">
-      <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
-    </div>
 
   </main> <!-- col.// -->
   <aside class="col-md-3">

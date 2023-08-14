@@ -49,7 +49,7 @@ class Variation extends Model
             return $this->parent?->price;
         }
 
-        return $this->product?->price;
+        return $this->product?->getPrice();
     }
 
 
