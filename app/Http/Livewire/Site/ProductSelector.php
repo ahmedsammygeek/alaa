@@ -56,6 +56,16 @@ class ProductSelector extends Component
 
     public function add_to_cart()
     {
+        if (!Auth::check()) {
+            $this->alert('info' , 'يجب ان تكون مستخدم لكى تستطيع الإضافه الى سله التسوق', [
+                'toast' => false  , 
+                'position' => 'center' , 
+                'timer' => 3000 , 
+            ]);
+
+            return ;
+        }
+
         // we need to check first if this item in cart or not
         $cart_item = Cart::where([
             ['variation_id' , '=' , $this->finalVariant->id ] , 

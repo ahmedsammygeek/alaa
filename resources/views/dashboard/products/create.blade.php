@@ -206,7 +206,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div  class='mb-2' >
 											<label class="col-form-label"> سعر المنتج </label>
 											<input type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" >
@@ -215,7 +215,7 @@
 											@enderror
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div  class='mb-2' >
 											<label class="col-form-label"> السعر بعد الخصم </label>
 											<input type="text" class="form-control @error('price_after_discount') is-invalid @enderror" name="price_after_discount" value="{{ old('price_after_discount') }}" >
@@ -224,7 +224,7 @@
 											@enderror
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div  class='mb-2' >
 											<label class="col-form-label"> نسبه الخصم </label>
 											<input type="text" class="form-control @error('discount_percentage') is-invalid @enderror" name="discount_percentage" value="{{ old('discount_percentage') }}" >
@@ -233,11 +233,29 @@
 											@enderror
 										</div>
 									</div>
-									<div class="col-md-3">
+									<div class="col-md-2">
 										<div  class='mb-2' >
 											<label class="col-form-label"> مبلغ المسوق </label>
 											<input type="text" class="form-control @error('marketer_price') is-invalid @enderror" name="marketer_price" value="{{ old('marketer_price') }}" >
 											@error('marketer_price')
+											<p  class='text-danger' >  {{ $message }} </p>
+											@enderror
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div  class='mb-2' >
+											<label class="col-form-label"> المبلغ الموصى بيه للبيع (الادنى) </label>
+											<input type="number" class="form-control @error('min_price') is-invalid @enderror" name="min_price" value="{{ old('min_price') }}" >
+											@error('min_price')
+											<p  class='text-danger' >  {{ $message }} </p>
+											@enderror
+										</div>
+									</div>
+									<div class="col-md-2">
+										<div  class='mb-2' >
+											<label class="col-form-label">  المبلغ الموصى بيه للبيع (الاعلى) </label>
+											<input type="number" class="form-control @error('max_price') is-invalid @enderror" name="max_price" value="{{ old('max_price') }}" >
+											@error('max_price')
 											<p  class='text-danger' >  {{ $message }} </p>
 											@enderror
 										</div>

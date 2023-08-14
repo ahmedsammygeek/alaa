@@ -46,6 +46,8 @@ class StoreProductRequest extends FormRequest
             'minimam_gomla_number' => 'nullable' , 
             'minimam_stock_alert' => 'required' , 
             'country_id' => 'required' , 
+            'min_price' => 'required' , 
+            'max_price' => 'required' , 
         ];
     }
 }

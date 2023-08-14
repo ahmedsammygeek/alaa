@@ -59,6 +59,8 @@ class Product extends Model
         $this->minimam_gomla_number = $data['minimam_gomla_number'];
         $this->minimam_stock_alert = $data['minimam_stock_alert'];
         $this->country_id = $data['country_id'];
+        $this->min_price = $data['min_price'];
+        $this->max_price = $data['max_price'];
         $this->user_id = Auth::id();
         return $this->save();
     }
@@ -83,6 +85,8 @@ class Product extends Model
         $this->minimam_gomla_number = $data['minimam_gomla_number'];
         $this->minimam_stock_alert = $data['minimam_stock_alert'];
         $this->country_id = $data['country_id'];
+        $this->min_price = $data['min_price'];
+        $this->max_price = $data['max_price'];
         return $this->save();
     }
 
