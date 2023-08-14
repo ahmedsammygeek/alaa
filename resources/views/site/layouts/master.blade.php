@@ -60,6 +60,14 @@ if ($lang == 'ar') {
         .text-primary {
             color : #6B14BE !important;
         }
+        .btn-outline-primary {
+            border-color: #6B14BE !important;
+            color:#6B14BE !important;
+        }
+        .btn-outline-primary:hover {
+            background-color:#6B14BE !important;
+            color:white !important;
+        }
 
     </style>
     @else
