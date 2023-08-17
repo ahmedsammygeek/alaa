@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class="item-text">
-                            <h4> {{ $product->name }} </h4>
+                            <h4 class='text-center' > {{ $product->name }} </h4>
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
