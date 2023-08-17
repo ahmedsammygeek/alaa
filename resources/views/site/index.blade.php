@@ -76,7 +76,7 @@
                 <div class="col-lg-12">
                     <div class="item-box">
                         <div class="item-img">
-                            <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide" data-ride="carousel">
+                            <div id="carouselExampleIndicators{{ $product->id }}" class="carousel slide"data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     @foreach ($product->images as $product_image)
                                        <li data-target="#carouselExampleIndicators{{ $product->id }}" data-slide-to="{{ $loop->index }}" class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
