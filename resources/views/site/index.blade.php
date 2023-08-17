@@ -100,11 +100,11 @@
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
-                                    <h4 style='color:#6B14BE !important' >{{ $product->price }} ج.م </h4>
+                                    <h4 class='text-center' style='color:#6B14BE !important' >{{ $product->price }} ج.م </h4>
                                 </div>
                                 <div class="list-left">
                                     <span>أقل ربح لك</span>
-                                    <h4 style='font-size: 23px !important;color:#6B14BE !important;'> {{ $product->marketer_price }} ج.م</h4>
+                                    <h4 class='text-center' style='font-size: 23px !important;color:#6B14BE !important;'> {{ $product->marketer_price }} ج.م</h4>
                                 </div>
                             </li>
                             <div class="item-footer">
@@ -157,15 +157,15 @@
                             </div>
                         </div>
                         <div class="item-text">
-                            <h4> {{ $product->name }} </h4>
+                            <h4 class="text-center"> {{ $product->name }} </h4>
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
-                                    <h6>{{ $product->price }} م.ج</h6>
+                                    <h6 class="text-center">{{ $product->price }} م.ج</h6>
                                 </div>
                                 <div class="list-left">
                                     <span>أقل ربح لك</span>
-                                    <h6> {{ $product->marketer_price }} ج.م</h6>
+                                    <h6 class="text-center"> {{ $product->marketer_price }} ج.م</h6>
                                 </div>
                             </li>
                             <div class="item-footer">
@@ -220,15 +220,15 @@
                             </div>
                         </div>
                         <div class="item-text">
-                            <h4> {{ $category_product->name }} </h4>
+                            <h4 class='text-center' > {{ $category_product->name }} </h4>
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
-                                    <h6>{{ $category_product->price }} م.ج</h6>
+                                    <h6 class='text-center' >{{ $category_product->price }} م.ج</h6>
                                 </div>
                                 <div class="list-left">
                                     <span>أقل ربح لك</span>
-                                    <h6> {{ $category_product->marketer_price }} ج.م</h6>
+                                    <h6 class='text-center' > {{ $category_product->marketer_price }} ج.م</h6>
                                 </div>
                             </li>
                             <div class="item-footer">
