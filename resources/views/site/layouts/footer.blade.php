@@ -27,10 +27,10 @@
                     <h5 class="title">حسابى</h5>
                     <ul class="list-unstyled">
                         <li> <a href="#">اتصل بنا</a></li>
-                        <li> <a href="#">حسابى</a></li>
-                        <li> <a href="#">ارباحى</a></li>
-                        <li> <a href="#">تسجيل الدخول</a></li>
-                        <li> <a href="#">التسجيل فى الموقع</a></li>
+                        <li> <a href="{{ route('site.account') }}">حسابى</a></li>
+                        <li> <a href="{{ route('site.incomes') }}">ارباحى</a></li>
+                        <li> <a href="{{ route('login') }}">تسجيل الدخول</a></li>
+                        <li> <a href="{{ route('register') }}">التسجيل فى الموقع</a></li>
                     </ul>
                 </aside>
                 <aside class="col-md-4 col-12">
@@ -39,7 +39,7 @@
                     
                     <form class="form-inline mb-3">
                         <input type="text" placeholder="البريد الاكتورنى " class="border-0 w-auto form-control" name="">
-                        <button class="btn ml-2 btn-warning">  اشترك </button>
+                        <button  class="btn ml-2 " style='background-color:#53cc05 !important;border-color:#53cc05 ;' >  اشترك </button>
                     </form>
 
                     <p class="text-white-50 mb-2"> تابعنا على مواقع التواصل </p>
