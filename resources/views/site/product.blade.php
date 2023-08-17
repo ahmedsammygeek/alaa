@@ -1,7 +1,7 @@
 @extends('site.layouts.master')
 
 @section('page_content')
-<section class="py-3 bg-light" style='background-color: #E9D5FF; !important' >
+<section class="py-3 bg-light" style='background-color: #FAF55FF; !important' >
   <div class="container">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{{ url('/') }}">الرئيسيه</a></li>
