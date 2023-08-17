@@ -64,10 +64,10 @@
     <!-- =============== SECTION 1 =============== -->
     <section class="padding-bottom">
         <header class="section-heading mb-4">
-            <h3 class="title-section"> 
+            <h4 class="title-section"> 
                 @lang('site.latest_products') 
                 <a href="" class="btn btn-outline-primary float-right "> <i class="fa fa-back"></i> شاهد الكل </a>
-            </h3>
+            </h4>
         </header>
 
         <div class="">
@@ -100,11 +100,11 @@
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
-                                    <h4 >{{ $product->price }} م.ج</h4>
+                                    <h4 style='color:#6B14BE !important' >{{ $product->price }} ج.م </h4>
                                 </div>
                                 <div class="list-left">
                                     <span>أقل ربح لك</span>
-                                    <h4 style='font-size: 23px !important'> {{ $product->marketer_price }} ج.م</h4>
+                                    <h4 style='font-size: 23px !important;color:#6B14BE !important;'> {{ $product->marketer_price }} ج.م</h4>
                                 </div>
                             </li>
                             <div class="item-footer">
@@ -124,10 +124,10 @@
     <section class="padding-bottom">
 
         <header class="section-heading mb-4">
-            <h3 class="title-section"> 
+            <h4 class="title-section"> 
                 @lang('site.best_selling') 
                 <a href="" class="btn btn-outline-primary float-right "> <i class="fa fa-back"></i> شاهد الكل </a>
-            </h3>
+            </h4>
         </header>
 
         <div class="">
@@ -185,10 +185,10 @@
     <section class="padding-bottom">
 
         <header class="section-heading mb-4">
-            <h3 class="title-section"> 
+            <h4 class="title-section"> 
                 {{ $home_category->name }} 
                 <a href="{{ route('category.products' , $home_category ) }}" class="btn btn-outline-primary float-right "> <i class="fa fa-back"></i> شاهد الكل </a>
-            </h3>
+            </h4>
 
 
         </header>

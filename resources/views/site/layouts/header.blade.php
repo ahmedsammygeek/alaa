@@ -135,7 +135,7 @@
                         <nav class="row">
                             @foreach ($category->children as $child)
                             <div class="col-3">
-                                <h4> <a href="{{ route('category.products' , $child ) }}"> {{ $child->name }} </a> </h4>
+                                <h5> <a href="{{ route('category.products' , $child ) }}"> {{ $child->name }} </a> </h5>
                                @foreach ($child->children as $sub_child)
                                    <a href="{{ route('category.products' , $sub_child ) }}">{{ $sub_child->name }}</a>
                                @endforeach
