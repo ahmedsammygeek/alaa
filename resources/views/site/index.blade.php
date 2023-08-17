@@ -108,7 +108,7 @@
                                 </div>
                             </li>
                             <div class="item-footer">
-                                <a href='{{ route('site.products.show' , $product ) }}' class='btn btn-primary d-block' > شاهد تفاصيل المنتج  </a>
+                                <a href='{{ route('site.products.show' , $product ) }}' class='btn btn-primary btn-block' > شاهد تفاصيل المنتج  </a>
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
                                 </div>
                             </li>
                             <div class="item-footer">
-                                <a href='{{ route('site.products.show' , $product ) }}' class='btn btn-primary d-block' > شاهد تفاصيل المنتج  </a>
+                                <a href='{{ route('site.products.show' , $product ) }}' class='btn btn-primary btn-block' > شاهد تفاصيل المنتج  </a>
                             </div>
                         </div>
                     </div>
@@ -232,7 +232,7 @@
                                 </div>
                             </li>
                             <div class="item-footer">
-                                <a href='{{ route('site.products.show' , $category_product ) }}' class='btn btn-primary d-block' > شاهد تفاصيل المنتج  </a>
+                                <a href='{{ route('site.products.show' , $category_product ) }}' class='btn btn-primary btn-block' > شاهد تفاصيل المنتج  </a>
                             </div>
                         </div>
                     </div>
