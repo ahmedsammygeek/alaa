@@ -20,7 +20,7 @@
       <aside class="col-md-6">
         <div class="card">
           @livewire('site.product-gallery' , ['product' => $product ] )
-          {{-- <a href='{{ route('product.images.download' , $product ) }}' class='btn btn-primary' > <i class="fa fa-download"></i> تحميل جميع صور المنتج على جهازك </a> --}}
+          <a href='{{ route('product.images.download' , $product ) }}' class='btn btn-primary' > <i class="fa fa-download"></i> تحميل جميع صور المنتج على جهازك </a>
         </div> <!-- card.// -->
       </aside>
       <main class="col-md-6">

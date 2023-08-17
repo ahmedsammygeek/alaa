@@ -18,16 +18,16 @@
     <div class="row">
         <div class="col-md-6">
             <h6 style='color: #6B14BE' >سعر البيع الموصي به من شركة تاجر</h6>
-            <li class='list-unstyled' >الحد الأدني :  <span style='color:#53cc05' > {{ $product->min_price }} ج.م</span> <span class="until">حتي </span> أقصي 
-                <span style='color:#53cc05' >{{ $product->max_price }} ج.م</span>
+            <li class='list-unstyled' style='color: #6B14BE' >الحد الأدني :  <span> {{ $product->min_price }} ج.م</span> <span class="until">حتي </span> أقصي 
+                <span >{{ $product->max_price }} ج.م</span>
             </li>
         </div>
         <div class="col-md-6">
             <h6 style='color: #6B14BE' >الأرباح بناءا علي معدلاتنا الموصي بها</h6>
-            <li class='list-unstyled' >
-                <span  style='color:#53cc05;' > {{ $product->marketer_price + ($product->min_price - $product->price  ) }} ج.م</span>
+            <li class='list-unstyled' style='color: #6B14BE' >
+                <span  > {{ $product->marketer_price + ($product->min_price - $product->price  ) }} ج.م</span>
                 <span class="until"> حتي </span>
-                <span  style='color:#53cc05;' >{{ $product->marketer_price + ($product->max_price - $product->price ) }} ج.م</span> 
+                <span   >{{ $product->marketer_price + ($product->max_price - $product->price ) }} ج.م</span> 
             </li>
         </div>
     </div>

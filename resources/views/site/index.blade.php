@@ -66,7 +66,7 @@
         <header class="section-heading mb-4">
             <h4 class="title-section"> 
                 @lang('site.latest_products') 
-                <a href="" class="btn btn-outline-primary float-right "> <i class="fa fa-back"></i> شاهد الكل </a>
+                <a href="" class="btn btn-outline-primary float-right "> <i class="fa fa-cart"></i> شاهد الكل </a>
             </h4>
         </header>
 
