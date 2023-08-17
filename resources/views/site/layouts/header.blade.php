@@ -137,7 +137,7 @@
                             <div class="col-3">
                                 <h5> <a style='color:#6B14BE !important' href="{{ route('category.products' , $child ) }}"> {{ $child->name }} </a> </h5>
                                @foreach ($child->children as $sub_child)
-                                   <a style='font-size:16px' href="{{ route('category.products' , $sub_child ) }}">{{ $sub_child->name }}</a>
+                                   <a style='font-size:14px' href="{{ route('category.products' , $sub_child ) }}">{{ $sub_child->name }}</a>
                                @endforeach
                             </div>
                             @endforeach
