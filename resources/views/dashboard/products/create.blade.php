@@ -270,9 +270,10 @@
 					</div>
 				</div>
 
-				<div class="card-footer bg-white d-sm-flex justify-content-sm-between align-items-sm-center py-sm-2">
+				<div class="card-footer bg-white ">
 					<a href="{{ route('dashboard.products.index') }}" class="btn btn-outline-primary w-100 w-sm-auto"> @lang('dashboard.cancel') </a>
-					<button type="submit" class="btn btn-primary mt-3 mt-sm-0 w-100 w-sm-auto"> @lang('dashboard.add') </button>
+					<button type="submit" name='add' class="btn btn-primary mr-2 mt-sm-0 w-100 w-sm-auto" style="float: left;"> @lang('dashboard.add') </button>
+					<button type="submit" name='add_variations' class="btn btn-primary mr-2 mt-sm-0 w-100 w-sm-auto" style="float: left;"> حفظ و إضافه متغيرات </button>
 				</div>
 			</form>
 		</div>

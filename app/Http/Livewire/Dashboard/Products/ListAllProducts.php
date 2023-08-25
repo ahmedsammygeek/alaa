@@ -39,13 +39,12 @@ class ListAllProducts extends Component
     protected $paginationTheme = 'bootstrap';
     public function render()
     {
-        $products = Product::query()->with(['user']);
+        $products = Product::query()->with(['category']);
 
         if($this->search != '')
             $products = $products->where('name->en' , 'LIKE' , '%'.$this->search.'%' )->orWhere('name->ar' , 'LIKE' , '%'.$this->search.'%' );
 
         $products = $products->latest()->paginate($this->rows);
-
 
         return view('livewire.dashboard.products.list-all-products' , compact('products'));
     }

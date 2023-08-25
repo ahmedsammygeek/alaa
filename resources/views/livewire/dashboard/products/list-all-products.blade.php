@@ -44,14 +44,11 @@
                 <thead>
                     <tr>
                         <th> # </th>
-                        <th> </th>
+                        <th>صوره المنتج </th>
                         <th> @lang('products.name_ar') </th>
-                        <th> @lang('products.name_en') </th>
                         <th> التصنيف </th>
-                        <th> الماركه </th>
                         <th> @lang('products.status') </th>
-                        <th> @lang('products.created_at') </th>
-                        <th></th>
+                        <th> خصائص </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,9 +62,7 @@
                         <td> {{ $product->id }} </td>
                         <td> <a href="{{ Storage::url('products/'.$product->image) }}"> <img class='rounded img-preview' data-popup="lightbox" data-gallery="gallery1" src="{{ Storage::url('products/'.$product->image) }}" alt=""> </a> </td>
                         <td> {{ $product->getTranslation('name' , 'ar') }} </td>
-                        <td> {{ $product->getTranslation('name' , 'en') }} </td>
                         <td> {{ $product->category?->name }} </td>
-                        <td> {{ $product->brand?->name }} </td>
                         <td>
                             @switch($product->active)
                             @case(1)
@@ -78,7 +73,6 @@
                             @break
                             @endswitch
                         </td>
-                        <td> {{ $product->created_at->diffForHumans() }} </td>
                         <td>
                             <a href='{{ route('dashboard.products.show' , ['product' => $product->id ] ) }}' class="btn btn-primary btn-icon"><i class="icon-eye "></i></a>
                             <a href='{{ route('dashboard.products.edit' , ['product' => $product->id ] ) }}' class="btn btn-warning btn-icon"><i class="icon-database-edit2 "></i></a>
@@ -105,22 +99,22 @@
 @section('scripts')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ Storage::url('dashboard_assets/global_assets/js/plugins/media/glightbox.min.js') }}"></script>
-    <script src="{{ Storage::url('dashboard_assets/global_assets/js/demo_pages/gallery.js') }}"></script>
+<script src="{{ Storage::url('dashboard_assets/global_assets/js/demo_pages/gallery.js') }}"></script>
 
 <script>
     $(document).ready(function () {
 
         const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
         Livewire.on('itemDeleted', postId => {
             Toast.fire({
@@ -144,9 +138,9 @@
                 cancelButtonText: '@lang('dashboard.cancel')'
             }).then((result) => {
                 if (result.isConfirmed) {
-                 Livewire.emit('deleteItem' , id )
-             }
-         })
+                   Livewire.emit('deleteItem' , id )
+               }
+           })
         });
         // $('.form-control-select2').select2();
         $('.form-control-select2').on('change', function (e) {

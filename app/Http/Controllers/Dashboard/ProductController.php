@@ -11,8 +11,9 @@ use App\Models\Warehouse;
 use App\Models\ProductImage;
 use App\Models\WarehouseProduct;
 use App\Models\Country;
-
+use App\Models\Variation;
 use App\Models\ProductShipping;
+use Auth;
 use App\Http\Requests\Dashboard\Products\StoreProductRequest;
 use App\Http\Requests\Dashboard\Products\UpdateProductRequest;
 class ProductController extends Controller
@@ -48,6 +49,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+
+
         $product = new Product;
         if(!$product->add($request->all()))
             return redirect()->back()->with('error' , trans('products.adding_error'));
@@ -67,7 +70,23 @@ class ProductController extends Controller
             $product->images()->saveMany($images);
         }
 
-        return redirect(route('dashboard.products.variations.create' , $product ))->with('success' , trans('products.adding_success'));
+        if ($request->has('add')) {
+            $variation = new Variation;
+            $variation->product_id = $product->id;
+            $variation->user_id = Auth::id();
+            $variation->price = $product->price;
+            $variation->type = 'one_size';
+            $variation->barcode = $product->barcode;
+            $variation->save();
+        }
+
+        if ($request->has('add')) {
+           return redirect(route('dashboard.products.index'))->with('success' , trans('products.adding_success'));
+        } else {
+            return redirect(route('dashboard.products.variations.create' , $product ))->with('success' , trans('products.adding_success'));
+        }
+
+        
     }
 
     /**
