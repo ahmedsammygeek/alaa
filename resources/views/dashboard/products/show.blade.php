@@ -102,10 +102,6 @@
 								<td> {{ $product->barcode }} </td>
 							</tr>
 							<tr>
-								<th> عدد مرات البيع </th>
-								<td> {{ $product->sales_count }} </td>
-							</tr>
-							<tr>
 								<th> مبلغ المسوق </th>
 								<td> {{ $product->marketer_price }} <span class='text-muted' > جنيه </span> </td>
 							</tr>
@@ -149,18 +145,40 @@
 			</div>
 
 			<div class="tab-pane fade" id="colored-justified-tab4">
-				Aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthet.
+				<div class="card card-body">
+					<div class="row text-center">
+						<div class="col-2">
+							<p><i class="icon-cart2 icon-2x d-inline-block text-info"></i></p>
+							<h5 class="font-weight-semibold mb-0">{{ $product->sales_count }} <span class="text-muted"> عمليه شراء </span> </h5>
+							<span class="text-muted font-size-sm">عدد مرات البيع</span>
+						</div>
+
+						<div class="col-2">
+							<p><i class="icon-point-up icon-2x d-inline-block text-warning"></i></p>
+							<h5 class="font-weight-semibold mb-0"> {{ $product->return_count }} <span class="text-muted"> مرتجع </span> </h5>
+							<span class="text-muted font-size-sm">عدد مرات الارجاع</span>
+						</div>
+
+						<div class="col-2">
+							<p><i class="icon-eye icon-2x d-inline-block text-success"></i></p>
+							<h5 class="font-weight-semibold mb-0"> {{ $product->views_count }} <span class="text-muted"> مره </span> </h5>
+							<span class="text-muted font-size-sm">عدد مرات المشاهده</span>
+						</div>
+						<div class="col-2">
+							<p><i class="icon-cash3 icon-2x d-inline-block text-success"></i></p>
+							<h5 class="font-weight-semibold mb-0"> {{ $product->total_sales }} <span class="text-muted"> جنيه </span> </h5>
+							<span class="text-muted font-size-sm">اجمالى مبيعات المنتج</span>
+						</div>
+						<div class="col-2">
+							<p><i class="icon-cash3 icon-2x d-inline-block text-success"></i></p>
+							<h5 class="font-weight-semibold mb-0"> {{ $product->total_marketers_sales }} <span class="text-muted"> جنيه </span> </h5>
+							<span class="text-muted font-size-sm">اجمالى ارباح المسوقين </span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 @endsection
-
-
-@section('scripts')
-<script src="{{ Storage::url('dashboard_assets/global_assets/js/plugins/media/glightbox.min.js') }}"></script>
-<script src="{{ Storage::url('dashboard_assets/global_assets/js/demo_pages/gallery.js') }}"></script>
-
-@endsection
-
 

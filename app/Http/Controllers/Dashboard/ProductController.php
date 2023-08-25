@@ -13,6 +13,7 @@ use App\Models\WarehouseProduct;
 use App\Models\Country;
 use App\Models\Variation;
 use App\Models\ProductShipping;
+use App\Models\OrderItem;
 use Auth;
 use App\Http\Requests\Dashboard\Products\StoreProductRequest;
 use App\Http\Requests\Dashboard\Products\UpdateProductRequest;
