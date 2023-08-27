@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Board;
+namespace App\Http\Livewire\Board\Products;
 
 use Livewire\Component;
 use App\Jobs\DeleteImagesFromAWSJob;
 use App\Models\ProductImage;
-class ProductImages extends Component
+class Images extends Component
 {
     public $product;
     protected $listeners = ['deleteItem'];
@@ -27,6 +27,6 @@ class ProductImages extends Component
 
     public function render()
     {
-        return view('livewire.board.product-images');
+        return view('livewire.board.products.images');
     }
 }

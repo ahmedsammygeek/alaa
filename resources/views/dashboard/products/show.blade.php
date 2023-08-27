@@ -137,11 +137,11 @@
 			</div>
 
 			<div class="tab-pane fade" id="colored-justified-tab2">
-				Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
+				{{-- @livewire('board.product-variations' , ['product' => $product ] ) --}}
 			</div>
 
 			<div class="tab-pane fade" id="colored-justified-tab3">
-				@livewire('board.product-images' , ['product' => $product ] )
+				@livewire('board.products.images' , ['product' => $product ] )
 			</div>
 
 			<div class="tab-pane fade" id="colored-justified-tab4">
@@ -182,3 +182,51 @@
 </div>
 @endsection
 
+@section('scripts')
+<script src="{{ Storage::url('dashboard_assets/global_assets/js/plugins/media/glightbox.min.js') }}"></script>
+<script src="{{ Storage::url('dashboard_assets/global_assets/js/demo_pages/gallery.js') }}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Livewire.on('itemDeleted', postId => {
+            Toast.fire({
+                icon: 'success',
+                title: 'تم حذف الصوره بنجاح'
+            })
+        })
+
+
+
+        $(document).on('click', 'a.delete_item', function(event) {
+            event.preventDefault();
+            var id = $(this).attr('data-item_id');
+            Swal.fire({
+                title: '@lang('dashboard.are_you_sure_to_delete')',
+                text: "@lang('dashboard.delete_notice')",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '@lang('dashboard.yes')',
+                cancelButtonText: '@lang('dashboard.cancel')'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                   Livewire.emit('deleteItem' , id )
+               }
+           })
+        });
+    });
+</script>
+@endsection
