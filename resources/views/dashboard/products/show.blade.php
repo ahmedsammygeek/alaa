@@ -137,7 +137,7 @@
 			</div>
 
 			<div class="tab-pane fade" id="colored-justified-tab2">
-				{{-- @livewire('board.product-variations' , ['product' => $product ] ) --}}
+				@livewire('board.products.variations' , ['product' => $product ] )
 			</div>
 
 			<div class="tab-pane fade" id="colored-justified-tab3">
@@ -188,45 +188,55 @@
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $(function() {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+	$(function() {
 
-        Livewire.on('itemDeleted', postId => {
-            Toast.fire({
-                icon: 'success',
-                title: 'تم حذف الصوره بنجاح'
-            })
-        })
+		Livewire.on('open_add_modal', () => {
+			$('div#modal_form_horizontal').modal().show();
+		});
+
+		Livewire.on('close_add_modal', () => {
+			$('button.dismiss_modal').trigger('click');
+		});
 
 
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'top-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		})
 
-        $(document).on('click', 'a.delete_item', function(event) {
-            event.preventDefault();
-            var id = $(this).attr('data-item_id');
-            Swal.fire({
-                title: '@lang('dashboard.are_you_sure_to_delete')',
-                text: "@lang('dashboard.delete_notice')",
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '@lang('dashboard.yes')',
-                cancelButtonText: '@lang('dashboard.cancel')'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                   Livewire.emit('deleteItem' , id )
-               }
-           })
-        });
-    });
+		Livewire.on('itemDeleted', postId => {
+			Toast.fire({
+				icon: 'success',
+				title: 'تم حذف الصوره بنجاح'
+			})
+		})
+
+
+
+		$(document).on('click', 'a.delete_item', function(event) {
+			event.preventDefault();
+			var id = $(this).attr('data-item_id');
+			Swal.fire({
+				title: '@lang('dashboard.are_you_sure_to_delete')',
+				text: "@lang('dashboard.delete_notice')",
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: '@lang('dashboard.yes')',
+				cancelButtonText: '@lang('dashboard.cancel')'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Livewire.emit('deleteItem' , id )
+				}
+			})
+		});
+	});
 </script>
 @endsection
