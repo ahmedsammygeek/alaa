@@ -36,11 +36,8 @@ use App\Http\Controllers\Dashboard\AjaxController;
 use App\Http\Controllers\Dashboard\ExpensesController;
 use App\Http\Controllers\Dashboard\ChallengeController;
 use App\Http\Controllers\Dashboard\UserChallengeController;
-Route::get('/test' , function(){
-    die('done');
-});
-
-
+use App\Http\Controllers\Testcontroller;
+Route::get('/test' , [TestController::class , 'index'] );
 Route::group([
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'web' ]

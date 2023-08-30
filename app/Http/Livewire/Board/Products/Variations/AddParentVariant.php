@@ -7,8 +7,9 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
 use App\Models\Variation;
 use Auth;
-class AddChildVariant extends Component
+class AddParentVariant extends Component
 {
+
     use LivewireAlert;
     use WithFileUploads;
     public $variantId;
@@ -19,6 +20,7 @@ class AddChildVariant extends Component
     public $color;
     public $images;
 
+
     protected $rules = [
         'title' => 'required',
         'barcode' => 'nullable',
@@ -26,6 +28,7 @@ class AddChildVariant extends Component
         'color' => 'required',
         'images.*' => 'required|image'
     ];
+
 
     protected $listeners = ['openModal'];
 
@@ -62,6 +65,6 @@ class AddChildVariant extends Component
 
     public function render()
     {
-        return view('livewire.board.products.variations.add-child-variant');
+        return view('livewire.board.products.variations.add-parent-variant');
     }
 }
