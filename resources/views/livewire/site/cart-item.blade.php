@@ -8,8 +8,8 @@
       </div>
       <figcaption class="info">
         <a href="{{ $item->variation?->product?->url() }}" class="title text-dark">{{ $item->variation?->product?->name }}</a>
-        @if ($item->variation->type != 'one_size' )
-        <p class="text-muted small"> @lang('site.'.$item->variation->type): {{ $item->variation->title }} , 
+        @if ($item->variation?->type != 'one_size' )
+        <p class="text-muted small"> @lang('site.'.$item->variation?->type): {{ $item->variation?->title }} , 
           @if ($item->variation?->parent_id)
           @lang('site.'.$item->variation?->parent?->type) : {{ $item->variation?->parent?->title }}
           @endif
