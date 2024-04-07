@@ -29,6 +29,8 @@ use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\Site\GoogleAuthController;
 use App\Http\Controllers\Site\FacebookAuthController;
 use App\Http\Controllers\Site\PhoneVerificationController;
+use App\Http\Controllers\Site\ForgetPasswordController;
+use App\Http\Controllers\Site\ResetPasswordController;
 use App\Http\Controllers\Dashboard\WithdrawalsController;
 use App\Http\Controllers\Dashboard\ProductVariationController;
 use App\Http\Controllers\Dashboard\CountryContoller;
@@ -114,6 +116,14 @@ Route::post('login' , [SiteController::class , 'login_system'] )->name('login_sy
 Route::get('/register' , [SiteController::class , 'register'] )->name('register');
 Route::get('/phone' , [SiteController::class , 'phone'] )->name('site.phone');
 Route::patch('/phone' , [SiteController::class , 'update_phone'] )->name('site.phone.update');
+
+Route::get('/forget-password' , [ForgetPasswordController::class , 'form'] )->name('forget_password.request');
+Route::post('/forget-password' , [ForgetPasswordController::class , 'send_code'] )->name('forget_password.send_code');
+Route::get('/forget-password/verify/phone/{mobile}' , [ForgetPasswordController::class , 'verify_phone'] )->name('forget_password.verify_phone');
+Route::post('/forget-password/verify' , [ForgetPasswordController::class , 'verify'] )->name('forget_password.verify');
+
+Route::get('/reset-password' , [ResetPasswordController::class , 'index'] )->name('reset_password.index');
+Route::post('/reset-password' , [ResetPasswordController::class , 'store'] )->name('reset_password.store');
 
 Route::group(['middleware' => 'verify_phone'], function() {
     Route::get('/' , [SiteController::class , 'index'] )->name('site.index');

@@ -118,7 +118,6 @@ class SiteController extends Controller
             $request->session()->regenerate();
             return redirect('/');
         }
-
         return back()->with('error' ,  'بيانات الدخول غير صحيحه' );
     }
 

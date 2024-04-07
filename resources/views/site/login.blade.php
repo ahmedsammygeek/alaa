@@ -31,7 +31,7 @@
           </div> <!-- form-group// -->
           
           <div class="form-group">
-            <a href="#" class="float-right"> هل نسيت كلمه المرور ? </a> 
+            <a href="{{ route('forget_password.request') }}" class="float-right"> هل نسيت كلمه المرور ؟ </a> 
             <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> تذكرنى </div> </label>
           </div> <!-- form-group form-check .// -->
           <div class="form-group">
