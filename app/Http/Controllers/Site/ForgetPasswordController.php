@@ -28,7 +28,7 @@ class ForgetPasswordController extends Controller
         if (!$check) {
             return back()->with('error' , 'تم ارسال كود التحقق بنجاح' );
         }
-        dispatch(new SendVerificationCodeToViaPhoneNumberJob($request->mobile));
+        dispatch(new SendVerificationCodeToViaPhoneNumberJob($request->mobile))->onConnection('sync');
 
         return redirect(route('forget_password.verify_phone' , $request->mobile ))->with('success' , 'تم ارسال كود التحقق بنجاح' );
     }
