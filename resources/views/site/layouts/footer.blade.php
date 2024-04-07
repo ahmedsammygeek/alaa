@@ -6,12 +6,10 @@
                     <article class="mr-md-4">
                         <h5 class="title"> @lang('site.contanct_us')</h5>
                         <p> @lang('site.Contact Us For Any Questions') </p>
-                        <ul class="list-icon">
-                            <li> <i class="icon fa fa-map-marker"> </i>
-                             {{ $data['settings']->address }}
-                              </li>
-                            <li> <i class="icon fa fa-envelope"> </i> {{ $data['settings']->email }} </li>
-                            <li> <i class="icon fa fa-phone"> </i> {{ $data['settings']->phone }} </li>
+                        <ul class="list-unstyled">
+                            <li>   <i class="icon fa fa-map-marker"> </i> <span>  {{ $data['settings']->address }} </span>    </li>
+                            <li>   <i class="icon fa fa-envelope"> </i> {{ $data['settings']->email }}   </li>
+                            <li>    <i class="icon fa fa-phone"> </i>  {{ $data['settings']->phone }} </li>
                         </ul>
                     </article>
                 </aside>
@@ -26,7 +24,7 @@
                 <aside class="col-md col-6">
                     <h5 class="title">حسابى</h5>
                     <ul class="list-unstyled">
-                        <li> <a href="#">اتصل بنا</a></li>
+                        <li> <a href="{{ route('complains') }}">اتصل بنا</a></li>
                         <li> <a href="{{ route('site.account') }}">حسابى</a></li>
                         <li> <a href="{{ route('site.incomes') }}">ارباحى</a></li>
                         <li> <a href="{{ route('login') }}">تسجيل الدخول</a></li>
