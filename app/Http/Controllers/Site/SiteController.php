@@ -227,8 +227,7 @@ class SiteController extends Controller
         $complain->category = $request->category;
         $complain->type = $request->type;
         $complain->save();
-        toastr()->success('تم الارسال بنجاح');
-        return redirect()->back();
+        return back()->with('success' , 'تم استلام طلبكم بنجاح ..جارى المراجعه' );
     }
 
     public function downloadProductImages(Product $product)
