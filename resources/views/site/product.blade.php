@@ -145,18 +145,23 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('image-zoom/js/image-zoom.js') }}"></script>
 <script type="text/javascript">
   $(function() {
-          $(".center").slick({
-        dots: true,
-        infinite: true,
-        centerMode: true,
-        slidesToShow: 5,
-        slidesToScroll: 3
-      });
+
+    
+
+    $(".center").slick({
+      dots: true,
+      infinite: true,
+      centerMode: true,
+      slidesToShow: 5,
+      slidesToScroll: 3
+    });
   });
 </script>
 @endsection
 @section('styles')
+<link rel="icon" href="{{ asset('image-zoom/css/image-zoom.css') }}">
 <link rel="stylesheet" href="{{ Storage::url('site_assets/css/slick-theme.css') }}">
 @endsection
