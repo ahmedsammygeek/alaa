@@ -108,7 +108,7 @@ Route::post('verify/phone' , [PhoneVerificationController::class , 'store' ] )->
 Route::post('/register' , [SiteController::class , 'store_register'])->name('site.register');
 Route::get('/google' , [GoogleAuthController::class , 'index'] )->name('google');
 Route::get('/google/callable' , [GoogleAuthController::class , 'store'] );
-Route::get('/facebook' , [FacebookAuthController::class , 'index'] );
+Route::get('/facebook' , [FacebookAuthController::class , 'index'] )->name('facebook');
 Route::get('/facebook/callable' , [FacebookAuthController::class , 'store'] );
 Route::get('logout' , [AccountController::class , 'logout'])->name('user.logout');
 Route::get('/login' , [SiteController::class , 'login'] )->name('login');
