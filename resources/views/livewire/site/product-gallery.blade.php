@@ -13,20 +13,13 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-
-
         // $('img.main_product_image').imageZoom();
         
         $('a.item-thumb').on('click', function(event) {
             event.preventDefault();
             var image_source = $(this).attr('data-small_product_image');
-
-
-
             $('img.main_product_image').attr('src' , image_source );
-
         });
-
     });
 </script>
 @endpush

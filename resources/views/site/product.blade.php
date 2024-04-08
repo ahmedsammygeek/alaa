@@ -121,21 +121,46 @@
     <div class="row row-sm">
 
       @foreach ($best_selling_products as $best_selling_product)
-      <div class="col-xl-2 col-lg-3 col-md-4 col-6">
-        <div href="#" class="card card-sm card-product-grid">
-          <a href="#" class="img-wrap"> 
-            <b class="badge badge-danger mr-1">10% خصم</b>
-            <img src="{{ Storage::url('products/'.$best_selling_product->image) }}"> 
-          </a>
-          <figcaption class="info-wrap">
-            <a href="#" class="title"> {{ $best_selling_product->name }} </a>
-            <div class="price-wrap">
-              <span class="price">{{ $best_selling_product->price }} جنيه </span>
-              {{-- <del class="price-old">$90</del> --}}
-            </div> <!-- price-wrap.// -->
-          </figcaption>
+      <div class="col-lg-2">
+        <div class="item-box">
+          <div class="item-img">
+            <div id="carouselExampleIndicators{{ $best_selling_product->id }}" class="carousel slide"data-ride="carousel">
+              <ol class="carousel-indicators">
+                @foreach ($best_selling_product->images as $product_image)
+                <li data-target="#carouselExampleIndicators{{ $best_selling_product->id }}" data-slide-to="{{ $loop->index }}" class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
+                @endforeach
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="" style='height: 225px !important;' src="{{ Storage::url('products/'.$best_selling_product->image) }}" alt="First slide">
+                </div>
+                @foreach ($best_selling_product->images as $product_image)
+                <div class="carousel-item">
+                  <img class="" style='height: 225px !important;' src="{{ Storage::url('products/'.$product_image->image) }}" alt="Second slide">
+                </div>
+
+                @endforeach
+              </div>
+            </div>
+          </div>
+          <div class="item-text">
+            <h4 class='text-center' > {{ $best_selling_product->name }} </h4>
+            <li>
+              <div class="list-right">
+                <span>أقل سعر للبيع</span>
+                <h4 class='text-center' style='color:#6B14BE !important' >{{ $best_selling_product->price }} ج.م </h4>
+              </div>
+              <div class="list-left">
+                <span>أقل ربح لك</span>
+                <h4 class='text-center' style='font-size: 23px !important;color:#6B14BE !important;'> {{ $best_selling_product->marketer_price }} ج.م</h4>
+              </div>
+            </li>
+            <div class="item-footer">
+              <a href='{{ route('site.products.show' , $best_selling_product ) }}' class='btn btn-primary btn-block' > شاهد تفاصيل المنتج  </a>
+            </div>
+          </div>
         </div>
-      </div> <!-- col.// -->
+      </div>
       @endforeach
 
     </div> <!-- row.// -->
@@ -149,7 +174,7 @@
 <script type="text/javascript">
   $(function() {
 
-    
+
 
     $(".center").slick({
       dots: true,
