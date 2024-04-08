@@ -38,6 +38,7 @@ class FacebookAuthController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'facebook_id'=> $user->id , 
+                'type' => User::MARKETER , 
             ]);
             Auth::login($newUser);
             return redirect('/');
