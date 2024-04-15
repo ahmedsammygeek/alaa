@@ -35,7 +35,7 @@ class Cart extends Component
         $marketer_bounse = 0;
         $items = CartModel::where('user_id' , Auth::id() )->get();
         foreach ($items as $item) {
-           $marketer_bounse += $item->variation?->product->marketer_price + (($item->price - $item->variation?->product->getPrice()) * $item->quantity);
+           $marketer_bounse += $item->variation?->product?->marketer_price + (($item->price - $item->variation?->product?->getPrice()) * $item->quantity);
         }
         return  $marketer_bounse;
     }
