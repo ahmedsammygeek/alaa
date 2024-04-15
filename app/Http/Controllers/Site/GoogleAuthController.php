@@ -34,8 +34,6 @@ class GoogleAuthController extends Controller
         $user = Socialite::driver('google')->user();
         $finduser = User::where('google_id', $user->id)->orWhere('email' , $user->email )->first();
 
-        dd($request->all() , $user , $finduser );
-        
         if($finduser){
             Auth::login($finduser);
             return redirect('/');

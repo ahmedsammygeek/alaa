@@ -29,10 +29,7 @@ class FacebookAuthController extends Controller
     public function store(Request $request)
     {
         $user = Socialite::driver('facebook')->user();
-        $finduser = User::where('facebook_id', $user->id)->orWhere('email' , $request->email )->first();
-
-        dd($request->all() , $user , $finduser );
-
+        $finduser = User::where('facebook_id', $user->id)->orWhere('email' , $user->email )->first();
 
         if($finduser){
             Auth::login($finduser);
