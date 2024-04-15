@@ -170,11 +170,9 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('image-zoom/js/image-zoom.js') }}"></script>
+
 <script type="text/javascript">
   $(function() {
-
-
 
     $(".center").slick({
       dots: true,

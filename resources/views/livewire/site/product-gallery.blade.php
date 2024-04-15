@@ -11,9 +11,26 @@
 </article> 
 
 @push('scripts')
+{{-- <script src="{{ asset('') }}"></script> --}}
 <script>
     $(document).ready(function() {
-        // $('img.main_product_image').imageZoom();
+        // $('img.main_product_image').zoom();
+
+        $('img.main_product_imag').hover(function() {
+            $(this).css("cursor", "pointer");
+            $(this).toggle({
+              effect: "scale",
+              percent: "90%"
+          },200);
+        }, function() {
+           $(this).toggle({
+             effect: "scale",
+             percent: "80%"
+         },200);
+
+       });
+        
+
         
         $('a.item-thumb').on('click', function(event) {
             event.preventDefault();
@@ -23,3 +40,6 @@
     });
 </script>
 @endpush
+
+
+
