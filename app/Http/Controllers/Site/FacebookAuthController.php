@@ -31,6 +31,9 @@ class FacebookAuthController extends Controller
         $user = Socialite::driver('facebook')->user();
         $finduser = User::where('facebook_id', $user->id)->orWhere('email' , $request->email )->first();
 
+        dd($request->all() , $user , $finduser );
+
+
         if($finduser){
             Auth::login($finduser);
             return redirect('/');
