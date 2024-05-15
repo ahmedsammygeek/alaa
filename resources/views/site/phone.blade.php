@@ -17,7 +17,7 @@
       @method("PATCH")
       
       <div class="form-group">
-       <input name="phone" class="form-control" placeholder="رقم المولبيل" type="text" required>
+     <input name="phone" class="form-control" placeholder="رقم الموبيل" type="text" required>
        @error('phone')
        <p class='text-danger' > {{ $message }} </p>
        @enderror

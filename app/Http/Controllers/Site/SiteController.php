@@ -27,6 +27,7 @@ use App\Http\Requests\Site\StoreComplainRequest;
 use App\Jobs\SendVerificationCodeToViaPhoneNumberJob;
 use App\Jobs\IncreasProductSalesCountJob;
 use App\Jobs\IncreasProductViewsCountJob;
+use App\Http\Requests\Site\UpdatePhoneRequest;
 class SiteController extends Controller
 {
 
@@ -247,9 +248,8 @@ class SiteController extends Controller
         return view('site.phone');
     }
 
-    public function update_phone(Request $request)
+    public function update_phone(UpdatePhoneRequest $request)
     {
-
         $user = Auth::user();
         $user->phone = $request->phone;
         $user->save();

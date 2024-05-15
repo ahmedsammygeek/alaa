@@ -13,7 +13,7 @@ class UpdatePhoneRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdatePhoneRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'phone' => 'required|unique:users,phone|phone:mobile,EG'
         ];
     }
 }
