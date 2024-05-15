@@ -25,7 +25,7 @@ class DashboardController extends Controller
         $orders_total_income = Order::whereDate('created_at' , today() )->sum('total');
         $expenses_this_month = Expenses::whereMonth('created_at' , now()->month )->sum('money');
 
-        $marketers_count = User::where('type' , 1 )->count();
+        $marketers_count = User::where('type' , 3 )->count();
         $products_count = Product::count();
         $categories_count = Category::count();
         $brands_count = Brand::count();
