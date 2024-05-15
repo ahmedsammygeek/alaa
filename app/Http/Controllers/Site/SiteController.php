@@ -147,6 +147,8 @@ class SiteController extends Controller
 
     public function store_register(RegisterRequest $request)
     {
+
+        dd('ready to store');
         $user = new User;
         $user->email = $request->email;
         $user->name = $request->name;
