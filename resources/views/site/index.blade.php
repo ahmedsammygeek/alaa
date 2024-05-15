@@ -161,11 +161,11 @@
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
-                                    <h6 class="text-center">{{ $product->price }} م.ج</h6>
+                                    <h6 class="text-center" style="color:#6B14BE !important" >{{ $product->price }} م.ج</h6>
                                 </div>
                                 <div class="list-left">
                                     <span>أقل ربح لك</span>
-                                    <h6 class="text-center"> {{ $product->marketer_price }} ج.م</h6>
+                                    <h6 class="text-center" style="font-size: 23px !important;color:#6B14BE !important" > {{ $product->marketer_price }} ج.م</h6>
                                 </div>
                             </li>
                             <div class="item-footer">
@@ -224,11 +224,11 @@
                             <li>
                                 <div class="list-right">
                                     <span>أقل سعر للبيع</span>
-                                    <h6 class='text-center' >{{ $category_product->price }} م.ج</h6>
+                                    <h6 class='text-center' style='color:#6B14BE !important' >{{ $category_product->price }} م.ج</h6>
                                 </div>
                                 <div class="list-left">
                                     <span>أقل ربح لك</span>
-                                    <h6 class='text-center' > {{ $category_product->marketer_price }} ج.م</h6>
+                                    <h6 class='text-center' style='font-size: 23px !important;color:#6B14BE !important' > {{ $category_product->marketer_price }} ج.م</h6>
                                 </div>
                             </li>
                             <div class="item-footer">
