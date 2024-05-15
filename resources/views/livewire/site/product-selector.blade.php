@@ -10,14 +10,14 @@
     <dl class="row">
         <dt class="col-sm-3 "> الربح من اجمالي السعر : </dt>
         <dd class="col-sm-9 h4" style='color:#53cc05' > {{ $product->marketer_price }} جنيه </dd>   
-        <dt class="col-sm-3 "> عدد نقاط الجائزه : </dt>
+        <dt class="col-sm-3 " style='color: #6B14BE;font-weight: bold;'> عدد نقاط الجائزه : </dt>
         <dd class="col-sm-9 h5"> {{ $product->points }} نقطه </dd>         
     </dl>
     <hr>
 
     <div class="row">
         <div class="col-md-6">
-            <h6 style='color: #6B14BE' >سعر البيع الموصي به من شركة تاجر</h6>
+            <h6 style='color: #6B14BE' >سعر البيع الموصي به من منصه سوق التجار</h6>
             <li class='list-unstyled' style='color: #6B14BE' >الحد الأدني :  <span> {{ $product->min_price }} ج.م</span> <span class="until">حتي </span> أقصي 
                 <span >{{ $product->max_price }} ج.م</span>
             </li>
