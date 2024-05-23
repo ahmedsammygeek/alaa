@@ -12,18 +12,19 @@
 <!-- ============================ COMPONENT LOGIN   ================================= -->
     <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
       <div class="card-body">
-      <h4 class="card-title mb-4"> تسجيل الدخول عبر </h4>
+      <h4 class="card-title mb-4"> تسجيل الدخول عبر رقم الموبيل </h4>
       <form action="{{ route('login_system') }}" method="POST" >
         @csrf
           {{-- <a href="{{ route('facebook') }}" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp حساب فيس بوك </a> --}}
-          <a href="{{ route('google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  حساب جوجل </a>
           <div class="form-group">
+            <label for=""> رقم الموبيل </label>
              <input name="mobile" class="form-control" placeholder="رقم الموبيل" type="text">
              @error('mobile')
              <p class='text-danger' > {{ $message }} </p>
              @enderror
           </div> <!-- form-group// -->
           <div class="form-group">
+            <label for=""> كلمه المرور </label>
             <input name="password" class="form-control" placeholder="كلمه المرور" type="password">
             @error('password')
              <p class='text-danger' > {{ $message }} </p>
@@ -36,6 +37,9 @@
           </div> <!-- form-group form-check .// -->
           <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block"> دخول  </button>
+
+          <a href="{{ route('google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> الدخول عبر حساب جوجل </a>
+
           </div> <!-- form-group// -->    
       </form>
       </div> <!-- card-body.// -->
