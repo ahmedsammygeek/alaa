@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Variation;
 use App\Models\Product;
 use Auth;
+use App\Jobs\IncreasProductViewsCountJob;
 class Testcontroller extends Controller
 {
     /**
@@ -15,16 +16,21 @@ class Testcontroller extends Controller
      */
     public function index()
     {
-        $products = Product::doesntHave('variations')->get();
+        $product = Product::first();
 
-        foreach ($products as $product) {
-            $variation = new Variation;
-            $variation->product_id = $product->id;
-            $variation->user_id = Auth::id();
-            $variation->type = 'one_size';
-            $variation->barcode = $product->barcode;
-            $variation->save();
-        }
+
+        dispatch(new IncreasProductViewsCountJob($product));
+
+        // $products = Product::doesntHave('variations')->get();
+
+        // foreach ($products as $product) {
+        //     $variation = new Variation;
+        //     $variation->product_id = $product->id;
+        //     $variation->user_id = Auth::id();
+        //     $variation->type = 'one_size';
+        //     $variation->barcode = $product->barcode;
+        //     $variation->save();
+        // }
     }
 
     /**

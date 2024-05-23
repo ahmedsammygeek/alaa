@@ -108,7 +108,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 @endsection
 
 @section('scripts')
-
+{{-- 
 <script src="https://cdn.tiny.cloud/1/ic4s7prz04qh4jzykmzgizzo1lize2ckglkcjr9ci9sgkbuc/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 	$(function() {
@@ -119,5 +119,5 @@ $lang = LaravelLocalization::getCurrentLocale();
 		});
 	});
 </script>
-
+ --}}
 @endsection
