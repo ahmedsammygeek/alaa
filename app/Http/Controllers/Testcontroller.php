@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Variation;
 use App\Models\Product;
 use Auth;
-use App\Jobs\IncreasProductViewsCountJob;
+use App\Jobs\SendVerificationCodeToViaPhoneNumberJob;
 class Testcontroller extends Controller
 {
     /**
@@ -19,7 +19,9 @@ class Testcontroller extends Controller
         $product = Product::first();
 
 
-        dispatch(new IncreasProductViewsCountJob($product));
+        dispatch(new SendVerificationCodeToViaPhoneNumberJob('01014340346'))->onConnection('sync');
+
+        // dispatch(new IncreasProductViewsCountJob($product));
 
         // $products = Product::doesntHave('variations')->get();
 
