@@ -55,7 +55,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 							<div class="col-md-12">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('pages.content_ar') </label>
-									<textarea name="content[ar]" id="input" class="form-control @error('content.ar') is-invalid @enderror" rows="3" required="required">{{ old('content.ar') }}</textarea>
+									<textarea name="content[ar]" id="editor" class=" form-control @error('content.ar') is-invalid @enderror" rows="3" required="required">{{ old('content.ar') }}</textarea>
 									@error('content.ar')
 									<p  class='text-danger' >  {{ $message }} </p>
 									@enderror
@@ -75,7 +75,7 @@ $lang = LaravelLocalization::getCurrentLocale();
 							<div class="col-md-12">
 								<div  class='mb-2' >
 									<label class="col-form-label"> @lang('pages.content_en') </label>
-									<textarea name="content[en]" id="input" class="form-control @error('content.en') is-invalid @enderror" rows="3" required="required">{{ old('content.en') }}</textarea>
+									<textarea name="content[en]" id="editor1" class="  form-control @error('content.en') is-invalid @enderror" rows="3" required="required">{{ old('content.en') }}</textarea>
 									@error('content.en')
 									<p  class='text-danger' >  {{ $message }} </p>
 									@enderror
@@ -108,16 +108,19 @@ $lang = LaravelLocalization::getCurrentLocale();
 @endsection
 
 @section('scripts')
-{{-- 
-<script src="https://cdn.tiny.cloud/1/ic4s7prz04qh4jzykmzgizzo1lize2ckglkcjr9ci9sgkbuc/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="{{  Storage::url('dashboard_assets/global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
+
 <script>
-	$(function() {
-		tinymce.init({
-			selector: 'textarea',
-			plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-			toolbar_mode: 'floating',
+	$(document).ready(function() {
+		CKEDITOR.replace('editor', {
+			height: 400
 		});
+
+		CKEDITOR.replace('editor1', {
+			height: 400
+		});
+
 	});
 </script>
- --}}
+
 @endsection
