@@ -41,67 +41,67 @@ use App\Http\Controllers\Dashboard\UserChallengeController;
 use App\Http\Controllers\Testcontroller;
 Route::get('/test' , [TestController::class , 'index'] );
 Route::group([
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'web' ]
-    ], function(){ 
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' , 'web' ]
+], function(){ 
 
 
-        Route::get('/Dashboard/login' , [AuthController::class , 'form'])->name('dashboard.login_form');
-        Route::post('/Dashboard/login' , [AuthController::class , 'login'])->name('dashboard.login');
+    Route::get('/Dashboard/login' , [AuthController::class , 'form'])->name('dashboard.login_form');
+    Route::post('/Dashboard/login' , [AuthController::class , 'login'])->name('dashboard.login');
 
-        require __DIR__.'/auth.php';
+    require __DIR__.'/auth.php';
 
-        Route::group(['prefix' => 'Dashboard' , 'as' => 'dashboard.' , 'middleware' => ['admin'] ], function() {
-            Route::get('/',  [DashboardController::class , 'index'] )->name('index');
-            Route::resource('admins', AdminController::class);
-            Route::resource('categories', CategoryController::class);
-            Route::resource('brands', BrandController::class);
-            Route::resource('slides', SlideController::class);
-            Route::resource('pages', PageController::class);
-            Route::resource('units', UnitController::class);
-            Route::resource('products', ProductController::class);
-            Route::resource('bank_accounts', BankAccountController::class);
-            Route::resource('warehouses', WarehouseController::class);
-            Route::resource('branches', BranchController::class);
-            Route::resource('marketers', MarketerController::class);
-            Route::resource('governorates', GovernorateController::class);
-            Route::resource('cities', CityController::class);
-            Route::resource('coupons', CouponController::class);
-            Route::resource('orders', OrderController::class);
-            Route::resource('complains', ComplainController::class);
-            Route::resource('withdrawals', WithdrawalsController::class);
-            Route::resource('countries', CountryContoller::class);
-            Route::resource('expenses', ExpensesController::class);
-            Route::resource('challenges', ChallengeController::class);
-            Route::get('settings' , [SettingsController::class , 'edit'])->name('settings.edit');
-            Route::patch('settings' , [SettingsController::class , 'update'])->name('settings.update');
-            Route::get('messages' , [MessageController::class , 'index'])->name('messages.index');
-            Route::get('messages/{message}' , [MessageController::class , 'show'])->name('messages.show');
-            Route::get('profile' , [ProfileController::class , 'profile'] )->name('profile');
-            Route::patch('profile' , [ProfileController::class , 'update'] )->name('profile.update');
-            Route::get('password' , [ProfileController::class , 'password'] )->name('password');
-            Route::patch('password' , [ProfileController::class ,'update_password'] )->name('password.update');
-            Route::get('/marketers/{marketer}/incomes' , [MarketerIncomeController::class  , 'index' ] )->name('marketers.incomes.index');
-            Route::get('warehouses/{warehouse}/excel' , [WarehouseController::class , 'excel'] )->name('warehouse.excel');
+    Route::group(['prefix' => 'Dashboard' , 'as' => 'dashboard.' , 'middleware' => ['admin'] ], function() {
+        Route::get('/',  [DashboardController::class , 'index'] )->name('index');
+        Route::resource('admins', AdminController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('brands', BrandController::class);
+        Route::resource('slides', SlideController::class);
+        Route::resource('pages', PageController::class);
+        Route::resource('units', UnitController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('bank_accounts', BankAccountController::class);
+        Route::resource('warehouses', WarehouseController::class);
+        Route::resource('branches', BranchController::class);
+        Route::resource('marketers', MarketerController::class);
+        Route::resource('governorates', GovernorateController::class);
+        Route::resource('cities', CityController::class);
+        Route::resource('coupons', CouponController::class);
+        Route::resource('orders', OrderController::class);
+        Route::resource('complains', ComplainController::class);
+        Route::resource('withdrawals', WithdrawalsController::class);
+        Route::resource('countries', CountryContoller::class);
+        Route::resource('expenses', ExpensesController::class);
+        Route::resource('challenges', ChallengeController::class);
+        Route::get('settings' , [SettingsController::class , 'edit'])->name('settings.edit');
+        Route::patch('settings' , [SettingsController::class , 'update'])->name('settings.update');
+        Route::get('messages' , [MessageController::class , 'index'])->name('messages.index');
+        Route::get('messages/{message}' , [MessageController::class , 'show'])->name('messages.show');
+        Route::get('profile' , [ProfileController::class , 'profile'] )->name('profile');
+        Route::patch('profile' , [ProfileController::class , 'update'] )->name('profile.update');
+        Route::get('password' , [ProfileController::class , 'password'] )->name('password');
+        Route::patch('password' , [ProfileController::class ,'update_password'] )->name('password.update');
+        Route::get('/marketers/{marketer}/incomes' , [MarketerIncomeController::class  , 'index' ] )->name('marketers.incomes.index');
+        Route::get('warehouses/{warehouse}/excel' , [WarehouseController::class , 'excel'] )->name('warehouse.excel');
 
-            Route::get('products/{product}/variations/create'  , [ProductVariationController::class , 'create'] )->name('products.variations.create');
-            Route::post('products/{product}/variations'  , [ProductVariationController::class , 'store'] )->name('products.variations.store');
-            Route::post('/get_new_varition_main_row' , [AjaxController::class , 'get_new_varition_main_row'] )->name('get_new_varition_main_row');
+        Route::get('products/{product}/variations/create'  , [ProductVariationController::class , 'create'] )->name('products.variations.create');
+        Route::post('products/{product}/variations'  , [ProductVariationController::class , 'store'] )->name('products.variations.store');
+        Route::post('/get_new_varition_main_row' , [AjaxController::class , 'get_new_varition_main_row'] )->name('get_new_varition_main_row');
 
-            Route::post('/get_new_varition_color_row' , [AjaxController::class , 'get_new_varition_color_row'] )->name('get_new_varition_color_row');
+        Route::post('/get_new_varition_color_row' , [AjaxController::class , 'get_new_varition_color_row'] )->name('get_new_varition_color_row');
 
-            Route::get('withdrawals/{withdrawal}/approve' , [WithdrawalsController::class , 'approve'] )->name('withdrawals.approve');
-            Route::get('withdrawals/{withdrawal}/deny' , [WithdrawalsController::class , 'deny'] )->name('withdrawals.deny');
+        Route::get('withdrawals/{withdrawal}/approve' , [WithdrawalsController::class , 'approve'] )->name('withdrawals.approve');
+        Route::get('withdrawals/{withdrawal}/deny' , [WithdrawalsController::class , 'deny'] )->name('withdrawals.deny');
 
 
-            Route::get('marketers/{marketer}/orders' , [MarketerController::class , 'orders'] )->name('marketers.orders');
-            Route::get('marketers/{marketer}/returns' , [MarketerController::class , 'returns'] )->name('marketers.returns');
-            Route::get('marketers/{marketer}/statistics' , [MarketerController::class , 'statistics'] )->name('marketers.statistics');
-            Route::get('marketers/{marketer}/withdrawals' , [MarketerController::class , 'withdrawals'] )->name('marketers.withdrawals');
-            Route::get('marketers/{marketer}/challenges' , [UserChallengeController::class , 'index'] )->name('marketers.challenges');
-            Route::get('marketers/{marketer}/challenges/{user_challenge}' , [UserChallengeController::class , 'show'] )->name('marketers.challenges.show');
-            Route::get('/marketers/{marketer}/login' , [MarketerController::class , 'login'] )->name('marketers.login');
-        });
+        Route::get('marketers/{marketer}/orders' , [MarketerController::class , 'orders'] )->name('marketers.orders');
+        Route::get('marketers/{marketer}/returns' , [MarketerController::class , 'returns'] )->name('marketers.returns');
+        Route::get('marketers/{marketer}/statistics' , [MarketerController::class , 'statistics'] )->name('marketers.statistics');
+        Route::get('marketers/{marketer}/withdrawals' , [MarketerController::class , 'withdrawals'] )->name('marketers.withdrawals');
+        Route::get('marketers/{marketer}/challenges' , [UserChallengeController::class , 'index'] )->name('marketers.challenges');
+        Route::get('marketers/{marketer}/challenges/{user_challenge}' , [UserChallengeController::class , 'show'] )->name('marketers.challenges.show');
+        Route::get('/marketers/{marketer}/login' , [MarketerController::class , 'login'] )->name('marketers.login');
+    });
 
 Route::get('verify/phone' , [PhoneVerificationController::class , 'index' ] )->name('site.verify_phone');
 Route::post('verify/phone' , [PhoneVerificationController::class , 'store' ] )->name('site.verify_phone.store');
@@ -125,7 +125,7 @@ Route::post('/forget-password/verify' , [ForgetPasswordController::class , 'veri
 Route::get('/reset-password' , [ResetPasswordController::class , 'index'] )->name('reset_password.index');
 Route::post('/reset-password' , [ResetPasswordController::class , 'store'] )->name('reset_password.store');
 
-Route::group(['middleware' => 'verify_phone'], function() {
+Route::group(['middleware' => [] ], function() {
     Route::get('/' , [SiteController::class , 'index'] )->name('site.index');
     Route::get('/products/{product}' , [SiteController::class , 'product'] )->name('site.products.show');
     Route::get('/products' , [SiteController::class , 'products'] )->name('site.products.index');

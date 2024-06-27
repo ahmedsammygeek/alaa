@@ -157,8 +157,8 @@ class SiteController extends Controller
         $user->type = 3;
         $user->save();
         Auth::login($user);
-        dispatch(new SendVerificationCodeToViaPhoneNumberJob($request->phone))->onConnection('sync');
-        return redirect(route('site.verify_phone'));
+        // dispatch(new SendVerificationCodeToViaPhoneNumberJob($request->phone))->onConnection('sync');
+        return redirect(route('site.index'))->with('success' , 'تم الاشتراك بنجاح' );
     }
 
     public function cart()
